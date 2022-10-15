@@ -8,7 +8,7 @@ import { Link } from 'react-router-dom';
 
 function BootstrapNavbar() {
   return (
-    <Navbar bg="light" expand="md">
+    <Navbar bg="dark" expand="md" variant="dark">
       <Container>
         <Navbar.Brand as={Link} to="/home">Alexander Julian A Ty</Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />

@@ -14,15 +14,8 @@ function Homepage() {
   return (
     <>
       <BootstrapNavbar></BootstrapNavbar>
-      <Container>
-        <Row>
-          <Col>
-            <BootstrapCarousel></BootstrapCarousel>
-          </Col>
-        </Row>
         
-      </Container>
-      <Container>
+      <Container fluid className='px-0'>
         <Routes>
           <Route path="/Projects" element={<ProjectsPage />}></Route>
           <Route path="/Resume"></Route>
