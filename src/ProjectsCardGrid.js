@@ -3,10 +3,11 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Container from "react-bootstrap/Container";
 
-import SocialLinks from "./SocialLinks";
+import { SocialLinks, LOGOS} from "./SocialLinks";
 
 import chickenFeetThumbnail from './images/chickenFeetThumbnail.png';
 import chickenToDoThumbnail from './images/chickenToDoThumbnail.png';
+import MLPaperThumbnail from './images/MLPaperThumbnail.png';
 
 function ProjectCard(props) {
   return (
@@ -16,7 +17,7 @@ function ProjectCard(props) {
         <Card.Title className='d-flex justify-content-between'>
           {props.title}
           <div>
-            <SocialLinks logo='github' href={props.href}/>
+            <SocialLinks logo={props.logo} href={props.href}/>
           </div>
         </Card.Title>
         <Card.Text>
@@ -50,14 +51,21 @@ function ProjectsCardGrid() {
               as a BaaS, it is an attempt at emulating task trackers such as
               Milanote and Asana. Currently a work in progress"
             imgSrc={chickenToDoThumbnail}
+            logo={LOGOS.GITHUB}
             href='https://github.com/julianty/chicken-to-do'
           />
         </Col>
         <Col className="col-3">
           <ProjectCard 
-            title='Project Title' 
-            text='describe the project' 
-            imgSrc='#'
+            title='ML Research Paper' 
+            text="An analysis of an intersection between Information Theory, 
+              Data Assimilation, and a particular method of training a neural
+              network. Examines the possibility of determining a theoretically
+              sufficient number of training examples to achieve a desired level
+              of accuracy instead of an 'as much as possible' approach." 
+            imgSrc={MLPaperThumbnail}
+            logo={LOGOS.ARXIV}
+            href='https://arxiv.org/abs/1902.05062'
           />
         </Col>
 

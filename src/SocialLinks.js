@@ -3,10 +3,12 @@ import Image from 'react-bootstrap/Image';
 
 import githubLogo from './images/GitHub-Mark-120px-plus.png';
 import linkedInLogo from './images/LI-In-Bug.png';
+import arxivLogo from './images/arxiv-logomark-small.svg';
 
 const LOGOS = {
   GITHUB: 'github',
   LINKEDIN: 'linkedin',
+  ARXIV: 'arxiv',
 }
 
 function SocialLinks(props) {
@@ -26,6 +28,17 @@ function SocialLinks(props) {
           <Image src={linkedInLogo} style={{height: '20px'}} />
         </a>
       )
+    
+    
+    case(LOGOS.ARXIV):
+      return (
+        <a href='https://arxiv.org/abs/1902.05062' 
+          target='_blank' 
+          rel="noreferrer">
+          <Image src={arxivLogo} style={{height: '20px'}} />
+        </a>
+      )
+
     default:
       return (
         <Container className='d-flex justify-content-end' style={{gap: '10px'}}>
@@ -45,4 +58,4 @@ function SocialLinks(props) {
 }
 
 
-export default SocialLinks
+export { SocialLinks, LOGOS}

@@ -9,6 +9,7 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 
 import ProjectsPage from './ProjectsPage';
+import ResumePage from './ResumePage';
 
 function Homepage() {
   return (
@@ -18,7 +19,7 @@ function Homepage() {
       <Container fluid className='px-0'>
         <Routes>
           <Route path="/home" element={<ProjectsPage />}></Route>
-          <Route path="/Resume"></Route>
+          <Route path="/Resume" element={<ResumePage />}></Route>
           <Route path="/Misc"></Route>
         </Routes>
       </Container>

@@ -1,5 +1,5 @@
 import Card from 'react-bootstrap/Card';
-import SocialLinks from './SocialLinks';
+import { SocialLinks, LOGOS} from './SocialLinks';
 
 function AboutMeCard() {
   return (
