@@ -18,7 +18,7 @@ function Homepage() {
         
       <Container fluid className='px-0'>
         <Routes>
-          <Route path="/home" element={<ProjectsPage />}></Route>
+          <Route path="/portfolio" element={<ProjectsPage />}></Route>
           <Route path="/Resume" element={<ResumePage />}></Route>
           <Route path="/Misc"></Route>
         </Routes>

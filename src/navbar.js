@@ -10,7 +10,7 @@ function BootstrapNavbar() {
   return (
     <Navbar bg="dark" expand="md" variant="dark">
       <Container>
-        <Navbar.Brand as={Link} to="/home">Alexander Julian A Ty</Navbar.Brand>
+        <Navbar.Brand as={Link} to="/portfolio">Alexander Julian A Ty</Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto">
