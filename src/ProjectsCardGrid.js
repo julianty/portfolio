@@ -10,8 +10,22 @@ import chickenToDoThumbnail from './images/chickenToDoThumbnail.png';
 import MLPaperThumbnail from './images/MLPaperThumbnail.png';
 
 function ProjectCard(props) {
+  const onMouseEnter = (e) => {
+    e.currentTarget.classList.add('shadow');
+  }
+  const onMouseLeave = (e) => {
+    e.currentTarget.classList.remove('shadow');
+  }
+  const clickHandler = (e) => {
+    window.open(props.href, '_blank');
+  }
   return (
-    <Card className="shadow">
+    <Card 
+      onMouseEnter={onMouseEnter} 
+      onMouseLeave={onMouseLeave} 
+      onClick={clickHandler} 
+      style={{cursor: 'pointer'}}
+    >
       <Card.Img src={props.imgSrc} fluid/>
       <Card.Body>
         <Card.Title className='d-flex justify-content-between'>
