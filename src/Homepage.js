@@ -8,7 +8,7 @@ import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 
-import ProjectsPage from './ProjectsPage';
+import PortfolioPage from './PortfolioPage';
 import ResumePage from './ResumePage';
 
 function Homepage() {
@@ -18,7 +18,7 @@ function Homepage() {
         
       <Container fluid className='px-0'>
         <Routes>
-          <Route path="/portfolio" element={<ProjectsPage />}></Route>
+          <Route path="/portfolio" element={<PortfolioPage />}></Route>
           <Route path="/Resume" element={<ResumePage />}></Route>
           <Route path="/Misc"></Route>
         </Routes>

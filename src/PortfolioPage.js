@@ -8,7 +8,7 @@ import meInSuit from "./images/meInSuitCropped.jpg";
 import AboutMeCard from './AboutMeCard';
 import ProjectsCardGrid from './ProjectsCardGrid';
 
-function ProjectsPage() {
+function PortfolioPage() {
   return (
     <Container fluid className='p-0'>
       <Stack gap={5}>
@@ -43,4 +43,4 @@ function ProjectsPage() {
   )
 }
 
-export default ProjectsPage;
+export default PortfolioPage;
