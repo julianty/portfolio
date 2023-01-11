@@ -63,7 +63,7 @@ function ProjectsCardGrid() {
               Milanote and Asana. Currently a work in progress"
             imgSrc={chickenToDoThumbnail}
             logo={LOGOS.GITHUB}
-            href="https://github.com/julianty/chicken-to-do"
+            href="https://chicken-tasks.web.app/"
           />
         </Col>
         <Col className="col-3">
