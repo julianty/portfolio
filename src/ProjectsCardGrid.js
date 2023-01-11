@@ -53,7 +53,6 @@ function ProjectsCardGrid() {
             text="My first attempt at developing a game in Unity as a part of 
                 the 'USC Games Unlocked' Course"
             imgSrc={chickenFeetThumbnail}
-            logo=""
           />
         </Col>
         <Col className="col-3">
