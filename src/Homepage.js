@@ -1,31 +1,15 @@
-import BootstrapNavbar from './navbar';
-import BootstrapCarousel from './BootstrapCarousel';
-
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-
-
-import Container from 'react-bootstrap/Container';
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
-
-import PortfolioPage from './PortfolioPage';
-import ResumePage from './ResumePage';
+import Container from "react-bootstrap/Container";
+import Row from "react-bootstrap/Row";
+import Col from "react-bootstrap/Col";
+import Stack from "react-bootstrap/Stack";
+import Image from "react-bootstrap/Image";
 
 function Homepage() {
   return (
-    <>
-      <BootstrapNavbar></BootstrapNavbar>
-        
-      <Container fluid className='px-0'>
-        <Routes>
-          <Route path="/portfolio" element={<PortfolioPage />}></Route>
-          <Route path="/Resume" element={<ResumePage />}></Route>
-          <Route path="/Misc"></Route>
-        </Routes>
-      </Container>
-    </>
-  )
+    <Container fluid className="p-0">
+      Welcome to my website. Please use the navigation bar above to look around!
+    </Container>
+  );
 }
-
 
 export default Homepage;
