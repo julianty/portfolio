@@ -1,18 +1,19 @@
 {
   "files": {
     "main.css": "/static/css/main.7cda8612.css",
-    "main.js": "/static/js/main.5a51db04.js",
+    "main.js": "/static/js/main.4dfd0331.js",
     "static/media/MLPaperThumbnail.png": "/static/media/MLPaperThumbnail.c7d198f7ed01a274e835.png",
     "static/media/meInSuitCropped.jpg": "/static/media/meInSuitCropped.e47346673cf9507fb449.jpg",
+    "static/media/workoutTrackerThumbnail.png": "/static/media/workoutTrackerThumbnail.acc8dc0cf8342ad72f64.png",
     "static/media/chickenFeetThumbnail.png": "/static/media/chickenFeetThumbnail.206b10cb66cf3bebe334.png",
     "static/media/chickenToDoThumbnail.png": "/static/media/chickenToDoThumbnail.9109948d755f8926673e.png",
     "static/media/arxiv-logomark-small.svg": "/static/media/arxiv-logomark-small.f58e10c83f0dca91309c80961ac0ee32.svg",
     "index.html": "/index.html",
     "main.7cda8612.css.map": "/static/css/main.7cda8612.css.map",
-    "main.5a51db04.js.map": "/static/js/main.5a51db04.js.map"
+    "main.4dfd0331.js.map": "/static/js/main.4dfd0331.js.map"
   },
   "entrypoints": [
     "static/css/main.7cda8612.css",
-    "static/js/main.5a51db04.js"
+    "static/js/main.4dfd0331.js"
   ]
 }
