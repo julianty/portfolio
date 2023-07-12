@@ -19,7 +19,7 @@ function LandingPage() {
           <Route path="/" element={<Homepage />}></Route>
           <Route path="/Portfolio" element={<PortfolioPage />}></Route>
           <Route path="/Resume" element={<ResumePage />}></Route>
-          <Route path="/Misc"></Route>
+          {/* <Route path="/Misc"></Route> */}
         </Routes>
       </Container>
     </>

@@ -6,8 +6,13 @@ import Image from "react-bootstrap/Image";
 
 function Homepage() {
   return (
-    <Container fluid className="p-0">
-      Welcome to my website. Please use the navigation bar above to look around!
+    <Container>
+      <Row className="justify-content-center">
+        <Col>
+          Welcome to my website. Please use the navigation bar above to look
+          around!
+        </Col>
+      </Row>
     </Container>
   );
 }

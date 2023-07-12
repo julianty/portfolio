@@ -20,9 +20,9 @@ function BootstrapNavbar() {
             <Nav.Link as={Link} to="/Resume">
               Resume
             </Nav.Link>
-            <Nav.Link as={Link} to="/Misc">
+            {/* <Nav.Link as={Link} to="/Misc">
               Misc
-            </Nav.Link>
+            </Nav.Link> */}
           </Nav>
         </Navbar.Collapse>
       </Container>
