@@ -1,5 +1,5 @@
-import BootstrapNavbar from "./navbar";
-import BootstrapCarousel from "./BootstrapCarousel";
+import BootstrapNavbar from "../navbar";
+import BootstrapCarousel from "../BootstrapCarousel";
 
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 

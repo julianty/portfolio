@@ -1,5 +1,5 @@
 import { Container, Row, Col, Image, Card, Link } from "react-bootstrap";
-import ResumePhoto from "./images/meInSuitCropped.jpg";
+import ResumePhoto from "../images/meInSuitCropped.jpg";
 
 function ExperienceFormat(props) {
   function subtitle() {

@@ -1,5 +1,5 @@
-import Card from 'react-bootstrap/Card';
-import { SocialLinks, LOGOS} from './SocialLinks';
+import Card from "react-bootstrap/Card";
+import { SocialLinks, LOGOS } from "./components/SocialLinks";
 
 function AboutMeCard() {
   return (
@@ -7,17 +7,16 @@ function AboutMeCard() {
       <Card.Body>
         <Card.Title>About Me</Card.Title>
         <Card.Text>
-          San Diego based web-developer in training, amateur powerlifter, coffee enthusiast,
-          avid gamer, aspiring game developer, former research scientist,
-          hobbyist artist.
-
+          San Diego based web-developer in training, amateur powerlifter, coffee
+          enthusiast, avid gamer, aspiring game developer, former research
+          scientist, hobbyist artist.
         </Card.Text>
       </Card.Body>
       <Card.Body>
         <SocialLinks />
       </Card.Body>
     </Card>
-  )
+  );
 }
 
 export default AboutMeCard;

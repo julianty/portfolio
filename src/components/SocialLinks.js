@@ -1,10 +1,10 @@
 import { Container } from "react-bootstrap";
 import Image from "react-bootstrap/Image";
 
-import githubLogo from "./images/GitHub-Mark-120px-plus.png";
-import linkedInLogo from "./images/LI-In-Bug.png";
-import arxivLogo from "./images/arxiv-logomark-small.svg";
-import webIcon from "./images/icons8-web-100.png";
+import githubLogo from "../images/GitHub-Mark-120px-plus.png";
+import linkedInLogo from "../images/LI-In-Bug.png";
+import arxivLogo from "../images/arxiv-logomark-small.svg";
+import webIcon from "../images/icons8-web-100.png";
 
 const LOGOS = {
   GITHUB: "github",
