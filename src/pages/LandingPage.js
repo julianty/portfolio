@@ -1,4 +1,4 @@
-import BootstrapNavbar from "../navbar";
+import BootstrapNavbar from "../components/navbar";
 import BootstrapCarousel from "../BootstrapCarousel";
 
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
@@ -8,7 +8,8 @@ import Container from "react-bootstrap/Container";
 import PortfolioPage from "./PortfolioPage";
 import ResumePage from "./ResumePage";
 import Homepage from "./Homepage";
-
+import Navbar from "react-bootstrap/Navbar";
+import Nav from "react-bootstrap/Nav";
 function LandingPage() {
   return (
     <>
@@ -22,6 +23,19 @@ function LandingPage() {
           {/* <Route path="/Misc"></Route> */}
         </Routes>
       </Container>
+
+      <Navbar bg="dark" variant="dark">
+        <Container>
+          <Nav>
+            <Nav.Link to="/">
+              Created by Alexander Julian Ty with React
+            </Nav.Link>
+            <Nav.Link href="mailto:alexanderjulianty@gmail.com">
+              Email me
+            </Nav.Link>
+          </Nav>
+        </Container>
+      </Navbar>
     </>
   );
 }
