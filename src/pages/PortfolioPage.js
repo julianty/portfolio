@@ -5,7 +5,7 @@ import Stack from "react-bootstrap/Stack";
 import Image from "react-bootstrap/Image";
 
 import meInSuit from "../images/meInSuitCropped.jpg";
-import AboutMeCard from "../AboutMeCard";
+import AboutMeCard from "../components/AboutMeCard";
 import WebDevelopmentCardGrid from "../components/WebDevelopmentCardGrid";
 import MachineLearningCardGrid from "../components/MachineLearningCardGrid";
 import GameDevelopmentCardGrid from "../components/GameDevelopmentCardGrid";
@@ -14,9 +14,6 @@ function PortfolioPage() {
   return (
     <Container fluid className="p-0">
       <Stack gap={5}>
-        {/* <Container className="mx-auto p-4">
-          <ProjectsCardGrid />
-        </Container> */}
         <Container>
           <Row>
             <h1>Projects</h1>
