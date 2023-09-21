@@ -25,15 +25,15 @@ const TagLabels = {
     text: "Game Development",
     color: "warning",
   },
+  MONGOOSE: {
+    text: "Mongoose",
+    color: "info",
+  },
 };
 
 export default function ProjectTag({ tagLabel }) {
   // Accepts a single string as the tag name and returns a JSX Badge element
   // with the appropriate text and color
   const { text, color } = TagLabels[tagLabel];
-  return (
-    <Badge pill bg={color}>
-      {text}
-    </Badge>
-  );
+  return <Badge bg={color}>{text}</Badge>;
 }
