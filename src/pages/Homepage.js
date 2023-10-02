@@ -12,6 +12,7 @@ import { SocialLinks, LOGOS } from "../components/SocialLinks";
 import meInSuit from "../images/meInSuitSquare.jpg";
 import toDoThumbnail from "../images/toDoProjectThumbnail.png";
 import workoutTrackerThumbnail from "../images/workoutTrackerThumbnail.png";
+import sentencePerDayThumbnail from "../images/sentencePerDayThumbnail.png";
 function Homepage() {
   return (
     <Container>
@@ -58,15 +59,15 @@ function Homepage() {
         />
         <ProjectHighlight
           title={"Sentence Per Day"}
-          tags={["REACT", "MONGOOSE"]}
+          tags={["REACT", "NODE", "MONGOOSE"]}
           description={
             "Learning a new language has been on my to-do list for a long time, and this application is meant to build a habit of translating a single sentence each day from the target language to English."
           }
-          // imageSrc={toDoThumbnail}
-          imageHref={"https://chicken-tasks.firebaseapp.com/"}
+          imageSrc={sentencePerDayThumbnail}
+          // imageHref={"https://chicken-tasks.firebaseapp.com/"}
           socialLinks={{
-            github: "https://github.com/julianty/chicken-to-do",
-            web: "https://chicken-tasks.firebaseapp.com/",
+            github: "https://github.com/julianty/sentence-per-day",
+            // web: "https://chicken-tasks.firebaseapp.com/",
           }}
         />
       </Container>
