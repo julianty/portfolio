@@ -29,6 +29,10 @@ const TagLabels = {
     text: "Mongoose",
     color: "info",
   },
+  NODE: {
+    text: "Node.js",
+    color: "primary",
+  },
 };
 
 export default function ProjectTag({ tagLabel }) {
