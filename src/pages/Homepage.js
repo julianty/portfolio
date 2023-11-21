@@ -56,6 +56,7 @@ function Homepage() {
             github: "https://github.com/julianty/workout-tracker",
             web: "https://workout-tracker-2d69d.firebaseapp.com/",
           }}
+          mirror={true}
         />
         <ProjectHighlight
           title={"Sentence Per Day"}

@@ -15,20 +15,20 @@ function PortfolioPage() {
     <Container fluid className="p-0">
       <Stack gap={5}>
         <Container>
-          <Row>
+          <Row className="mt-3">
             <h1>Projects</h1>
           </Row>
-          <Row>
+          <Row className="mt-3">
             <h2>Web Development</h2>
           </Row>
-          <Row>
+          <Row className="mt-3">
             <WebDevelopmentCardGrid />
           </Row>
-          <Row>
+          <Row className="mt-3">
             <h2>Machine Learning</h2>
             <MachineLearningCardGrid />
           </Row>
-          <Row>
+          <Row className="mt-3">
             <h2>Game Development</h2>
             <GameDevelopmentCardGrid />
           </Row>

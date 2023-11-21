@@ -7,7 +7,7 @@ import ProjectCard from "./ProjectCard";
 
 import chickenToDoThumbnail from "../images/chickenToDoThumbnail.png";
 import workoutTrackerThumbnail from "../images/workoutTrackerThumbnail.png";
-
+import sentencePerDayThumbnail from "../images/sentencePerDayThumbnail.png";
 export default function WebDevelopmentCardGrid() {
   return (
     <Container className="mx-auto">
@@ -32,6 +32,16 @@ export default function WebDevelopmentCardGrid() {
             imgSrc={workoutTrackerThumbnail}
             logo={LOGOS.WEB}
             href="https://workout-tracker-2d69d.web.app/"
+            tags={["REACT", "FIREBASE"]}
+          />
+        </Col>
+        <Col md="3" className="">
+          <ProjectCard
+            title="Sentence Per Day"
+            text="Learning a new language has been on my to-do list for a long time, and this application is meant to build a habit of translating a single sentence each day from the target language to English."
+            imgSrc={sentencePerDayThumbnail}
+            logo={LOGOS.GITHUB}
+            href="https://github.com/julianty/sentence-per-day"
             tags={["REACT", "FIREBASE"]}
           />
         </Col>

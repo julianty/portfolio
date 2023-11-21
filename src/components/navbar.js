@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 
 function BootstrapNavbar() {
   return (
-    <Navbar bg="dark" expand="md" variant="dark">
+    <Navbar expand="md" variant="light">
       <Container>
         <Navbar.Brand as={Link} to="/">
           Alexander Julian A Ty
