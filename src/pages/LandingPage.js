@@ -23,19 +23,6 @@ function LandingPage() {
           {/* <Route path="/Misc"></Route> */}
         </Routes>
       </Container>
-
-      <Navbar bg="dark" variant="dark" className="fixed-bottom">
-        <Container>
-          <Nav>
-            <Nav.Link to="/">
-              Created by Alexander Julian Ty with React
-            </Nav.Link>
-            <Nav.Link href="mailto:alexanderjulianty@gmail.com">
-              Email me
-            </Nav.Link>
-          </Nav>
-        </Container>
-      </Navbar>
     </>
   );
 }
