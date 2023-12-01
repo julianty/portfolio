@@ -24,7 +24,7 @@ function LandingPage() {
         </Routes>
       </Container>
 
-      <Navbar bg="dark" variant="dark">
+      <Navbar bg="dark" variant="dark" className="fixed-bottom">
         <Container>
           <Nav>
             <Nav.Link to="/">
