@@ -22,7 +22,7 @@ function Homepage() {
           <Col className="col-2 px-0 shadow">
             <Image src={meInSuit} fluid></Image>
           </Col>
-          <Col className="col-5 px-0 shadow">
+          <Col className="col-5 px-0 shadow-sm">
             <AboutMeCard />
           </Col>
         </Row>

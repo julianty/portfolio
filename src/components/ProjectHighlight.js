@@ -21,7 +21,7 @@ export default function ProjectHighlight({
     socialLinks: {LOGOS: string(hyperlink)}
   */
   return (
-    <Container className="my-3 p-5 border rounded">
+    <Container className="my-3 p-5 border rounded shadow-sm">
       <Row>
         <Col xs={7}>
           <Row>
