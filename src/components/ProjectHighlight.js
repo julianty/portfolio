@@ -28,7 +28,6 @@ export default function ProjectHighlight({
             <Row>
               <Col>
                 {tags.map((tagName) => {
-                  console.log(tagName);
                   return <ProjectTag tagLabel={tagName} key={uniqid()} />;
                 })}
               </Col>
