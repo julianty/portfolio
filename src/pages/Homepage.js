@@ -19,10 +19,10 @@ function Homepage() {
     <Container>
       <Container className="p-3 my-3">
         <Row className="justify-content-center align-items-center">
-          <Col className="col-2 px-0 shadow">
+          <Col sm={5} md={3} className="px-0 shadow">
             <Image src={meInSuit} fluid></Image>
           </Col>
-          <Col className="col-5 px-0 shadow-sm">
+          <Col sm={5} md={5} className="px-0 shadow-sm">
             <AboutMeCard />
           </Col>
         </Row>
@@ -33,7 +33,7 @@ function Homepage() {
           <h2>Project Highlights</h2>
         </Row>
         <Row className="justify-content-center">
-          <Col className="col-6">
+          <Col lg={6}>
             <ProjectHighlight
               title={"To Do Web Application"}
               tags={["REACT", "FIREBASE"]}
@@ -48,7 +48,7 @@ function Homepage() {
               }}
             />
           </Col>
-          <Col className="col-6">
+          <Col lg={6}>
             <ProjectHighlight
               title={"Workout Tracker"}
               tags={["REACT", "FIREBASE"]}
