@@ -1,7 +1,17 @@
-import { Container, Row, Col, Image } from "react-bootstrap";
 import ProjectTag from "./ProjectTag";
-import { SocialLinks, LOGOS } from "./SocialLinks";
+import { SocialLinks } from "./SocialLinks";
 import uniqid from "uniqid";
+
+import {
+  Paper,
+  Group,
+  Title,
+  Text,
+  Image,
+  Divider,
+  Anchor,
+} from "@mantine/core";
+
 export default function ProjectHighlight({
   title,
   tags,
@@ -21,40 +31,25 @@ export default function ProjectHighlight({
     socialLinks: {LOGOS: string(hyperlink)}
   */
   return (
-    <Container className="my-3 p-5 border rounded shadow-sm">
-      <Row>
-        <Col xs={7}>
-          <Row>
-            <Row>
-              <Col>
-                {tags.map((tagName) => {
-                  return <ProjectTag tagLabel={tagName} key={uniqid()} />;
-                })}
-              </Col>
-            </Row>
-            <h3>{title}</h3>
-          </Row>
-          {description}
-          <Row>
-            <Col>
-              {Object.keys(socialLinks).map((logo) => {
-                return (
-                  <SocialLinks
-                    logo={logo}
-                    href={socialLinks[logo]}
-                    key={uniqid()}
-                  />
-                );
-              })}
-            </Col>
-          </Row>
-        </Col>
-        <Col xs={5}>
-          <a href={imageHref} target="_blank" rel="noreferrer noopener">
-            <Image src={imageSrc} thumbnail></Image>
-          </a>
-        </Col>
-      </Row>
-    </Container>
+    <Paper p="lg" shadow="xs" withBorder radius="lg">
+      <Group justify="space-between">
+        <Title order={3}>{title}</Title>
+        <Group>
+          {tags.map((tagName) => {
+            return <ProjectTag tagLabel={tagName} key={uniqid()} />;
+          })}
+          {Object.keys(socialLinks).map((logoName) => (
+            <SocialLinks logo={logoName} key={uniqid()} />
+          ))}
+        </Group>
+      </Group>
+      <Divider my="sm" />
+      <Group align="flex-start" grow>
+        <Text w="50%">{description}</Text>
+        <Anchor href={imageHref} target="_blank">
+          <Image src={imageSrc}></Image>
+        </Anchor>
+      </Group>
+    </Paper>
   );
 }
