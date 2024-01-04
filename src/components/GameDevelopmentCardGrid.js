@@ -1,28 +1,20 @@
-import { Container, Row, Col, Card } from "react-bootstrap";
-import { SocialLinks } from "./SocialLinks";
 import chickenFeetThumbnail from "../images/chickenFeetThumbnail.png";
-import ProjectTag from "./ProjectTag";
+import { Group } from "@mantine/core";
+import ProjectCard from "./ProjectCard";
+import { LOGOS } from "./SocialLinks";
 
 export default function GameDevelopmentCardGrid() {
   return (
-    <Container className="mx-auto">
-      <Row>
-        <Col md="3">
-          <Card>
-            <Card.Header>
-              <Card.Title>Chicken Feet</Card.Title>
-            </Card.Header>
-            <Card.Img variant="top" src={chickenFeetThumbnail}></Card.Img>
-            <Card.Body>
-              My first attempt at developing a game in Unity as a part of the
-              'USC Games Unlocked' Course
-            </Card.Body>
-            <Card.Footer>
-              <ProjectTag tagLabel="GAMEDEV" />
-            </Card.Footer>
-          </Card>
-        </Col>
-      </Row>
-    </Container>
+    <Group align="flex-start">
+      <ProjectCard
+        title="Chicken Feet"
+        text="My first attempt at developing a game in Unity as a part of the
+               'USC Games Unlocked' Course"
+        imgSrc={chickenFeetThumbnail}
+        logo={LOGOS.GITHUB}
+        href={"https://github.com/julianty/chicken-to-do"}
+        tags={["GAMEDEV"]}
+      />
+    </Group>
   );
 }

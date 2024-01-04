@@ -1,5 +1,4 @@
-import { Container } from "react-bootstrap";
-import Image from "react-bootstrap/Image";
+import { Container, Image } from "@mantine/core";
 
 import githubLogo from "../images/GitHub-Mark-120px-plus.png";
 import linkedInLogo from "../images/LI-In-Bug.png";
