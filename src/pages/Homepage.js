@@ -10,7 +10,7 @@ import workoutTrackerThumbnail from "../images/workoutTrackerThumbnail.png";
 function Homepage() {
   return (
     <Stack mt="xl">
-      <Group justify="center">
+      <Group justify="center" my="xl">
         <Image src={meInSuit} w={200} radius="md"></Image>
         <AboutMeCard />
       </Group>

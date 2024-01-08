@@ -13,7 +13,7 @@ function AboutMeCard() {
           hobbyist artist.
         </Card.Text> */}
         <Card.Text className="mb-0">
-          Full-stack Web Developer, UI/UX Designer
+          Full-stack Web Developer, Product Designer
         </Card.Text>
         <Card.Text className="mb-0">Based in San Diego, California</Card.Text>
         <Row>
