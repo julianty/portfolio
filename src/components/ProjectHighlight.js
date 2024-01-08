@@ -10,6 +10,9 @@ import {
   Image,
   Divider,
   Anchor,
+  AspectRatio,
+  Box,
+  Spoiler,
 } from "@mantine/core";
 
 export default function ProjectHighlight({
@@ -31,24 +34,31 @@ export default function ProjectHighlight({
     socialLinks: {LOGOS: string(hyperlink)}
   */
   return (
-    <Paper p="lg" shadow="xs" withBorder radius="lg">
+    <Paper p="lg" radius="lg">
+      <Paper bg={"grey"} radius="lg" p="sm">
+        <Image h="300px" src={imageSrc} fit="contain"></Image>
+      </Paper>
       <Group justify="space-between">
-        <Title order={3}>{title}</Title>
+        <Anchor href={imageHref} target="_blank">
+          <Title order={3}>{title}</Title>
+        </Anchor>
         <Group>
           {tags.map((tagName) => {
             return <ProjectTag tagLabel={tagName} key={uniqid()} />;
           })}
           {Object.keys(socialLinks).map((logoName) => (
-            <SocialLinks logo={logoName} key={uniqid()} />
+            <SocialLinks
+              logo={logoName}
+              key={uniqid()}
+              href={socialLinks[logoName]}
+            />
           ))}
         </Group>
       </Group>
-      <Divider my="sm" />
       <Group align="flex-start" grow>
-        <Text w="50%">{description}</Text>
-        <Anchor href={imageHref} target="_blank">
-          <Image src={imageSrc}></Image>
-        </Anchor>
+        <Spoiler maxHeight={50} showLabel="Show more" hideLabel="Hide">
+          <Text w="100%">{description}</Text>
+        </Spoiler>
       </Group>
     </Paper>
   );
