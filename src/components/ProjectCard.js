@@ -1,4 +1,4 @@
-import { Card, Container } from "react-bootstrap";
+import { Card, Text, Image, Title, Group } from "@mantine/core";
 import { SocialLinks } from "./SocialLinks";
 import ProjectTag from "./ProjectTag";
 import uniqid from "uniqid";
@@ -13,7 +13,6 @@ export default function ProjectCard({
 }) {
   if (typeof tags == "string") {
     // Convert tag into an array in order to properly map
-    console.log(tags);
     tags = [tags];
   }
   const onMouseEnter = (e) => {
@@ -27,26 +26,28 @@ export default function ProjectCard({
   };
   return (
     <Card
+      shadow="sm"
+      p="lg"
+      w={{ md: "32%" }}
+      withBorder
       onMouseEnter={onMouseEnter}
       onMouseLeave={onMouseLeave}
       onClick={clickHandler}
       style={{ cursor: "pointer" }}
     >
-      <Card.Header className="d-flex justify-content-between">
-        <Card.Title>{title}</Card.Title>
-        <SocialLinks logo={logo} href={href} />
-      </Card.Header>
-      <Card.Img src={imgSrc} />
-      <Card.Body>
-        <Card.Title className="d-flex justify-content-between"></Card.Title>
-        <Card.Text>{text}</Card.Text>
-      </Card.Body>
-      <Card.Footer>
-        {tags.map((tagLabel) => (
-          <ProjectTag key={uniqid()} tagLabel={tagLabel} />
-        ))}
-        {/* <ProjectTag tagLabel="REACT" /> */}
-      </Card.Footer>
+      <Card.Section>
+        <Image height={200} src={imgSrc} />
+      </Card.Section>
+      <Title order={4}>{title}</Title>
+      <Text>{text}</Text>
+      <Group justify="space-between">
+        <div>
+          {tags.map((tagLabel) => (
+            <ProjectTag key={uniqid()} tagLabel={tagLabel} />
+          ))}
+        </div>
+        <SocialLinks logo={logo} />
+      </Group>
     </Card>
   );
 }
