@@ -1,33 +1,38 @@
-import Container from "react-bootstrap/Container";
-import Nav from "react-bootstrap/Nav";
-import Navbar from "react-bootstrap/Navbar";
-// import { LinkContainer } from 'react-router-bootstrap';
-import { Link } from "react-router-dom";
+import { Box, Text, Group, Anchor } from "@mantine/core";
 
-function BootstrapNavbar() {
+import { Burger, Menu } from "@mantine/core";
+import { useDisclosure } from "@mantine/hooks";
+function MantineNavbar() {
+  const [opened, { toggle }] = useDisclosure();
   return (
-    <Navbar expand="md" variant="light">
-      <Container>
-        <Navbar.Brand as={Link} to="/">
-          Alexander Julian A Ty
-        </Navbar.Brand>
-        <Navbar.Toggle aria-controls="basic-navbar-nav" />
-        <Navbar.Collapse id="basic-navbar-nav">
-          <Nav className="me-auto">
-            <Nav.Link as={Link} to="/Portfolio">
+    <Box>
+      <Group m="md" justify="space-between">
+        <Anchor underline="never" href="/" c={"black"}>
+          <Text size="xl" fw={700}>
+            julianty
+          </Text>
+        </Anchor>
+        <Menu>
+          <Menu.Target>
+            <Burger opened={opened} onClick={toggle} />
+          </Menu.Target>
+          <Menu.Dropdown>
+            <Menu.Label>Navigation</Menu.Label>
+            <Menu.Item component="a" href="/">
+              Home
+            </Menu.Item>
+            <Menu.Item component="a" href="/Portfolio">
               Portfolio
-            </Nav.Link>
-            <Nav.Link as={Link} to="/Resume">
+            </Menu.Item>
+            <Menu.Item component="a" href="/Resume">
               Resume
-            </Nav.Link>
-            {/* <Nav.Link as={Link} to="/Misc">
-              Misc
-            </Nav.Link> */}
-          </Nav>
-        </Navbar.Collapse>
-      </Container>
-    </Navbar>
+            </Menu.Item>
+          </Menu.Dropdown>
+        </Menu>
+      </Group>
+    </Box>
   );
 }
 
-export default BootstrapNavbar;
+// export default BootstrapNavbar;
+export { MantineNavbar };
