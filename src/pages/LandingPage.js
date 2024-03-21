@@ -1,5 +1,4 @@
-import BootstrapNavbar from "../components/navbar";
-import BootstrapCarousel from "../BootstrapCarousel";
+import { MantineNavbar } from "../components/navbar";
 
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
@@ -8,22 +7,24 @@ import Container from "react-bootstrap/Container";
 import PortfolioPage from "./PortfolioPage";
 import ResumePage from "./ResumePage";
 import Homepage from "./Homepage";
-import Navbar from "react-bootstrap/Navbar";
-import Nav from "react-bootstrap/Nav";
+import { Box, Center } from "@mantine/core";
+
 function LandingPage() {
   return (
-    <>
-      <BootstrapNavbar></BootstrapNavbar>
+    <Center>
+      <Box w={{ base: "100%", lg: "50%" }}>
+        <MantineNavbar />
 
-      <Container fluid className="px-0">
-        <Routes>
-          <Route path="/" element={<Homepage />}></Route>
-          <Route path="/Portfolio" element={<PortfolioPage />}></Route>
-          <Route path="/Resume" element={<ResumePage />}></Route>
-          {/* <Route path="/Misc"></Route> */}
-        </Routes>
-      </Container>
-    </>
+        <Container fluid className="px-0">
+          <Routes>
+            <Route path="/" element={<Homepage />}></Route>
+            <Route path="/Portfolio" element={<PortfolioPage />}></Route>
+            <Route path="/Resume" element={<ResumePage />}></Route>
+            {/* <Route path="/Misc"></Route> */}
+          </Routes>
+        </Container>
+      </Box>
+    </Center>
   );
 }
 
