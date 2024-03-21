@@ -1,4 +1,4 @@
-import { Container, Image } from "@mantine/core";
+import { Group, Image } from "@mantine/core";
 
 import githubLogo from "../images/GitHub-Mark-120px-plus.png";
 import linkedInLogo from "../images/LI-In-Bug.png";
@@ -51,10 +51,7 @@ function SocialLinks(props) {
 
     default:
       return (
-        <Container
-          className="d-flex justify-content-end"
-          style={{ gap: "10px" }}
-        >
+        <Group className="d-flex justify-content-end" style={{ gap: "10px" }}>
           <a
             href="https://github.com/julianty"
             target="_blank"
@@ -69,7 +66,7 @@ function SocialLinks(props) {
           >
             <Image src={linkedInLogo} style={{ height: "20px" }} />
           </a>
-        </Container>
+        </Group>
       );
   }
 }
