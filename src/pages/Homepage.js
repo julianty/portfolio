@@ -1,4 +1,4 @@
-import { Stack, Group, Grid, Image, Title } from "@mantine/core";
+import { Stack, Group, Grid, Image, Title, Center, rem } from "@mantine/core";
 
 import AboutMeCard from "../components/AboutMeCard";
 import ProjectHighlight from "../components/ProjectHighlight";
@@ -6,16 +6,50 @@ import ProjectHighlight from "../components/ProjectHighlight";
 import meInSuit from "../images/meInSuitSquare.jpg";
 import toDoThumbnail from "../images/toDoProjectThumbnail.png";
 import workoutTrackerThumbnail from "../images/workoutTrackerThumbnail.png";
+import {
+  IconBrandReact,
+  IconBrandFirebase,
+  IconBrandMongodb,
+  IconBrandHtml5,
+  IconBrandCss3,
+  IconBrandJavascript,
+  IconBrandTypescript,
+  IconBrandPython,
+} from "@tabler/icons-react";
+
+const iconStyles = {
+  width: rem(50),
+  height: rem(50),
+};
 
 function Homepage() {
   return (
-    <Stack mt="xl">
+    <Stack m="md">
       <Group justify="center">
-        <Image src={meInSuit} w={200} radius="md"></Image>
+        <Image m="md" src={meInSuit} w={200} radius="md"></Image>
         <AboutMeCard />
       </Group>
-
-      <Stack px="13%">
+      <Group justify="space-between" p={{ lg: "lg" }}>
+        <Stack>
+          <Title order={2}>Skills</Title>
+          <Group>
+            <IconBrandHtml5 style={iconStyles} />
+            <IconBrandCss3 style={iconStyles} />
+            <IconBrandJavascript style={iconStyles} />
+            <IconBrandTypescript style={iconStyles} />
+            <IconBrandPython style={iconStyles} />
+          </Group>
+        </Stack>
+        <Stack>
+          <Title order={2}>Frameworks</Title>
+          <Group>
+            <IconBrandReact style={iconStyles} />
+            <IconBrandFirebase style={iconStyles} />
+            <IconBrandMongodb style={iconStyles} />
+          </Group>
+        </Stack>
+      </Group>
+      {/* <Stack px="13%">
         <Title order={2}>Project Highlights</Title>
         <Grid>
           <Grid.Col span={{ base: 12, md: 6 }}>
@@ -49,7 +83,7 @@ function Homepage() {
             />
           </Grid.Col>
         </Grid>
-      </Stack>
+      </Stack> */}
     </Stack>
   );
 }
