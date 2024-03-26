@@ -1,55 +1,36 @@
-import ProjectTag from "./ProjectTag";
-import { SocialLinks } from "./SocialLinks";
-import uniqid from "uniqid";
+import { Button, Flex, Group, Image, Stack, Text, Title } from "@mantine/core";
+import manWorkingOut from "../images/man-working-out.jpeg";
+import { styledIcons } from "./StyledIcons";
 
-import {
-  Paper,
-  Group,
-  Title,
-  Text,
-  Image,
-  Divider,
-  Anchor,
-} from "@mantine/core";
-
-export default function ProjectHighlight({
-  title,
-  tags,
-  description,
-  imageSrc,
-  imageHref,
-  socialLinks,
-  mirror,
-}) {
-  /* 
-  Inputs
-    title: string
-    tags: [string]
-    description: string
-    imageSrc: fileImport
-    imageHref: string(hyperlink)
-    socialLinks: {LOGOS: string(hyperlink)}
-  */
+export default function ProjectHighlight() {
   return (
-    <Paper p="lg" shadow="xs" withBorder radius="lg">
-      <Group justify="space-between">
-        <Title order={3}>{title}</Title>
-        <Group>
-          {tags.map((tagName) => {
-            return <ProjectTag tagLabel={tagName} key={uniqid()} />;
-          })}
-          {Object.keys(socialLinks).map((logoName) => (
-            <SocialLinks logo={logoName} key={uniqid()} />
-          ))}
+    <Flex gap={"lg"} direction={{ sm: "row", xs: "column" }}>
+      <Image
+        style={{ borderRadius: 20 }}
+        w={{ lg: "200px", md: "300px", sm: "200px" }}
+        display={{ sm: "block", xs: "none" }}
+        src={manWorkingOut}
+      ></Image>
+      <Stack justify="flex-start">
+        <Group wrap="nowrap">
+          <Title order={2}>Corpore Sano</Title>
+          {styledIcons.firebase}
+          {styledIcons.react}
         </Group>
-      </Group>
-      <Divider my="sm" />
-      <Group align="flex-start" grow>
-        <Text w="50%">{description}</Text>
-        <Anchor href={imageHref} target="_blank">
-          <Image src={imageSrc}></Image>
-        </Anchor>
-      </Group>
-    </Paper>
+        <Text>
+          A lightweight but feature rich workout tracker. Summarizes your
+          workout history and presents users with data that can help guide their
+          decisions.
+        </Text>
+        <Text>
+          Key features: view weekly muscle stimulation, export data to CSV or
+          JSON, create workout plans
+        </Text>
+        <Group>
+          <Button>Live Site</Button>
+          <Button>Project Page</Button>
+        </Group>
+      </Stack>
+    </Flex>
   );
 }
