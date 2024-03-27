@@ -27,6 +27,11 @@ function MantineNavbar() {
             <Menu.Item component="a" href="/Resume">
               Resume
             </Menu.Item>
+            <Menu.Divider />
+            <Menu.Label>Projects</Menu.Label>
+            <Menu.Item component="a" href="/projects/CorporeSano">
+              Corpore Sano
+            </Menu.Item>
           </Menu.Dropdown>
         </Menu>
       </Group>
