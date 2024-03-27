@@ -28,7 +28,9 @@ export default function ProjectHighlight() {
         </Text>
         <Group>
           <Button>Live Site</Button>
-          <Button>Project Page</Button>
+          <Button component="a" href="/projects/CorporeSano">
+            Project Page
+          </Button>
         </Group>
       </Stack>
     </Flex>
