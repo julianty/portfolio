@@ -27,7 +27,9 @@ export default function ProjectHighlight() {
           JSON, create workout plans
         </Text>
         <Group>
-          <Button>Live Site</Button>
+          <Button component="a" href="https://corpore-sano-2e626.web.app/">
+            Live Site
+          </Button>
           <Button component="a" href="/projects/CorporeSano">
             Project Page
           </Button>

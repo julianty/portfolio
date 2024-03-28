@@ -39,7 +39,9 @@ export default function CorporeSanoPage() {
             Key features: view weekly muscle stimulation, export data to CSV or
             JSON, create workout plans
           </Text>
-          <Button>Visit Site</Button>
+          <Button component="a" href="https://corpore-sano-2e626.web.app/">
+            Visit Site
+          </Button>
         </Stack>
         <Image visibleFrom="sm" src={manWorkingOutImage} />
       </Flex>
