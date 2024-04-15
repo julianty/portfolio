@@ -11,7 +11,7 @@ import {
   IconBrandTypescript,
   icons,
 } from "@tabler/icons-react";
-import { rem } from "@mantine/core";
+import { HoverCard, Text, rem } from "@mantine/core";
 const iconStyles = {
   width: rem(50),
   height: rem(50),
@@ -80,3 +80,16 @@ export const styledIcons = {
     />
   ),
 };
+
+export const styledIconsWithHover = Object.entries(styledIcons).forEach(
+  ([name, icon]) => {
+    styledIcons[name] = (
+      <HoverCard openDelay={200} closeDelay={200}>
+        <HoverCard.Target>{icon}</HoverCard.Target>
+        <HoverCard.Dropdown>
+          <Text>{name}</Text>
+        </HoverCard.Dropdown>
+      </HoverCard>
+    );
+  }
+);
