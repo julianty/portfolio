@@ -9,9 +9,10 @@ const sectionStyles = {
   p: { lg: "lg" },
 };
 function Homepage() {
+  console.log(styledIcons);
   return (
-    <Stack m="md">
-      <Group justify="center">
+    <Stack m="md" gap="xl">
+      <Group my="xl" justify="center">
         <Image m="md" src={meInSuit} w={200} radius="md"></Image>
         <AboutMeCard />
       </Group>
