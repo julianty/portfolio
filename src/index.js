@@ -9,7 +9,7 @@ import { MantineProvider } from "@mantine/core";
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <div>
-    <MantineProvider>
+    <MantineProvider defaultColorScheme="dark">
       <React.StrictMode>
         <BrowserRouter>
           <LandingPage />

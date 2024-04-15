@@ -1,14 +1,28 @@
-import { Box, Text, Group, Anchor } from "@mantine/core";
+import {
+  Box,
+  Text,
+  Group,
+  Anchor,
+  useMantineTheme,
+  useComputedColorScheme,
+} from "@mantine/core";
 
 import { Burger, Menu } from "@mantine/core";
 import { useDisclosure } from "@mantine/hooks";
 function MantineNavbar() {
   const [opened, { toggle }] = useDisclosure();
+  const colorScheme = useComputedColorScheme("dark", {
+    getInitialValueInEffect: true,
+  });
   return (
     <Box>
       <Group m="md" justify="space-between">
         <Anchor underline="never" href="/" c={"black"}>
-          <Text size="xl" fw={700}>
+          <Text
+            c={colorScheme == "dark" ? "gray.2" : "gray.8"}
+            size="xl"
+            fw={700}
+          >
             julianty
           </Text>
         </Anchor>
