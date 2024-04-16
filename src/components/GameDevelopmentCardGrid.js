@@ -12,7 +12,7 @@ export default function GameDevelopmentCardGrid() {
                'USC Games Unlocked' Course"
         imgSrc={chickenFeetThumbnail}
         logo={LOGOS.GITHUB}
-        href={"https://github.com/julianty/chicken-to-do"}
+        // href={}
         tags={["GAMEDEV"]}
       />
     </Group>

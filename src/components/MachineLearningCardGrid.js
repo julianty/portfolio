@@ -15,7 +15,7 @@ export default function MachineLearningCardGrid() {
               approach."
         imgSrc={MLPaperThumbnail}
         logo={LOGOS.ARXIV}
-        href={"/"}
+        href={"https://arxiv.org/abs/1902.05062"}
         tags={["ML", "ARTICLE"]}
       />
     </Group>

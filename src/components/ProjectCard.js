@@ -22,6 +22,7 @@ export default function ProjectCard({
     e.currentTarget.classList.remove("shadow");
   };
   const clickHandler = (e) => {
+    if (href === undefined) return;
     window.open(href, "_blank");
   };
   return (
