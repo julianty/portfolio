@@ -3,14 +3,13 @@ import {
   Text,
   Group,
   Anchor,
-  useMantineTheme,
   useComputedColorScheme,
 } from "@mantine/core";
 
 import { Burger, Menu } from "@mantine/core";
-import { useDisclosure } from "@mantine/hooks";
+// import { useDisclosure } from "@mantine/hooks";
 function MantineNavbar() {
-  const [opened, { toggle }] = useDisclosure();
+  // const [opened, { toggle }] = useDisclosure();
   const colorScheme = useComputedColorScheme("dark", {
     getInitialValueInEffect: true,
   });
@@ -28,7 +27,7 @@ function MantineNavbar() {
         </Anchor>
         <Menu>
           <Menu.Target>
-            <Burger opened={opened} onClick={toggle} />
+            <Burger opened={false} />
           </Menu.Target>
           <Menu.Dropdown>
             <Menu.Label>Navigation</Menu.Label>
