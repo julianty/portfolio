@@ -1,10 +1,11 @@
-import { Group, Image } from "@mantine/core";
+import { Group, Image, rem } from "@mantine/core";
 
 import githubLogo from "../images/GitHub-Mark-120px-plus.png";
 import linkedInLogo from "../images/LI-In-Bug.png";
 import arxivLogo from "../images/arxiv-logomark-small.svg";
 import webIcon from "../images/icons8-web-100.png";
 
+import { IconBrandGithub, IconBrandLinkedin } from "@tabler/icons-react";
 const LOGOS = {
   GITHUB: "github",
   LINKEDIN: "linkedin",
@@ -12,12 +13,18 @@ const LOGOS = {
   WEB: "web",
 };
 
+const iconStyles = {
+  width: rem(25),
+  height: rem(25),
+};
+
 function SocialLinks(props) {
   switch (props.logo) {
     case LOGOS.GITHUB:
       return (
         <a href={props.href} target="_blank" rel="noreferrer">
-          <Image src={githubLogo} style={{ height: "20px" }} />
+          {/* <Image src={githubLogo} style={{ height: "20px" }} /> */}
+          <IconBrandGithub style={{ ...iconStyles }} />
         </a>
       );
 
@@ -28,7 +35,8 @@ function SocialLinks(props) {
           target="_blank"
           rel="noreferrer"
         >
-          <Image src={linkedInLogo} style={{ height: "20px" }} />
+          {/* <Image src={linkedInLogo} style={{ height: "20px" }} /> */}
+          <IconBrandLinkedin />
         </a>
       );
 
@@ -57,14 +65,17 @@ function SocialLinks(props) {
             target="_blank"
             rel="noreferrer"
           >
-            <Image src={githubLogo} style={{ height: "20px" }} />
+            {/* <Image src={githubLogo} style={{ height: "20px" }} /> */}
+            <IconBrandGithub style={{ ...iconStyles, color: "white" }} />
           </a>
           <a
             href="https://www.linkedin.com/in/alexander-julian-ty-98614687/"
             target="_blank"
             rel="noreferrer"
           >
-            <Image src={linkedInLogo} style={{ height: "20px" }} />
+            <IconBrandLinkedin
+              style={{ ...iconStyles, color: "var(--mantine-color-blue-6)" }}
+            />
           </a>
         </Group>
       );
