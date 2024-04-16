@@ -9,9 +9,9 @@ import {
   IconBrandReact,
   IconBrandRedux,
   IconBrandTypescript,
-  icons,
 } from "@tabler/icons-react";
 import { HoverCard, Text, rem } from "@mantine/core";
+
 const iconStyles = {
   width: rem(50),
   height: rem(50),
