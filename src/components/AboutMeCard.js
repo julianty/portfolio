@@ -5,19 +5,19 @@ import { SocialLinks, LOGOS } from "./SocialLinks";
 function AboutMeCard() {
   return (
     <Paper m="md" p="lg">
-      <Title order={2}>Alexander Julian Ty</Title>
+      <Group justify="space-between" align="end">
+        <Title order={2}>Alexander Julian Ty</Title>
+        <SocialLinks />
+      </Group>
       <Text fw={500}> Full-stack Developer, Product Designer</Text>
       {/* <Text>Based in San Diego, California</Text> */}
       <Text c={"gray"} size="sm">
         Hi, I'm Julian. I love making things and sharing with the world. If you
         do too, then let's talk
       </Text>
-      <Group justify="space-between">
-        <Anchor href="mailto:alexanderjulianty@gmail.com">
-          Send me an email
-        </Anchor>
-        <SocialLinks />
-      </Group>
+      <Anchor href="mailto:alexanderjulianty@gmail.com">
+        Send me an email
+      </Anchor>
     </Paper>
   );
 }
