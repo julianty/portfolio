@@ -18,7 +18,7 @@ function MantineNavbar() {
       <Group m="md" justify="space-between">
         <Anchor underline="never" href="/" c={"black"}>
           <Text
-            c={colorScheme == "dark" ? "gray.2" : "gray.8"}
+            c={colorScheme === "dark" ? "gray.2" : "gray.8"}
             size="xl"
             fw={700}
           >
