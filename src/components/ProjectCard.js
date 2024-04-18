@@ -31,8 +31,6 @@ export default function ProjectCard({
       p="lg"
       w={{ md: "32%" }}
       withBorder
-      onMouseEnter={onMouseEnter}
-      onMouseLeave={onMouseLeave}
       onClick={clickHandler}
       style={{ cursor: "pointer" }}
     >
