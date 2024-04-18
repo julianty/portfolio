@@ -1,20 +1,24 @@
 import chickenFeetThumbnail from "../images/chickenFeetThumbnail.png";
-import { Group } from "@mantine/core";
+import { Group, Stack } from "@mantine/core";
 import ProjectCard from "./ProjectCard";
 import { LOGOS } from "./SocialLinks";
+import ProjectHighlightGeneric from "./ProjectHighlightGeneric";
+
+const chickenFeetInfo = {
+  image: chickenFeetThumbnail,
+  title: "Chicken Feet",
+  technologies: [],
+  description: `My first attempt at developing a game in Unity as a part of the
+               'USC Games Unlocked' Course`,
+  keyFeatures: null,
+  siteLink: "/",
+  projectPage: "/",
+};
 
 export default function GameDevelopmentCardGrid() {
   return (
-    <Group align="flex-start">
-      <ProjectCard
-        title="Chicken Feet"
-        text="My first attempt at developing a game in Unity as a part of the
-               'USC Games Unlocked' Course"
-        imgSrc={chickenFeetThumbnail}
-        logo={LOGOS.GITHUB}
-        // href={}
-        tags={["GAMEDEV"]}
-      />
-    </Group>
+    <Stack align="flex-start">
+      <ProjectHighlightGeneric info={chickenFeetInfo} />
+    </Stack>
   );
 }
