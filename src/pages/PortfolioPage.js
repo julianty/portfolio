@@ -6,7 +6,7 @@ import GameDevelopmentCardGrid from "../components/GameDevelopmentCardGrid";
 
 function PortfolioPage() {
   return (
-    <Stack px={{ md: "10%", sm: "0" }} gap="md">
+    <Stack px={{ md: "10%", sm: "0" }} gap="xl">
       <Title order={1}>Projects</Title>
       <Title order={2}>Web Development</Title>
       <WebDevelopmentCardGrid />
@@ -14,13 +14,6 @@ function PortfolioPage() {
       <MachineLearningCardGrid />
       <Title order={2}>Game Development</Title>
       <GameDevelopmentCardGrid />
-      <Paper shadow="sm">
-        <Title order={2}>Contact Me</Title>
-        <Text>
-          Please get in touch if you think our work could be mutually beneficial
-        </Text>
-        <Text>alexanderjulianty@gmail.com</Text>
-      </Paper>
     </Stack>
   );
 }
