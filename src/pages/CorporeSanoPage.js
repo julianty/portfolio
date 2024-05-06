@@ -30,6 +30,7 @@ export default function CorporeSanoPage() {
               )}
             </Group>
           </Flex>
+          <Title order={3}>Summary</Title>
           <Text>
             A lightweight but feature rich workout tracker. Summarizes your
             workout history and presents users with data that can help guide
@@ -39,7 +40,11 @@ export default function CorporeSanoPage() {
             Key features: view weekly muscle stimulation, export data to CSV or
             JSON, create workout plans
           </Text>
-          <Button component="a" href="https://corpore-sano-2e626.web.app/">
+          <Button
+            component="a"
+            w={"100px"}
+            href="https://corpore-sano-2e626.web.app/"
+          >
             Visit Site
           </Button>
         </Stack>
