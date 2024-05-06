@@ -1,6 +1,7 @@
 import {
   IconBrandCss3,
   IconBrandFirebase,
+  IconBrandGoogle,
   IconBrandHtml5,
   IconBrandJavascript,
   IconBrandMantine,
@@ -79,12 +80,18 @@ export const styledIcons = {
       style={{ ...iconStyles, color: "var(--mantine-color-violet-8" }}
     />
   ),
+  googleAppEngine: (
+    <IconBrandGoogle
+      key={"googleAppEngine"}
+      style={{ ...iconStyles, color: "var(--mantine-color-green-9)" }}
+    />
+  ),
 };
 
 export const styledIconsWithHover = Object.entries(styledIcons).forEach(
   ([name, icon]) => {
     styledIcons[name] = (
-      <HoverCard openDelay={200} closeDelay={200}>
+      <HoverCard key={name} openDelay={200} closeDelay={200}>
         <HoverCard.Target>{icon}</HoverCard.Target>
         <HoverCard.Dropdown>
           <Text>{name}</Text>

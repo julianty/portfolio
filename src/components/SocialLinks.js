@@ -1,7 +1,5 @@
-import { Group, Image, rem } from "@mantine/core";
+import { Group, Image, rem, useComputedColorScheme } from "@mantine/core";
 
-import githubLogo from "../images/GitHub-Mark-120px-plus.png";
-import linkedInLogo from "../images/LI-In-Bug.png";
 import arxivLogo from "../images/arxiv-logomark-small.svg";
 import webIcon from "../images/icons8-web-100.png";
 
@@ -19,6 +17,7 @@ const iconStyles = {
 };
 
 function SocialLinks(props) {
+  const colorScheme = useComputedColorScheme("light");
   switch (props.logo) {
     case LOGOS.GITHUB:
       return (
@@ -66,7 +65,12 @@ function SocialLinks(props) {
             rel="noreferrer"
           >
             {/* <Image src={githubLogo} style={{ height: "20px" }} /> */}
-            <IconBrandGithub style={{ ...iconStyles, color: "white" }} />
+            <IconBrandGithub
+              style={{
+                ...iconStyles,
+                color: colorScheme === "light" ? "black" : "white",
+              }}
+            />
           </a>
           <a
             href="https://www.linkedin.com/in/alexander-julian-ty-98614687/"
