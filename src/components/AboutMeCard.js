@@ -1,6 +1,6 @@
 // import Card from "react-bootstrap/Card";
-import { Text, Paper, Anchor, Title, Center, Group } from "@mantine/core";
-import { SocialLinks, LOGOS } from "./SocialLinks";
+import { Text, Paper, Anchor, Title, Group } from "@mantine/core";
+import { SocialLinks } from "./SocialLinks";
 
 function AboutMeCard() {
   return (
