@@ -9,6 +9,7 @@ import ResumePage from "./ResumePage";
 import Homepage from "./Homepage";
 import CorporeSanoPage from "./CorporeSanoPage";
 import { Box, Center } from "@mantine/core";
+import SentencePerDayPage from "./SentencePerDayPage";
 
 function LandingPage() {
   return (
@@ -26,6 +27,10 @@ function LandingPage() {
               path="/projects/CorporeSano"
               element={<CorporeSanoPage />}
             ></Route>
+            <Route
+              path="/projects/SentencePerDay"
+              element={<SentencePerDayPage />}
+            />
           </Routes>
         </Container>
       </Box>

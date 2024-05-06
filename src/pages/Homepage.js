@@ -1,9 +1,10 @@
 import { Stack, Group, Image, Title } from "@mantine/core";
 
 import AboutMeCard from "../components/AboutMeCard";
-import ProjectHighlight from "../components/ProjectHighlight";
 import meInSuit from "../images/meInSuitSquare.jpg";
 import { styledIcons } from "../components/StyledIcons";
+import CorporeSanoProjectHighlight from "../components/CorporeSanoProjectHighlight";
+import SentencePerDayProjectHighlight from "../components/SentencePerDayProjectHighlight";
 
 const sectionStyles = {
   p: { lg: "lg" },
@@ -39,7 +40,8 @@ function Homepage() {
       <Group style={sectionStyles}>
         <Stack>
           <Title order={2}>Project Highlights</Title>
-          <ProjectHighlight />
+          <CorporeSanoProjectHighlight />
+          <SentencePerDayProjectHighlight />
         </Stack>
       </Group>
     </Stack>
