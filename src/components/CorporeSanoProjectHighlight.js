@@ -2,7 +2,7 @@ import { Button, Flex, Group, Image, Stack, Text, Title } from "@mantine/core";
 import manWorkingOut from "../images/man-working-out.jpeg";
 import { styledIcons } from "./StyledIcons";
 
-export default function ProjectHighlight() {
+export default function CorporeSanoProjectHighlight() {
   return (
     <Flex gap={"lg"} direction={{ sm: "row", xs: "column" }}>
       <Image
