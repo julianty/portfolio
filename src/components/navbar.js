@@ -32,7 +32,7 @@ function MantineNavbar() {
         </Anchor>
         <Group>
           <Switch
-            // label={colorScheme === "light" ? "Dark Mode" : "Light Mode"}
+            checked={colorScheme === "dark" ? true : false}
             size="lg"
             onLabel={<IconSun />}
             offLabel={<IconMoon />}
@@ -69,5 +69,4 @@ function MantineNavbar() {
   );
 }
 
-// export default BootstrapNavbar;
 export { MantineNavbar };
