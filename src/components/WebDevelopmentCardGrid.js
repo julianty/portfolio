@@ -1,9 +1,5 @@
-import { Group, Stack } from "@mantine/core";
-import { LOGOS } from "./SocialLinks";
-import ProjectCard from "./ProjectCard";
+import { Stack } from "@mantine/core";
 
-import chickenToDoThumbnail from "../images/chickenToDoThumbnail.png";
-import workoutTrackerThumbnail from "../images/workoutTrackerThumbnail.png";
 import sentencePerDayThumbnail from "../images/sentencePerDayThumbnail.png";
 import ProjectHighlightGeneric from "./ProjectHighlightGeneric";
 import corporeSanoImg from "../images/man-working-out.jpeg";

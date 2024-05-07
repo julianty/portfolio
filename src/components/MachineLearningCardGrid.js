@@ -1,8 +1,6 @@
 import MLPaperThumbnail from "../images/MLPaperThumbnail.png";
-import ProjectCard from "./ProjectCard";
 import ProjectHighlightGeneric from "./ProjectHighlightGeneric";
-import { LOGOS } from "./SocialLinks";
-import { Group, Stack } from "@mantine/core";
+import { Stack } from "@mantine/core";
 
 const mlPaperInfo = {
   image: MLPaperThumbnail,

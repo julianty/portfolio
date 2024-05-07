@@ -1,7 +1,5 @@
 import chickenFeetThumbnail from "../images/chickenFeetThumbnail.png";
-import { Group, Stack } from "@mantine/core";
-import ProjectCard from "./ProjectCard";
-import { LOGOS } from "./SocialLinks";
+import { Stack } from "@mantine/core";
 import ProjectHighlightGeneric from "./ProjectHighlightGeneric";
 
 const chickenFeetInfo = {

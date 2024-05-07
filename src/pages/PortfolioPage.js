@@ -1,4 +1,4 @@
-import { Paper, Stack, Title, Text } from "@mantine/core";
+import { Stack, Title } from "@mantine/core";
 
 import WebDevelopmentCardGrid from "../components/WebDevelopmentCardGrid";
 import MachineLearningCardGrid from "../components/MachineLearningCardGrid";

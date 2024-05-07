@@ -15,12 +15,12 @@ export default function ProjectCard({
     // Convert tag into an array in order to properly map
     tags = [tags];
   }
-  const onMouseEnter = (e) => {
-    e.currentTarget.classList.add("shadow");
-  };
-  const onMouseLeave = (e) => {
-    e.currentTarget.classList.remove("shadow");
-  };
+  // const onMouseEnter = (e) => {
+  //   e.currentTarget.classList.add("shadow");
+  // };
+  // const onMouseLeave = (e) => {
+  //   e.currentTarget.classList.remove("shadow");
+  // };
   const clickHandler = (e) => {
     if (href === undefined) return;
     window.open(href, "_blank");
