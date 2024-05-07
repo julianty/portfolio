@@ -1,5 +1,4 @@
 import { Button, Flex, Group, Image, Stack, Text, Title } from "@mantine/core";
-import manWorkingOut from "../images/man-working-out.jpeg";
 import womanDiary from "../images/woman-writing-in-diary.jpg";
 import { styledIcons } from "./StyledIcons";
 

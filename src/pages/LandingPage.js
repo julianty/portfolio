@@ -1,6 +1,6 @@
 import { MantineNavbar } from "../components/navbar";
 
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 
 import Container from "react-bootstrap/Container";
 
@@ -22,7 +22,6 @@ function LandingPage() {
             <Route path="/" element={<Homepage />}></Route>
             <Route path="/Portfolio" element={<PortfolioPage />}></Route>
             <Route path="/Resume" element={<ResumePage />}></Route>
-            {/* <Route path="/Misc"></Route> */}
             <Route
               path="/projects/CorporeSano"
               element={<CorporeSanoPage />}
