@@ -50,6 +50,6 @@
     "postcss": "^8.4.32",
     "postcss-preset-mantine": "^1.12.3",
     "postcss-simple-vars": "^7.0.1",
-    "react-router-dom": "^6.4.2"
+    "react-router-dom": "^6.23.0"
   }
 }
