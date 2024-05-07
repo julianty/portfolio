@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/static/css/main.f9adc9b6.css",
-    "main.js": "/static/js/main.0359db2c.js",
+    "main.js": "/static/js/main.8a715c95.js",
     "static/media/woman-writing-in-diary.jpg": "/static/media/woman-writing-in-diary.2131ebc7a27cdaad3fa7.jpg",
     "static/media/meInSuitCropped.jpg": "/static/media/meInSuitCropped.e47346673cf9507fb449.jpg",
     "static/media/meInSuitSquare.jpg": "/static/media/meInSuitSquare.39889cd70e5752ac80e2.jpg",
@@ -12,10 +12,10 @@
     "index.html": "/index.html",
     "static/media/arxiv-logomark-small.svg": "/static/media/arxiv-logomark-small.f58e10c83f0dca91309c80961ac0ee32.svg",
     "main.f9adc9b6.css.map": "/static/css/main.f9adc9b6.css.map",
-    "main.0359db2c.js.map": "/static/js/main.0359db2c.js.map"
+    "main.8a715c95.js.map": "/static/js/main.8a715c95.js.map"
   },
   "entrypoints": [
     "static/css/main.f9adc9b6.css",
-    "static/js/main.0359db2c.js"
+    "static/js/main.8a715c95.js"
   ]
 }
