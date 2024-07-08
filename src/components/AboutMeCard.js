@@ -4,7 +4,7 @@ import { SocialLinks } from "./SocialLinks";
 
 function AboutMeCard() {
   return (
-    <Paper m="md" p="lg">
+    <Paper m={{ sm: "xs", md: "lg" }} p={{ sm: "xs", md: "lg" }}>
       <Group justify="space-between" align="end">
         <Title order={2}>Alexander Julian Ty</Title>
         <SocialLinks />

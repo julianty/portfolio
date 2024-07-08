@@ -9,6 +9,7 @@ export default function SentencePerDayProjectHighlight() {
         style={{ borderRadius: 20 }}
         w={{ lg: "200px", md: "300px", sm: "200px" }}
         display={{ sm: "block", xs: "none" }}
+        visibleFrom="sm"
         src={womanDiary}
       ></Image>
       <Stack justify="flex-start">
