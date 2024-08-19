@@ -8,6 +8,7 @@ import {
   Stack,
   Text,
   Title,
+  Space,
 } from "@mantine/core";
 import { styledIcons } from "../components/StyledIcons";
 import manWorkingOutImage from "../images/man-working-out.jpeg";
@@ -20,6 +21,7 @@ const technologiesStyles = {
 export default function CorporeSanoPage() {
   return (
     <Stack>
+      <Space h="xl" />
       <Flex direction={{ xs: "column-reverse", sm: "row" }} gap="lg">
         <Stack>
           <Flex direction={{ xs: "column", md: "row" }} gap="lg">

@@ -1,4 +1,4 @@
-import { Stack, Group, Image, Title } from "@mantine/core";
+import { Stack, Group, Image, Title, Space } from "@mantine/core";
 
 import AboutMeCard from "../components/AboutMeCard";
 import meInSuit from "../images/meInSuitSquare.jpg";
@@ -10,13 +10,15 @@ const sectionStyles = {
   p: { lg: "lg" },
 };
 function Homepage() {
-  console.log(styledIcons);
   return (
     <Stack m="md" gap="xl">
+      <Space h="xl" />
       <Group my="xl" justify="center">
         <Image m="md" src={meInSuit} w={200} radius="md"></Image>
         <AboutMeCard />
       </Group>
+      {/* Add some vertical space */}
+      <Space h="xl" />
       <Group justify="space-between" style={sectionStyles}>
         <Stack>
           <Title order={2}>Skills</Title>
@@ -37,8 +39,9 @@ function Homepage() {
           </Group>
         </Stack>
       </Group>
+      <Space h="xl" />
       <Group style={sectionStyles}>
-        <Stack>
+        <Stack my="xl" gap="xl">
           <Title order={2}>Project Highlights</Title>
           <CorporeSanoProjectHighlight />
           <SentencePerDayProjectHighlight />

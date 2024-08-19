@@ -8,6 +8,7 @@ import {
   Stack,
   Text,
   Title,
+  Space,
 } from "@mantine/core";
 import { styledIcons } from "../components/StyledIcons";
 
@@ -21,6 +22,7 @@ const technologiesStyles = {
 export default function SentencePerDayPage() {
   return (
     <Stack>
+      <Space h="xl" />
       <Flex direction={{ xs: "column-reverse", sm: "row" }} gap="lg">
         <Stack>
           <Flex direction={{ xs: "column", md: "row" }} gap="lg">
