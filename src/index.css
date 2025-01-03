@@ -132,3 +132,24 @@ button:focus-visible {
     @apply bg-background text-foreground;
   }
 }
+
+.project-title {
+  @apply text-primary font-bold text-2xl;
+}
+
+.project-description {
+  @apply text-secondary-foreground text-sm;
+}
+
+.project-highlight {
+  @apply bg-card p-4 flex flex-col gap-3;
+}
+
+.hero {
+  @apply justify-center flex flex-col mx-auto;
+  height: 90vh;
+}
+
+.codeblock-wrapper {
+  font-family: monospace;
+}
