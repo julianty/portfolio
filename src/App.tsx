@@ -1,7 +1,7 @@
 import { Link, Route, BrowserRouter as Router, Routes } from "react-router";
 import Navbar from "./components/Navbar";
 import ProjectPage from "./components/ProjectPage";
-import SkillBadge from "./components/skillBadge";
+import SkillBadge from "./components/SkillBadge";
 import { Project, projectData } from "./projectData";
 
 import { ThemeProvider } from "./components/theme-provider";
@@ -31,7 +31,7 @@ function HomePage() {
         <h1>Hi, I'm Julian</h1>
         <h4>Full Stack Developer</h4>
       </section>
-      <section className="p-4">
+      <section id="projects" className="p-4">
         <div className="flex items-center gap-2">
           <h2 className="text-muted">What I've been working on</h2>
           <hr className="flex-grow" />
