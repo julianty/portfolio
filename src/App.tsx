@@ -61,7 +61,16 @@ function ProjectHighlight({ project }: { project: Project }) {
       </div>
       <p className="project-description">{project.description}</p>
       <Link to={`projects/${project.pageLink}`}>
-        <img className="rounded-lg" src={project.image} alt={project.title} />
+        <div className="flex relative group justify-center items-center">
+          <img
+            className="rounded-lg group-hover:opacity-50"
+            src={project.image}
+            alt={project.title}
+          />
+          <div className="hidden absolute text-secondary-foreground group-hover:flex">
+            Click me to learn more!
+          </div>
+        </div>
       </Link>
     </div>
   );
