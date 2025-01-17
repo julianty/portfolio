@@ -4,6 +4,7 @@ export const projectData = [
     description: "A lightweight workout tracking web application",
     image: "Corpore Sano Highlight.png",
     skills: ["React", "Firebase"],
+    pageLink: "CorporeSano",
     link: { github: "", live: "https://corpore-sano-2e626.web.app/" },
     longDescription: `
       Corpore Sano is a lightweight workout tracking web application that 
@@ -55,7 +56,7 @@ export const FirestoreActions = {
     description: "Project Description",
     image: "",
     skills: [],
-    // link: "SentencePerDay",
+    pageLink: "SentencePerDay",
     link: { github: "", live: "" },
     longDescription:
       "A project that allows users to write one sentence per day.",
@@ -65,16 +66,6 @@ export const FirestoreActions = {
       "Simple and intuitive interface",
     ],
   },
-  {
-    title: "Project 3",
-    description: "Project Description",
-    image: "",
-    skills: [],
-    // link: "Project3",
-    link: { github: "", live: "" },
-    longDescription: "Description of Project 3.",
-    keyFeatures: ["Feature 1", "Feature 2", "Feature 3"],
-  },
 ];
 
 export type Project = {
@@ -82,7 +73,7 @@ export type Project = {
   description: string;
   image: string;
   skills: string[];
-  // link: string;
+  pageLink: string;
   link: { github: string; live: string };
   longDescription?: string;
   keyFeatures?: string[];
