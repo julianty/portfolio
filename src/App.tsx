@@ -5,6 +5,7 @@ import SkillBadge from "./components/SkillBadge";
 import { Project, projectData } from "./projectData";
 
 import { ThemeProvider } from "./components/theme-provider";
+import Contact from "./components/Contact";
 function App() {
   return (
     <ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
@@ -38,15 +39,10 @@ function HomePage() {
         </div>
         <div className="flex flex-col">
           <ProjectHighlight project={projectData[0]} />
-          {/* <div className="bg-card p-4 rounded-lg">
-              <h3>Project 2</h3>
-              <p>Project Description</p>
-            </div>
-            <div className="bg-card p-4 rounded-lg">
-              <h3>Project 3</h3>
-              <p>Project Description</p>
-            </div> */}
         </div>
+      </section>
+      <section id="contact" className="p-4">
+        <Contact />
       </section>
     </>
   );
@@ -64,7 +60,7 @@ function ProjectHighlight({ project }: { project: Project }) {
         </div>
       </div>
       <p className="project-description">{project.description}</p>
-      <Link to={`projects/${project.link}`}>
+      <Link to={`projects/${project.pageLink}`}>
         <img className="rounded-lg" src={project.image} alt={project.title} />
       </Link>
     </div>
