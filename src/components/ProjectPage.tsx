@@ -18,10 +18,18 @@ const ProjectPage = ({ project }: { project: Project }) => {
           Source Code & Demo
         </h2>
         <div className="flex space-x-4">
-          <a href={project.link.github} className="text-blue-500 underline">
+          <a
+            target="_blank"
+            href={project.link.github}
+            className="text-blue-500 underline"
+          >
             View on GitHub
           </a>
-          <a href={project.link.live} className="text-blue-500 underline">
+          <a
+            target="_blank"
+            href={project.link.live}
+            className="text-blue-500 underline"
+          >
             Live Demo
           </a>
         </div>

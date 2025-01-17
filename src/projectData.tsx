@@ -5,7 +5,10 @@ export const projectData = [
     image: "Corpore Sano Highlight.png",
     skills: ["React", "Firebase"],
     pageLink: "CorporeSano",
-    link: { github: "", live: "https://corpore-sano-2e626.web.app/" },
+    link: {
+      github: "https://github.com/julianty/corpore-sano",
+      live: "https://corpore-sano-2e626.web.app/",
+    },
     longDescription: `
       Corpore Sano is a lightweight workout tracking web application that 
       allows users to create and track their workouts. Users can create 
