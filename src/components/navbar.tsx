@@ -7,7 +7,7 @@ export default function Navbar() {
         <Link to="/">julianty</Link>
       </div>
       <div className="flex gap-4">
-        <Link to="/about">About</Link>
+        {/* <Link to="/about">About</Link> */}
         <NavHashLink smooth to="#projects">
           Projects
         </NavHashLink>
