@@ -1,4 +1,10 @@
-import { Link, Route, BrowserRouter as Router, Routes } from "react-router";
+import {
+  Link,
+  Route,
+  BrowserRouter as Router,
+  Routes,
+  useLocation,
+} from "react-router";
 import Navbar from "./components/Navbar";
 import ProjectPage from "./components/ProjectPage";
 import SkillBadge from "./components/SkillBadge";
@@ -6,10 +12,21 @@ import { Project, projectData } from "./projectData";
 
 import { ThemeProvider } from "./components/theme-provider";
 import Contact from "./components/Contact";
+import { useEffect } from "react";
+
+function ScrollToTop() {
+  const { pathname } = useLocation();
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }, [pathname]);
+  return null;
+}
+
 function App() {
   return (
     <ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
       <Router>
+        <ScrollToTop />
         <div id="main-stack" className="flex flex-col ">
           <Navbar />
           <Routes>
