@@ -5,13 +5,13 @@ import {
   Routes,
   useLocation,
 } from "react-router";
-import Navbar from "./components/Navbar";
-import ProjectPage from "./components/ProjectPage";
-import SkillBadge from "./components/SkillBadge";
-import { Project, projectData } from "./projectData";
+import Navbar from "./components/navbar";
+import ProjectPage from "./components/project-page";
+import SkillBadge from "./components/skill-badge";
+import { Project, projectData } from "./project-data";
 
 import { ThemeProvider } from "./components/theme-provider";
-import Contact from "./components/Contact";
+import Contact from "./components/contact";
 import { useEffect } from "react";
 
 function ScrollToTop() {

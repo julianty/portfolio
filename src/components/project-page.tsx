@@ -1,4 +1,4 @@
-import { Project } from "@/projectData";
+import { Project } from "@/project-data";
 import { CodeBlock, dracula } from "react-code-blocks";
 const ProjectPage = ({ project }: { project: Project }) => {
   return (
