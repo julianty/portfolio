@@ -4,13 +4,13 @@ import {
   Routes,
   useLocation,
 } from "react-router";
-import Navbar from "./components/navbar";
-import ProjectPage from "./components/project-page";
-import { projectData } from "./project-data";
+import Navbar from "@/components/navbar";
+import ProjectPage from "@/components/project-page";
+import { projectData } from "@/project-data";
 
-import { ThemeProvider } from "./components/theme-provider";
+import { ThemeProvider } from "@/components/theme-provider";
 import { useEffect } from "react";
-import HomePage from "./home-page";
+import HomePage from "@/home-page";
 function ScrollToTop() {
   const { pathname } = useLocation();
   useEffect(() => {

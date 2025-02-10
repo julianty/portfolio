@@ -1,6 +1,6 @@
-import Contact from "./components/contact";
-import { projectData } from "./project-data";
-import ProjectHighlight from "./project-highlight";
+import Contact from "@/components/contact";
+import { projectData } from "@/project-data";
+import ProjectHighlight from "@/project-highlight";
 export default function HomePage() {
   return (
     <>

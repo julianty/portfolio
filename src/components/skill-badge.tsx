@@ -1,4 +1,4 @@
-import { Badge } from "./ui/badge";
+import { Badge } from "@/components/ui/badge";
 
 const skillMap: Record<string, string> = {
   JavaScript: "yellow",

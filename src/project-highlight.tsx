@@ -1,5 +1,5 @@
-import SkillBadge from "./components/skill-badge";
-import { Project } from "./project-data";
+import SkillBadge from "@/components/skill-badge";
+import { Project } from "@/project-data";
 import { Link } from "react-router";
 export default function ProjectHighlight({ project }: { project: Project }) {
   return (
