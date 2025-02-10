@@ -1,8 +1,10 @@
+import CorporeSanoImg from "./assets/Corpore Sano Highlight.png";
+import CorporeSanoDemoGif from "./assets/CorporeSanoDemoGif.gif";
 export const projectData = [
   {
     title: "Corpore Sano",
     description: "A lightweight workout tracking web application",
-    image: "Corpore Sano Highlight.png",
+    image: CorporeSanoImg,
     skills: ["React", "Firebase"],
     pageLink: "CorporeSano",
     link: {
@@ -50,7 +52,7 @@ export const FirestoreActions = {
         solution: `The best way I found to learn was to dive in and start building components. I started with the most basic components and worked my way up to more complex ones. Since I was used to building components from HTML and CSS, it took a bit of time to familiarize myself with the Mantine framework. This set me up well in my following projects since a lot of React UI frameworks share similar concepts.`,
       },
     ],
-    demo: ["/CorporeSanoDemoGif.gif"],
+    demo: [CorporeSanoDemoGif],
     outcomes: `I began the project with the intent to replace my usual fitness tracker, but given how clunky it is, I think I will have to wait for a later iteration to switch. I am happy with the progress I made and the skills I learned, but I think I will need to spend more time on the project to make it more user-friendly and deliver on the features I planned.`,
     whatILearned: `Working on this project taught me a lot about how to structure a web application and how to work with a database. I learned how to work with a UI framework and how to build components in a more efficient way. I also learned how to compartmentalize my code to make it more readable and maintainable. If I were to start again, I would spend more time planning the project and breaking down the tasks into smaller pieces as working on it day by day made me realize the benefits of planning.`,
   },

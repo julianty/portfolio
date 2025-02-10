@@ -27,9 +27,9 @@ function App() {
         <div id="main-stack" className="flex flex-col md:w-4/5 md:mx-auto">
           <Navbar />
           <Routes>
-            <Route path="/" element={<HomePage />} />
+            <Route path="/portfolio" element={<HomePage />} />
             <Route
-              path="/projects/CorporeSano"
+              path="portfolio/projects/CorporeSano"
               element={<ProjectPage project={projectData[0]} />}
             />
           </Routes>
