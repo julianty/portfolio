@@ -1,5 +1,5 @@
-import CorporeSanoImg from "./assets/Corpore Sano Highlight.png";
-import CorporeSanoDemoGif from "./assets/CorporeSanoDemoGif.gif";
+import CorporeSanoImg from "@/assets/Corpore Sano Highlight.png";
+import CorporeSanoDemoGif from "@/assets/CorporeSanoDemoGif.gif";
 export const projectData = [
   {
     title: "Corpore Sano",

@@ -1,5 +1,5 @@
 {
-  "homepage": "https://julianty.github.io/portfolio",
+  "homepage": "alexanderjulianty.com",
   "name": "portfolio",
   "private": true,
   "version": "0.0.0",
@@ -10,7 +10,7 @@
     "lint": "eslint .",
     "preview": "vite preview",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d dist"
+    "deploy": "gh-pages -d dist --cname alexanderjulianty.com"
   },
   "dependencies": {
     "@radix-ui/react-slot": "^1.1.1",
