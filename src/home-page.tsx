@@ -15,6 +15,7 @@ export default function HomePage() {
         </div>
         <div className="flex flex-col">
           <ProjectHighlight project={projectData[0]} />
+          <ProjectHighlight project={projectData[1]} />
         </div>
       </section>
       <section id="contact" className="p-4">

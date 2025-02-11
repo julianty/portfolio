@@ -14,6 +14,9 @@ const skillMap: Record<string, string> = {
   "Material-UI": "#3b82f6",
   Vite: "#3b82f6",
   Firebase: "#fb923c",
+  PostgreSQL: "green",
+  Supabase: "#fb923c",
+  "Next.js": "#3b82f6",
 };
 
 export default function SkillBadge({ skill }: { skill: string }) {

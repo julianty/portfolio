@@ -57,17 +57,22 @@ export const FirestoreActions = {
     whatILearned: `Working on this project taught me a lot about how to structure a web application and how to work with a database. I learned how to work with a UI framework and how to build components in a more efficient way. I also learned how to compartmentalize my code to make it more readable and maintainable. If I were to start again, I would spend more time planning the project and breaking down the tasks into smaller pieces as working on it day by day made me realize the benefits of planning.`,
   },
   {
-    title: "Sentence Per Day",
-    description: "Project Description",
+    title: "Job Pulse",
+    description: "A streamlined job application tracker",
     image: "",
-    skills: [],
-    pageLink: "SentencePerDay",
-    link: { github: "", live: "" },
-    longDescription:
-      "A project that allows users to write one sentence per day.",
+    skills: ["React", "PostgreSQL", "Supabase", "Next.js"],
+    pageLink: "JobPulse",
+    link: {
+      github: "https://github.com/julianty/application-tracker/tree/main",
+      live: "https://nextjs-boilerplate-swart-three-43.vercel.app/",
+    },
+    longDescription: `
+      Job Pulse is a streamlined job application tracker that allows users to keep track of their job applications. Users can add, edit, and delete job applications, as well as view their application history. The application is built with Next.js and Firebase.
+      The application is built with Next.js and Supabase. 
+      `,
     keyFeatures: [
-      "Daily sentence writing",
-      "Track progress over time",
+      "Add, edit, and delete job applications",
+      "View application history",
       "Simple and intuitive interface",
     ],
   },
