@@ -1,3 +1,5 @@
+import { IconBrandLinkedin } from "@tabler/icons-react";
+
 export default function Contact() {
   return (
     <div>
@@ -15,6 +17,11 @@ export default function Contact() {
           alexanderjulianty@gmail.com
         </a>
       </p>
+      <div className="flex">
+        <a href="https://www.linkedin.com/in/julian-ty/">
+          <IconBrandLinkedin />
+        </a>
+      </div>
     </div>
   );
 }
