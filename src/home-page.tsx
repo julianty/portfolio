@@ -1,7 +1,7 @@
 import Contact from "@/components/contact";
 import { projectData } from "@/project-data";
 import ProjectHighlight from "@/project-highlight";
-import Experience from "@/components/experience";
+// import Experience from "@/components/experience";
 export default function HomePage() {
   return (
     <>
@@ -9,7 +9,7 @@ export default function HomePage() {
         <h1>Hi, I'm Julian</h1>
         <h4>Full Stack Developer</h4>
       </section>
-      <section id="experience" className="p-4">
+      {/* <section id="experience" className="p-4">
         <div className="flex items-center gap-2">
           <h2 className="text-muted">Past experience</h2>
           <hr className="flex-grow" />
@@ -30,18 +30,22 @@ export default function HomePage() {
             ]}
           />
         </div>
-      </section>
+      </section> */}
       <section id="projects" className="p-4">
         <div className="flex items-center gap-2">
           <h2 className="text-muted">What I've been working on</h2>
           <hr className="flex-grow" />
         </div>
-        <div className="flex flex-col">
+        <div className="flex flex-col lg:flex-row gap-4 my-8">
           <ProjectHighlight project={projectData[0]} />
           <ProjectHighlight project={projectData[1]} />
         </div>
       </section>
-      <section id="contact" className="p-4">
+      <section id="contact" className="flex flex-col p-4 h-[70vh]">
+        <div className="flex items-center gap-2">
+          <h2 className="text-muted">Let's get in touch!</h2>
+          <hr className="flex-grow" />
+        </div>
         <Contact />
       </section>
     </>
