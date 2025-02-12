@@ -67,7 +67,7 @@ export const FirestoreActions = {
       live: "https://nextjs-boilerplate-swart-three-43.vercel.app/demo",
     },
     longDescription: `
-      Job Pulse is a streamlined job application tracker that allows users to keep track of their job applications. Users can add, edit, and delete job applications, as well as view their application history. The application is built with Next.js and Firebase.
+      Job Pulse is a streamlined job application tracker that allows users to keep track of their job applications. Users can add, edit, and delete job applications, as well as view their application history.
       The application is built with Next.js and Supabase. 
       `,
     keyFeatures: [
