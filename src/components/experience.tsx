@@ -1,21 +1,53 @@
-function experience({
+import {
+  Collapsible,
+  CollapsibleContent,
+  CollapsibleTrigger,
+} from "@/components/ui/collapsible";
+import React from "react";
+import { IconChevronDown } from "@tabler/icons-react";
+function Experience({
   title,
   company,
   bulletpoints,
+  year,
 }: {
   title: string;
   company: string;
   bulletpoints: string[];
+  year?: string;
 }) {
+  const [isOpen, setIsOpen] = React.useState(false);
   return (
     <div className="flex justify-between w-3/4">
       <div className="flex flex-col flex-1">
         <h3>{title}</h3>
-        {company}
+        <p className="text-muted">{company}</p>
       </div>
-      <p className="flex-1">{bulletpoints}</p>
+      <Collapsible open={isOpen} onOpenChange={setIsOpen} className="flex-1">
+        <CollapsibleTrigger asChild>
+          {year ? (
+            <p className="text-end">{year}</p>
+          ) : (
+            <div className="flex gap-2 justify-end">
+              {isOpen ? <p>Hide</p> : <p>Details</p>}
+              <IconChevronDown
+                className={`transform transition-transform ${
+                  isOpen ? "rotate-180" : ""
+                }`}
+              />
+            </div>
+          )}
+        </CollapsibleTrigger>
+        <CollapsibleContent>
+          <ul>
+            {bulletpoints.map((point) => (
+              <li key={point}>{point}</li>
+            ))}
+          </ul>
+        </CollapsibleContent>
+      </Collapsible>
     </div>
   );
 }
 
-export default experience;
+export default Experience;
