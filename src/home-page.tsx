@@ -3,6 +3,7 @@ import { projectData } from "@/project-data";
 import ProjectHighlight from "@/project-highlight";
 import Experience from "@/components/experience";
 import SectionHeader from "./components/ui/section-header";
+import SkillBadge from "./components/skill-badge";
 export default function HomePage() {
   return (
     <>
@@ -11,7 +12,7 @@ export default function HomePage() {
         <h4>Full Stack Developer</h4>
       </section>
       <section id="experience">
-        <SectionHeader>Experience & Skills</SectionHeader>
+        <SectionHeader>Experience</SectionHeader>
         <div className="flex flex-col gap-8 items-center">
           <Experience
             title="Staff Research Associate - Machine Learning"
@@ -27,6 +28,28 @@ export default function HomePage() {
               "Coordinated and led workshops for undergraduate students in introductory physics courses.",
             ]}
           />
+        </div>
+      </section>
+      <section id="skills">
+        <SectionHeader>Skills</SectionHeader>
+        <div id="skills" className="flex flex-col gap-8 w-3/4 mx-auto">
+          Languages
+          <div className="flex flex-wrap gap-2">
+            <SkillBadge skill="HTML" />
+            <SkillBadge skill="CSS" />
+            <SkillBadge skill="JavaScript" />
+            <SkillBadge skill="TypeScript" />
+          </div>
+          Frameworks
+          <div className="flex flex-wrap gap-2">
+            <SkillBadge skill="React" />
+            <SkillBadge skill="Node.js" />
+          </div>
+          Databases
+          <div className="flex flex-wrap gap-2">
+            <SkillBadge skill="MongoDB" />
+            <SkillBadge skill="PostgreSQL" />
+          </div>
         </div>
       </section>
       <section id="projects">
