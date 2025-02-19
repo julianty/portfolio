@@ -34,19 +34,19 @@ export default function HomePage() {
         <SectionHeader>Skills</SectionHeader>
         <div id="skills" className="flex flex-col gap-8 w-3/4 mx-auto">
           Languages
-          <div className="flex flex-wrap gap-2">
+          <div className="flex flex-wrap gap-2 ml-8">
             <SkillBadge skill="HTML" />
             <SkillBadge skill="CSS" />
             <SkillBadge skill="JavaScript" />
             <SkillBadge skill="TypeScript" />
           </div>
           Frameworks
-          <div className="flex flex-wrap gap-2">
+          <div className="flex flex-wrap gap-2 ml-8">
             <SkillBadge skill="React" />
             <SkillBadge skill="Node.js" />
           </div>
           Databases
-          <div className="flex flex-wrap gap-2">
+          <div className="flex flex-wrap gap-2 ml-8">
             <SkillBadge skill="MongoDB" />
             <SkillBadge skill="PostgreSQL" />
           </div>
