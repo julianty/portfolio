@@ -14,7 +14,7 @@ export default function HomePage() {
       </section>
       <section id="experience">
         <SectionHeader>Education & Experience</SectionHeader>
-        <div className="flex flex-col gap-8 items-center">
+        <div className="flex flex-col gap-16 items-center">
           <Experience
             title="Staff Research Associate - Machine Learning"
             company="UC San Diego"
@@ -76,6 +76,7 @@ export default function HomePage() {
             <SkillBadge skill="CSS" />
             <SkillBadge skill="JavaScript" />
             <SkillBadge skill="TypeScript" />
+            <SkillBadge skill="Python" />
           </div>
           Front End Technologies
           <div className="flex flex-wrap gap-2 ml-8">

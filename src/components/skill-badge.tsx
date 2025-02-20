@@ -13,6 +13,7 @@ import {
   IconBrandFirebase,
   IconBrandSupabase,
   IconBrandNextjs,
+  IconBrandPython,
 } from "@tabler/icons-react";
 import PostgresqlSVG from "@/assets/PostgreSQL_logo.1.svg";
 const iconMap: Record<string, React.ReactNode> = {
@@ -32,6 +33,7 @@ const iconMap: Record<string, React.ReactNode> = {
   PostgreSQL: <img src={PostgresqlSVG} className="h-5"></img>,
   Supabase: <IconBrandSupabase />,
   "Next.js": <IconBrandNextjs />,
+  Python: <IconBrandPython />,
 };
 
 const skillMap: Record<string, string> = {
@@ -51,6 +53,7 @@ const skillMap: Record<string, string> = {
   PostgreSQL: "#59d465",
   Supabase: "#fb923c",
   "Next.js": "#3b82f6",
+  Python: "#72b7fd",
 };
 
 export default function SkillBadge({ skill }: { skill: string }) {
