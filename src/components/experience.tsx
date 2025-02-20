@@ -28,11 +28,10 @@ function Experience({
           <p className="text-muted">{company}</p>
         </div>
       </div>
-      <Collapsible open={isOpen} onOpenChange={setIsOpen} className="flex-1">
-        <CollapsibleTrigger asChild>
-          {year ? (
-            <p className="text-end">{year}</p>
-          ) : (
+      <div>
+        {year && <p className="text-end">{year}</p>}
+        <Collapsible open={isOpen} onOpenChange={setIsOpen} className="flex-1">
+          <CollapsibleTrigger asChild>
             <div className="flex gap-2 justify-end">
               {isOpen ? <p>Hide</p> : <p>Details</p>}
               <IconChevronDown
@@ -41,17 +40,17 @@ function Experience({
                 }`}
               />
             </div>
-          )}
-        </CollapsibleTrigger>
-        <CollapsibleContent>
-          <ul>
-            {bulletpoints.map((point) => (
-              <li key={point}>{point}</li>
-            ))}
-          </ul>
-          {children}
-        </CollapsibleContent>
-      </Collapsible>
+          </CollapsibleTrigger>
+          <CollapsibleContent>
+            <ul>
+              {bulletpoints.map((point) => (
+                <li key={point}>{point}</li>
+              ))}
+            </ul>
+            {children}
+          </CollapsibleContent>
+        </Collapsible>
+      </div>
     </div>
   );
 }
