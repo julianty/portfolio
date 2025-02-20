@@ -20,16 +20,16 @@ function Experience({
 }) {
   const [isOpen, setIsOpen] = React.useState(false);
   return (
-    <div className="flex justify-between w-3/4">
-      <div className="flex flex-1 gap-3">
-        <IconBriefcase2 className="text-muted" />
-        <div className="flex flex-col">
+    <div className="flex justify-between w-full md:w-3/4 px-4">
+      <div className="flex flex-2 gap-3">
+        <IconBriefcase2 className="text-muted hidden md:block" size={"40px"} />
+        <div className="flex flex-col ">
           <h3>{title}</h3>
           <p className="text-muted">{company}</p>
         </div>
       </div>
-      <div>
-        {year && <p className="text-end text-md">{year}</p>}
+      <div className="flex-1">
+        {year && <p className="text-end text-md min-w-24">{year}</p>}
         <Collapsible open={isOpen} onOpenChange={setIsOpen} className="flex-1">
           <CollapsibleTrigger asChild>
             <div className="flex gap-2 justify-end">

@@ -55,9 +55,9 @@ export default function HomePage() {
               </a>
             </p>
           </Experience>
-          <div className="flex justify-between w-3/4">
+          <div className="flex justify-between w-full md:w-3/4 px-4">
             <div className="flex flex-1 gap-3">
-              <IconBook className="text-muted" />
+              <IconBook className="text-muted md:block hidden" size="40px" />
               <div className="flex flex-col">
                 <h3>B.S. Engineering Physics</h3>
                 <p className="text-muted">
@@ -66,7 +66,7 @@ export default function HomePage() {
               </div>
             </div>
             <div>
-              <p className="text-end text-md">2015</p>
+              <p className="text-end text-md min-w-24">2015</p>
             </div>
           </div>
         </div>
@@ -108,10 +108,7 @@ export default function HomePage() {
         </div>
       </section>
       <section id="contact" className="flex flex-col h-[70vh]">
-        <div className="flex items-center gap-2">
-          <h2 className="text-muted">Let's get in touch!</h2>
-          <hr className="flex-grow" />
-        </div>
+        <SectionHeader>Let's get in touch</SectionHeader>
         <Contact />
       </section>
     </>
