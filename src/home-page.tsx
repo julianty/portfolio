@@ -40,15 +40,21 @@ export default function HomePage() {
             <SkillBadge skill="JavaScript" />
             <SkillBadge skill="TypeScript" />
           </div>
-          Frameworks
+          Front End Technologies
           <div className="flex flex-wrap gap-2 ml-8">
             <SkillBadge skill="React" />
-            <SkillBadge skill="Node.js" />
+            <SkillBadge skill="Tailwind" />
+            <SkillBadge skill="Bootstrap" />
+            <SkillBadge skill="Vite" />
           </div>
-          Databases
+          Back End Technologies
           <div className="flex flex-wrap gap-2 ml-8">
+            <SkillBadge skill="Express" />
+            <SkillBadge skill="Node.js" />
             <SkillBadge skill="MongoDB" />
             <SkillBadge skill="PostgreSQL" />
+            <SkillBadge skill="Firebase" />
+            <SkillBadge skill="Supabase" />
           </div>
         </div>
       </section>
