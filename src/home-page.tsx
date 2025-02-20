@@ -17,7 +17,7 @@ export default function HomePage() {
         <div className="flex flex-col gap-16 items-center">
           <Experience
             title="Staff Research Associate - Machine Learning"
-            company="UC San Diego"
+            company="UC San Diego - Abarbanel Lab"
             bulletpoints={[
               "Conducted research in the application of Data Assimilation principles to the field of Machine Learning.",
               "Specifically, investigated the ability of principles of Information Theory and Precision Annealing to train a Multi-layer Perceptron neural network to extrapolate a chaotic time series.",
@@ -37,7 +37,7 @@ export default function HomePage() {
           </Experience>
           <Experience
             title="Physics Workshop Coordinator"
-            company="UC San Diego"
+            company="UC San Diego - OASIS MSTP"
             bulletpoints={[
               "Coordinated and led workshops for undergraduate students in introductory physics courses.",
             ]}
@@ -58,7 +58,9 @@ export default function HomePage() {
               <IconBook className="text-muted" />
               <div className="flex flex-col">
                 <h3>B.S. Engineering Physics</h3>
-                <p className="text-muted">UC San Diego</p>
+                <p className="text-muted">
+                  UC San Diego - Jacob's School of Engineering
+                </p>
               </div>
             </div>
             <div>
