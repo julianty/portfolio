@@ -22,6 +22,7 @@ export default function HomePage() {
               "Conducted research in the application of Data Assimilation principles to the field of Machine Learning.",
               "Specifically, investigated the ability of principles of Information Theory and Precision Annealing to train a Multi-layer Perceptron neural network to extrapolate a chaotic time series.",
             ]}
+            year="2018-2020"
           >
             <p>
               <a
@@ -41,6 +42,7 @@ export default function HomePage() {
             bulletpoints={[
               "Coordinated and led workshops for undergraduate students in introductory physics courses.",
             ]}
+            year="2016-2018"
           >
             <p>
               <a
@@ -64,7 +66,7 @@ export default function HomePage() {
               </div>
             </div>
             <div>
-              <p className="text-end">2015</p>
+              <p className="text-end text-md">2015</p>
             </div>
           </div>
         </div>

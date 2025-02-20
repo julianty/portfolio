@@ -29,11 +29,15 @@ function Experience({
         </div>
       </div>
       <div>
-        {year && <p className="text-end">{year}</p>}
+        {year && <p className="text-end text-md">{year}</p>}
         <Collapsible open={isOpen} onOpenChange={setIsOpen} className="flex-1">
           <CollapsibleTrigger asChild>
             <div className="flex gap-2 justify-end">
-              {isOpen ? <p>Hide</p> : <p>Details</p>}
+              {isOpen ? (
+                <p className="text-muted-foreground text-sm">Hide</p>
+              ) : (
+                <p className="text-muted-foreground text-sm">Details</p>
+              )}
               <IconChevronDown
                 className={`transform transition-transform ${
                   isOpen ? "rotate-180" : ""
