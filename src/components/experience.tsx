@@ -10,11 +10,13 @@ function Experience({
   company,
   bulletpoints,
   year,
+  children,
 }: {
   title: string;
   company: string;
   bulletpoints: string[];
   year?: string;
+  children?: React.ReactNode;
 }) {
   const [isOpen, setIsOpen] = React.useState(false);
   return (
@@ -44,6 +46,7 @@ function Experience({
               <li key={point}>{point}</li>
             ))}
           </ul>
+          {children}
         </CollapsibleContent>
       </Collapsible>
     </div>

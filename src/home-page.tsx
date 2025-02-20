@@ -18,16 +18,40 @@ export default function HomePage() {
             title="Staff Research Associate - Machine Learning"
             company="UC San Diego"
             bulletpoints={[
-              "Conducted research in the application of Data Assimilation principles to the field of Machine Learning. Specifically, investigated the ability of principles of Information Theory and Precision Annealing to train a Multi-layer Perceptron neural network to extrapolate a chaotic time series.",
+              "Conducted research in the application of Data Assimilation principles to the field of Machine Learning.",
+              "Specifically, investigated the ability of principles of Information Theory and Precision Annealing to train a Multi-layer Perceptron neural network to extrapolate a chaotic time series.",
             ]}
-          />
+          >
+            <p>
+              <a
+                href="https://arxiv.org/abs/1902.05062"
+                className="text-blue-500"
+                target="_blank"
+                rel="noreferrer"
+              >
+                arxiv link
+              </a>{" "}
+              to paper
+            </p>
+          </Experience>
           <Experience
             title="Physics Workshop Coordinator"
             company="UC San Diego"
             bulletpoints={[
               "Coordinated and led workshops for undergraduate students in introductory physics courses.",
             ]}
-          />
+          >
+            <p>
+              <a
+                href="https://oasis.ucsd.edu/academic-services/mstp-folder/index.html"
+                target="_blank"
+                className="text-blue-500"
+                rel="noreferrer"
+              >
+                Office website
+              </a>
+            </p>
+          </Experience>
         </div>
       </section>
       <section id="skills">
