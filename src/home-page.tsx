@@ -4,6 +4,7 @@ import ProjectHighlight from "@/project-highlight";
 import Experience from "@/components/experience";
 import SectionHeader from "./components/ui/section-header";
 import SkillBadge from "./components/skill-badge";
+import { IconBook } from "@tabler/icons-react";
 export default function HomePage() {
   return (
     <>
@@ -12,7 +13,7 @@ export default function HomePage() {
         <h4>Full Stack Developer</h4>
       </section>
       <section id="experience">
-        <SectionHeader>Experience</SectionHeader>
+        <SectionHeader>Education & Experience</SectionHeader>
         <div className="flex flex-col gap-8 items-center">
           <Experience
             title="Staff Research Associate - Machine Learning"
@@ -52,6 +53,18 @@ export default function HomePage() {
               </a>
             </p>
           </Experience>
+          <div className="flex justify-between w-3/4">
+            <div className="flex flex-1 gap-3">
+              <IconBook className="text-muted" />
+              <div className="flex flex-col">
+                <h3>B.S. Engineering Physics</h3>
+                <p className="text-muted">UC San Diego</p>
+              </div>
+            </div>
+            <div>
+              <p className="text-end">2015</p>
+            </div>
+          </div>
         </div>
       </section>
       <section id="skills">

@@ -4,7 +4,7 @@ import {
   CollapsibleTrigger,
 } from "@/components/ui/collapsible";
 import React from "react";
-import { IconChevronDown } from "@tabler/icons-react";
+import { IconBriefcase2, IconChevronDown } from "@tabler/icons-react";
 function Experience({
   title,
   company,
@@ -21,9 +21,12 @@ function Experience({
   const [isOpen, setIsOpen] = React.useState(false);
   return (
     <div className="flex justify-between w-3/4">
-      <div className="flex flex-col flex-1">
-        <h3>{title}</h3>
-        <p className="text-muted">{company}</p>
+      <div className="flex flex-1 gap-3">
+        <IconBriefcase2 className="text-muted" />
+        <div className="flex flex-col">
+          <h3>{title}</h3>
+          <p className="text-muted">{company}</p>
+        </div>
       </div>
       <Collapsible open={isOpen} onOpenChange={setIsOpen} className="flex-1">
         <CollapsibleTrigger asChild>
