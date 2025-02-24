@@ -25,7 +25,7 @@ const ProjectPage = ({ project }: { project: Project }) => {
       {/* Source Code and Demo Links */}
       <section className="mb-10">
         <SectionHeader>Source Code & Demo</SectionHeader>
-        <div className="flex space-x-4">
+        <div className="flex space-x-4 ml-8">
           <a
             target="_blank"
             href={project.link.github}
