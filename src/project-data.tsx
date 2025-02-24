@@ -75,6 +75,43 @@ export const FirestoreActions = {
       "View application history",
       "Simple and intuitive interface",
     ],
+    technologies: ["React", "PostgreSQL", "Supabase", "Next.js"],
+    code: [
+      `
+      "use client"
+      import { useSession, signIn, signOut } from "next-auth/react"; 
+
+      function Navbar() {
+        ...
+        return (
+        ...
+          <Button
+          onClick={() => signIn("google")}
+          className="font-bold py-2 px-4 rounded"
+          >
+          Sign-in
+          
+          </Button>
+        ...)
+      }
+          `,
+    ],
+    codeCommentaries: [
+      `Initially, I wrote my navbar as a server component because it used a server action to sign in a user. But because this component would be rendered on each page as part of layout.tsx, I had to refactor it to become a client component to stop each page from becoming a dynamic route.`,
+    ],
+    process: `My motivation for this project was to familiarize myself with Next.js and working with PostgreSQL, as I haven't worked with either up until this point.
+    As such, I worked methodically from the ground up, first going through the Next.js documentation and tutorial, and then using Prisma to interact with my PostgreSQL database on Supabase. 
+    Other than that, I found that my previous experience working with React and Firebase helped me to get up to speed quickly.`,
+    challenges: [
+      {
+        challenge: `Understanding the concept of server components and client components`,
+        solution: `I found that the best way to understand the difference between them was to build something and eventually hit that road block.
+        Next.js's documentation was very helpful in this regard, but it was only after building a few components that I understood the differences.
+        Server components are rendered on the server and are not interactive, while client components are rendered on the client and are interactive.`,
+      },
+    ],
+    whatILearned: `Working on this project allowed me to familiarize myself with Next.js and PostgreSQL. While I didn't directly write queries, (I used prisma) planning out my schema and model relations gave me a better grasp on working with SQL databases.
+    While working on this project, I tried my best to keep the conventions of folder structure and modularity, which allowed me to scale the project easily. I also learned a lot about how authentication works with auth.js, so I would say that this project has taught me quite a lot.`,
   },
 ];
 
