@@ -1,5 +1,6 @@
 import CorporeSanoImg from "@/assets/Corpore Sano Highlight.png";
 import CorporeSanoDemoGif from "@/assets/CorporeSanoDemoGif.gif";
+import JobPulseImg from "@/assets/Job Pulse Highlight.png";
 export const projectData = [
   {
     title: "Corpore Sano",
@@ -59,7 +60,7 @@ export const FirestoreActions = {
   {
     title: "Job Pulse",
     description: "A streamlined job application tracker",
-    image: "",
+    image: JobPulseImg,
     skills: ["React", "PostgreSQL", "Supabase", "Next.js"],
     pageLink: "JobPulse",
     link: {
