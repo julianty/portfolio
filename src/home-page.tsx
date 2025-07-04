@@ -5,6 +5,7 @@ import Experience from "@/components/experience";
 import SectionHeader from "./components/ui/section-header";
 import SkillBadge from "./components/skill-badge";
 import { IconBook } from "@tabler/icons-react";
+import { Button } from "./components/ui/button";
 export default function HomePage() {
   return (
     <>
@@ -69,6 +70,17 @@ export default function HomePage() {
               <p className="text-end text-md min-w-24">2015</p>
             </div>
           </div>
+        </div>
+        <div className="flex justify-center mt-12">
+          <Button asChild variant={"secondary"}>
+            <a
+              href="https://drive.google.com/file/d/1ySSzTfMg72FYJPMgnBd4bdX_oepxST-H/view?usp=sharing"
+              target="_blank"
+              rel="noreferrer"
+            >
+              View resume pdf
+            </a>
+          </Button>
         </div>
       </section>
       <section id="skills">
