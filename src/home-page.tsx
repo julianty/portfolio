@@ -114,9 +114,11 @@ export default function HomePage() {
       </section>
       <section id="projects">
         <SectionHeader>Projects</SectionHeader>
-        <div className="flex flex-col lg:flex-row gap-4 my-8">
+        <div className="flex flex-col flex-wrap lg:flex-row my-8">
           <ProjectHighlight project={projectData[0]} />
           <ProjectHighlight project={projectData[1]} />
+          <ProjectHighlight project={projectData[2]} />
+          {/* <ProjectHighlight project={projectData[2]} /> */}
         </div>
       </section>
       <section id="contact" className="flex flex-col h-[70vh]">

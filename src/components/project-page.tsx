@@ -60,14 +60,11 @@ const ProjectPage = ({ project }: { project: Project }) => {
         project.codeCommentaries &&
         project.code.length == project.codeCommentaries.length && (
           <section className="mb-10">
-            {/* <h2 className="text-2xl font-semibold text-foreground mb-4">
-              Code Highlights & Design Choices
-            </h2> */}
             <SectionHeader>Code Highlights & Design Choices</SectionHeader>
             {project.code.map((code, index) => {
               return (
                 <div key={index} className="flex flex-col gap-4">
-                  <div className="codeblock-wrapper md:ml-8">
+                  <div className="codeblock-wrapper md:ml-8 overflow-y-auto max-h-96">
                     <CodeBlock
                       text={code}
                       language="jsx"
@@ -109,15 +106,34 @@ const ProjectPage = ({ project }: { project: Project }) => {
       {project.demo && (
         <section className="mb-10 w-full">
           <SectionHeader>Screenshots & Demos</SectionHeader>
-          <div className="">
-            {project.demo.map((source) => (
-              <img
-                key={source}
-                src={`${source}`}
-                // alt="Screenshot"
-                className="rounded-lg shadow-md max-h-[500px] mx-auto"
-              />
-            ))}
+          <div className="flex flex-col lg:flex-row gap-4 justify-between">
+            {project.demo.map((demo) => {
+              if (demo.type == "gif") {
+                const source = demo.src;
+                return (
+                  <img
+                    key={source}
+                    src={`${source}`}
+                    // alt="Screenshot"
+                    className="rounded-lg shadow-md max-h-[500px] mx-auto"
+                  />
+                );
+              } else if (demo.type == "video") {
+                const source = demo.src;
+                return (
+                  <div key={source} className="flex flex-col gap-4">
+                    {demo.commentary && (
+                      <p className="text-sm text-slate-500">
+                        {demo.commentary}
+                      </p>
+                    )}
+                    <video autoPlay loop muted playsInline className="">
+                      <source src={`${source}`} type="video/mp4" />
+                    </video>
+                  </div>
+                );
+              }
+            })}
           </div>
         </section>
       )}

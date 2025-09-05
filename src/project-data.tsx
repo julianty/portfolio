@@ -1,6 +1,10 @@
 import CorporeSanoImg from "@/assets/Corpore Sano Highlight.png";
 import CorporeSanoDemoGif from "@/assets/CorporeSanoDemoGif.gif";
 import JobPulseImg from "@/assets/Job Pulse Highlight.png";
+import WhatsForDinnerImg from "@/assets/Whats For Dinner Highlight.png";
+import WhatsForDinnerAPIDemo from "@/assets/whatsfordinner_api_request_demo.mp4";
+import WhatsForDinnerSoloDemo from "@/assets/whatsfordinner_solo_demo.mp4";
+import WhatsForDinnerMultiDemo from "@/assets/whatsfordinner_multi_demo.mp4";
 export const projectData = [
   {
     title: "Corpore Sano",
@@ -53,7 +57,12 @@ export const FirestoreActions = {
         solution: `The best way I found to learn was to dive in and start building components. I started with the most basic components and worked my way up to more complex ones. Since I was used to building components from HTML and CSS, it took a bit of time to familiarize myself with the Mantine framework. This set me up well in my following projects since a lot of React UI frameworks share similar concepts.`,
       },
     ],
-    demo: [CorporeSanoDemoGif],
+    demo: [
+      {
+        type: "gif",
+        src: CorporeSanoDemoGif,
+      },
+    ],
     outcomes: `I began the project with the intent to replace my usual fitness tracker, but given how clunky it is, I think I will have to wait for a later iteration to switch. I am happy with the progress I made and the skills I learned, but I think I will need to spend more time on the project to make it more user-friendly and deliver on the features I planned.`,
     whatILearned: `Working on this project taught me a lot about how to structure a web application and how to work with a database. I learned how to work with a UI framework and how to build components in a more efficient way. I also learned how to compartmentalize my code to make it more readable and maintainable. If I were to start again, I would spend more time planning the project and breaking down the tasks into smaller pieces as working on it day by day made me realize the benefits of planning.`,
   },
@@ -114,6 +123,135 @@ export const FirestoreActions = {
     whatILearned: `Working on this project allowed me to familiarize myself with Next.js and PostgreSQL. While I didn't directly write queries, (I used prisma) planning out my schema and model relations gave me a better grasp on working with SQL databases.
     While working on this project, I tried my best to keep the conventions of folder structure and modularity, which allowed me to scale the project easily. I also learned a lot about how authentication works with auth.js, so I would say that this project has taught me quite a lot.`,
   },
+  {
+    title: "What's for Dinner",
+    description: "A tool to help people decide what to have for dinner.",
+    technologies: [
+      "React",
+      "Vercel",
+      "Next.js",
+      "Prisma",
+      "RESTful",
+      "TypeScript",
+    ],
+    image: WhatsForDinnerImg,
+    skills: [
+      "RESTful",
+      "Vercel",
+      "Next.js",
+      "TypeScript",
+      "Prisma",
+      "PostgreSQL",
+    ],
+    pageLink: "WhatsForDinner",
+    link: {
+      github: "https://github.com/julianty/whats-for-dinner-nextjs",
+      live: "https://whats-for-dinner-rouge.vercel.app/",
+    },
+    longDescription: `What's for Dinner was designed to help me develop my familiarity with working with REST APIs, especially Google Maps' Nearby Search and Place Search APIs. The project allows users to search for nearby places by Zip code, view detailed place information, and invite collaborators to join a session. PostgreSQL was used as the database, with Prisma serving as the ORM to simplify database interactions and ensure type safety.`,
+    keyFeatures: [
+      "Nearby place searching via Zip code",
+      "Session management to invite collaborators",
+      "Place details supported by Google Maps API",
+    ],
+    code: [
+      `
+  // /app/nearby/route.ts
+
+  export async function POST(req: NextRequest) {
+    try {
+      const body = await req.json();
+      const { zip } = body;
+      const radius = SEARCH_RADIUS;
+
+
+      // 1. Check cache in DB
+      const cached = await getCachedNearby(zip, Number(radius));
+      if (cached && cached.data) {
+        return new Response(JSON.stringify(cached.data), { status: 200 });
+      }
+
+      // 2. Geocode ZIP
+      let location;
+      try {
+        location = await geocodeZip(zip); // Makes API call to Google's Geocoding API
+      } catch (err) {
+        (...)
+      }
+      const latitude = location.lat as number;
+      const longitude = location.lng as number;
+
+      // 3. Fetch nearby places
+      let placesData, placesStatus;
+      try {
+        // Makes API call to Google's Nerby Search API
+        const result = await fetchNearbyPlaces(latitude, longitude, radius); 
+        placesData = result.placesData;
+        placesStatus = result.status;
+      } catch (err) {
+        (...)
+      }
+
+      // 4. Save to DB only if no error in response
+      if (!placesData.error && !placesData.code) {
+        await saveNearbyCache(
+          zip,
+          Number(radius),
+          placesData as PlaceDetailsResponse
+        );
+
+        // Convert places to Restaurant objects using utility function
+        const restaurants = convertToRestaurantsArr(placesData);
+        for (const restaurant of restaurants) {
+          try {
+            // And save Restaurants to Restaurant Table
+            await prisma.restaurant.upsert({
+              where: { id: restaurant.id },
+              update: restaurant,
+              create: restaurant,
+            });
+          } catch (dbErr) {
+            (...)
+          }
+        }
+      }
+      // 5. Return array of 'places'
+      return new Response(JSON.stringify(placesData), { status: placesStatus });
+    } catch (err) {
+    (...)
+  }
+}
+
+      `,
+    ],
+    codeCommentaries: [
+      "Since I am now working with an API that has costs/call, I made sure to cache the results and limit the searches to Zip Code rather than allowing users to search by their home address. This allows for more overlap, and fewer calls overall.",
+    ],
+    demo: [
+      {
+        type: "video",
+        src: WhatsForDinnerAPIDemo,
+        commentary: "Showcasing search by Geocoding API & Place Details API",
+      },
+      {
+        type: "video",
+        src: WhatsForDinnerSoloDemo,
+        commentary:
+          "Showcasing solo use-case: selecting items and randomly choosing",
+      },
+      {
+        type: "video",
+        src: WhatsForDinnerMultiDemo,
+        commentary: "Showcasing multi-user use-case: AND-ing together choices",
+      },
+    ],
+    outcomes: `I started the project as both a personal tool to help my partner and I decide what to have for dinner, and as a learning experience.
+    I was able to practice deploying and structuring a Next.js project, and learned how to manage a RESTful API with caching and setting quotas on Google's Cloud Console.
+    Overall, a resounding success.`,
+    whatILearned: `I learned how to manage an app that utilizes Google's Places and Geocoding APIs with caching, structured calls.
+    Gained experience with Vercel's deployment system with CI built-in, and working within their app router framework in Next.js. 
+    Also, gained more experience planning out PostgreSQL table schema with Prisma.`,
+  },
 ];
 
 export type Project = {
@@ -134,7 +272,13 @@ export type Project = {
     challenge: string;
     solution: string;
   }[];
-  demo?: string[];
+  demo?: Demo[];
   outcomes?: string;
   whatILearned?: string;
+};
+
+type Demo = {
+  type: string;
+  src: string;
+  commentary?: string;
 };

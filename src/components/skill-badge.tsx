@@ -14,6 +14,9 @@ import {
   IconBrandSupabase,
   IconBrandNextjs,
   IconBrandPython,
+  IconBrandVercel,
+  IconBrandPrisma,
+  IconApi,
 } from "@tabler/icons-react";
 import PostgresqlSVG from "@/assets/PostgreSQL_logo.1.svg";
 const iconMap: Record<string, React.ReactNode> = {
@@ -34,26 +37,39 @@ const iconMap: Record<string, React.ReactNode> = {
   Supabase: <IconBrandSupabase />,
   "Next.js": <IconBrandNextjs />,
   Python: <IconBrandPython />,
+  Vercel: <IconBrandVercel />,
+  Prisma: <IconBrandPrisma />,
+  RESTful: <IconApi />,
+};
+
+const colors: Record<string, string> = {
+  backendDeployment: "#b3cccc",
+  uiFrameworks: "#dd99ff",
+  lightBlue: "#80ccff",
+  orange: "#fb923c",
 };
 
 const skillMap: Record<string, string> = {
   JavaScript: "yellow",
-  TypeScript: "#80ccff",
-  React: "#80ccff",
-  "Node.js": "#b3cccc",
-  Express: "#b3cccc",
+  TypeScript: colors.lightBlue,
+  React: colors.lightBlue,
+  "Node.js": colors.backendDeployment,
+  Express: colors.backendDeployment,
   MongoDB: "#59d465",
   HTML: "#ed537a",
-  CSS: "#dd99ff",
-  Tailwind: "#dd99ff",
-  Bootstrap: " #dd99ff",
+  CSS: colors.uiFrameworks,
+  Tailwind: colors.uiFrameworks,
+  Bootstrap: colors.uiFrameworks,
   "Material-UI": "#3b82f6",
   Vite: "#80ccff",
-  Firebase: "#fb923c",
+  Firebase: colors.orange,
   PostgreSQL: "#59d465",
-  Supabase: "#fb923c",
+  Supabase: colors.orange,
   "Next.js": "#3b82f6",
   Python: "#72b7fd",
+  Vercel: colors.backendDeployment,
+  Prisma: colors.backendDeployment,
+  RESTful: colors.backendDeployment,
 };
 
 export default function SkillBadge({ skill }: { skill: string }) {

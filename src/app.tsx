@@ -36,6 +36,10 @@ function App() {
               path="/projects/JobPulse"
               element={<ProjectPage project={projectData[1]} />}
             />
+            <Route
+              path="/projects/WhatsForDinner"
+              element={<ProjectPage project={projectData[2]} />}
+            />
           </Routes>
         </div>
       </Router>
