@@ -9,7 +9,7 @@ import { Button } from "./components/ui/button";
 export default function HomePage() {
   return (
     <>
-      <section className="h-[90vh] flex flex-col justify-center items-center bg-gradient-to-tr from-background to-foreground">
+      <section className="h-[90vh] flex flex-col justify-center items-center bg-linear-to-tr from-background to-foreground">
         <h1>Hi, I'm Julian</h1>
         <h4>Full Stack Developer</h4>
       </section>
