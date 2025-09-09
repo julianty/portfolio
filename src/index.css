@@ -155,11 +155,6 @@ button:focus-visible {
   @apply bg-card p-4 flex flex-col gap-3;
 }
 
-.hero {
-  @apply justify-center flex flex-col mx-auto;
-  height: 90vh;
-}
-
 .codeblock-wrapper {
   font-family: monospace;
 }
