@@ -1,7 +1,7 @@
-import { IconBook } from "@tabler/icons-react";
-import Experience from "../experience";
+import Experience from "./Experience";
 import SectionHeader from "../ui/section-header";
 import { Button } from "../ui/button";
+import Education from "./Education";
 
 function ExperienceSection() {
   return (
@@ -48,20 +48,11 @@ function ExperienceSection() {
             </a>
           </p>
         </Experience>
-        <div className="flex justify-between w-full md:w-3/4 px-4">
-          <div className="flex flex-1 gap-3">
-            <IconBook className="text-muted md:block hidden" size="40px" />
-            <div className="flex flex-col">
-              <h3>B.S. Engineering Physics</h3>
-              <p className="text-muted">
-                UC San Diego - Jacob's School of Engineering
-              </p>
-            </div>
-          </div>
-          <div>
-            <p className="text-end text-md min-w-24">2015</p>
-          </div>
-        </div>
+        <Education
+          credential="B.S. Engineering Physics"
+          institution="UC San Diego - Jacob's School of Engineering"
+          year="2015"
+        />
       </div>
       <div className="flex justify-center mt-12">
         <Button asChild variant={"secondary"}>
