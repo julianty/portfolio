@@ -67,6 +67,42 @@ export const FirestoreActions = {
     whatILearned: `Working on this project taught me a lot about how to structure a web application and how to work with a database. I learned how to work with a UI framework and how to build components in a more efficient way. I also learned how to compartmentalize my code to make it more readable and maintainable. If I were to start again, I would spend more time planning the project and breaking down the tasks into smaller pieces as working on it day by day made me realize the benefits of planning.`,
   },
   {
+    title: "juliantyart",
+    description:
+      "My personal art website with a store for artwork and accepting commissions",
+    image: "", // Add image import if available
+    skills: ["Next.js", "PostgreSQL", "Stripe"],
+    pageLink: "juliantyart",
+    link: {
+      github: "", // Add GitHub link if available
+      live: "https://juliantyart.com",
+    },
+    longDescription: `
+        juliantyart is my personal art website, created to expand my web presence and provide a professional platform for selling my artwork online. The project was also an opportunity to gain hands-on experience integrating Stripe as a payment system, ensuring secure and reliable transactions for both shop purchases and custom commissions. The site is built with Next.js, uses Prisma and PostgreSQL for its database, and is written in TypeScript for type safety and maintainability.
+      `,
+    keyFeatures: [
+      "Fully functional shop for artwork",
+      "Custom commissions flow for personalized art requests",
+    ],
+    technologies: ["Next.js", "PostgreSQL", "Stripe"],
+    code: [],
+    codeCommentaries: [],
+    process: `The development process began by focusing on the two main features: the shop and the commissions flow. Once these core functionalities were established, I built the rest of the site around them, ensuring a cohesive user experience and robust backend integration.`,
+    challenges: [
+      {
+        challenge:
+          "Integrating Stripe for payments and writing effective tests for Next.js posed significant challenges. Integration tests were particularly difficult due to Next.js's routing and server-generated content.",
+        solution:
+          "I overcame these challenges by thoroughly reading Stripe's documentation, experimenting with test environments, and adapting my testing strategy to fit Next.js's architecture. This included using mocks and focusing on end-to-end flows where possible.",
+      },
+    ],
+    demo: [],
+    outcomes:
+      "The project provided a professional platform for my art, streamlined the process of selling and accepting commissions, and improved my skills in payment integration and full-stack development.",
+    whatILearned:
+      "I learned how to integrate Stripe for secure payments and how to approach testing in a Next.js environment, especially for integration and end-to-end scenarios.",
+  },
+  {
     title: "Job Pulse",
     description: "A streamlined job application tracker",
     image: JobPulseImg,
