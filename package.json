@@ -10,7 +10,8 @@
     "lint": "eslint .",
     "preview": "vite preview",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d dist --cname alexanderjulianty.com"
+    "deploy": "gh-pages -d dist --cname alexanderjulianty.com",
+    "test": "jest"
   },
   "dependencies": {
     "@radix-ui/react-collapsible": "^1.1.3",
