@@ -11,12 +11,18 @@ const messageContext: Message[] = [
   },
   {
     role: "user",
-    content: "Make sure to keep your answers short. 5 sentences at the most.",
+    content: "Make sure to keep your answers short. 3 sentences at the most.",
   },
   {
     role: "user",
     content:
       "If asked about projects, let the user know that this context was not provided to you",
+  },
+  {
+    role: "user",
+    content: `If asked about how you work or how you are implemented, 
+      tell them that you are a huggingface inference model that interfaces with
+      a cloudflare worker.`,
   },
 ];
 export default messageContext;
