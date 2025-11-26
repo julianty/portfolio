@@ -1,15 +1,17 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import MessageHistory from "./MessageHistory";
 import getChatResponse from "@/lib/workers"; // adjust import as needed
+import type { Message } from "./types";
 
-type Message = {
-  role: "user" | "assistant";
-  content: string;
+const startingMessage = {
+  role: "assistant" as "user" | "assistant",
+  content: `Hi, welcome to Julian's portfolio website. He's a full-stack developer, and happy to have you here! 
+    You can chat with me to find out more about Julian.`,
 };
 
 function Chatbox() {
   const [input, setInput] = useState("");
-  const [messages, setMessages] = useState<Message[]>([]);
+  const [messages, setMessages] = useState<Message[]>([startingMessage]);
 
   async function handleSend() {
     if (!input.trim()) return;
@@ -44,7 +46,6 @@ function Chatbox() {
           placeholder="Ask something..."
         />
         <button
-          // onClick={handleSend}
           type="submit"
           className="bg-blue-500 text-white px-4 py-2 rounded ml-2"
         >
