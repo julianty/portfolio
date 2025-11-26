@@ -1,5 +1,3 @@
-import React from "react";
-
 type Message = {
   role: "user" | "assistant";
   content: string;
