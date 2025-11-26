@@ -1,6 +1,6 @@
 import { useState } from "react";
 import MessageHistory from "./MessageHistory";
-import getChatResponse from "@/lib/workers"; // adjust import as needed
+import getChatResponse from "@/lib/workers";
 import type { Message } from "./types";
 
 const startingMessage = {
@@ -9,7 +9,11 @@ const startingMessage = {
     You can chat with me to find out more about Julian.`,
 };
 
-function Chatbox() {
+interface ChatboxProps {
+  active: boolean;
+}
+
+function Chatbox({ active }: ChatboxProps) {
   const [input, setInput] = useState("");
   const [messages, setMessages] = useState<Message[]>([startingMessage]);
 
@@ -30,8 +34,14 @@ function Chatbox() {
   }
 
   return (
-    <div className="bg-background p-4 border rounded-xl max-w-lg mx-auto flex flex-col gap-4">
-      <MessageHistory messages={messages} />
+    <div
+      className={`bg-background border rounded-xl mx-auto flex flex-col gap-4 transition-all duration-700 overflow-hidden ${
+        active
+          ? "max-w-lg w-[400px] max-h-[500px] p-4"
+          : "max-w-md w-[300px] max-h-[60px] p-2"
+      }`}
+    >
+      {active && <MessageHistory messages={messages} />}
       <form
         onSubmit={(e) => {
           e.preventDefault();
