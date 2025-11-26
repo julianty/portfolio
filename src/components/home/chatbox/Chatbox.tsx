@@ -28,22 +28,29 @@ function Chatbox() {
   }
 
   return (
-    <div className="p-4 border rounded max-w-lg mx-auto flex flex-col gap-4">
+    <div className="bg-background p-4 border rounded-xl max-w-lg mx-auto flex flex-col gap-4">
       <MessageHistory messages={messages} />
-      <div className="flex">
+      <form
+        onSubmit={(e) => {
+          e.preventDefault();
+          handleSend();
+        }}
+        className="flex"
+      >
         <input
           value={input}
           onChange={(e) => setInput(e.target.value)}
-          className="border p-2 flex-1"
+          className="border p-2 flex-1 rounded-lg"
           placeholder="Ask something..."
         />
         <button
-          onClick={handleSend}
+          // onClick={handleSend}
+          type="submit"
           className="bg-blue-500 text-white px-4 py-2 rounded ml-2"
         >
           Send
         </button>
-      </div>
+      </form>
     </div>
   );
 }
