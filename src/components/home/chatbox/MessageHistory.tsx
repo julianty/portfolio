@@ -11,10 +11,10 @@ function MessageHistory({ messages }: { messages: Message[] }) {
       {messages.map((msg, idx) => (
         <div
           key={idx}
-          className={`p-3 rounded-md ${
+          className={`p-3 rounded-lg ${
             msg.role === "user"
-              ? "bg-white text-black self-end"
-              : "bg-gray-100 text-gray-800 self-start"
+              ? "bg-muted text-foreground self-end"
+              : "text-foreground self-start"
           } max-w-[80%]`}
         >
           {msg.content}
