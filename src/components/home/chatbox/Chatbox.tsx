@@ -37,7 +37,7 @@ function Chatbox({ active }: ChatboxProps) {
     <div
       className={`bg-background border rounded-xl mx-auto flex flex-col gap-4 transition-all duration-700 overflow-hidden ${
         active
-          ? "max-w-lg w-[400px] max-h-[500px] p-4"
+          ? "max-w-lg w-[600px] max-h-[1500px] p-4"
           : "max-w-md w-[300px] max-h-[60px] p-2"
       }`}
     >
