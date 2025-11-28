@@ -2,6 +2,7 @@ import { useState } from "react";
 import MessageHistory from "./MessageHistory";
 import getChatResponse from "@/lib/workers";
 import type { Message } from "./types";
+import SuggestedPrompts from "./SuggestedPrompts";
 
 const startingMessage = {
   role: "assistant" as "user" | "assistant",
@@ -42,6 +43,7 @@ function Chatbox({ active }: ChatboxProps) {
       }`}
     >
       {active && <MessageHistory messages={messages} />}
+      {active && <SuggestedPrompts setInput={setInput} />}
       <form
         onSubmit={(e) => {
           e.preventDefault();
