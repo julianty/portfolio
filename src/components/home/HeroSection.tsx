@@ -5,7 +5,7 @@ function HeroSection() {
   const [active, setActive] = React.useState(false);
   const boxRef = React.useRef(null);
   return (
-    <section className="h-[90vh] flex flex-col gap-5 justify-center items-center bg-radial from-slate-800 to-70% to-background">
+    <section className="h-[90vh] flex flex-col gap-5 justify-center items-center bg-radial from-slate-800 to-70% to-background relative">
       {
         <div
           className={`flex flex-col items-center transition-all duration-1000 ease-in-out z-0 ${
@@ -23,7 +23,7 @@ function HeroSection() {
         ref={boxRef}
         onClick={() => setActive(true)}
         onBlur={() => setActive(false)}
-        className="z-10"
+        className="z-10 absolute bottom-20"
       >
         <Chatbox active={active} />
       </div>
