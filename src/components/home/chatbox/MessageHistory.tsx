@@ -1,4 +1,5 @@
 import { useEffect, useRef } from "react";
+import Markdown from "./Markdown";
 
 type Message = {
   role: "user" | "assistant";
@@ -28,7 +29,7 @@ function MessageHistory({ messages }: { messages: Message[] }) {
               : "text-foreground self-start"
           } max-w-[80%]`}
         >
-          {msg.content}
+          {msg.role === "user" ? msg.content : <Markdown raw={msg.content} />}
         </div>
       ))}
     </div>
