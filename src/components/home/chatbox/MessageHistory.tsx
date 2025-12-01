@@ -9,17 +9,6 @@ function MessageHistory({ messages }: { messages: Message[] }) {
   const containerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    // Trigger animations on mount
-    const animationClasses = [
-      "max-h-[500px]",
-      "overflow-hidden",
-      "transition-[max-height]",
-      "duration-[1s]",
-    ];
-    containerRef.current?.classList.add(...animationClasses);
-  }, []);
-
-  useEffect(() => {
     if (containerRef.current) {
       containerRef.current.scrollTop = containerRef.current.scrollHeight;
     }
@@ -28,7 +17,7 @@ function MessageHistory({ messages }: { messages: Message[] }) {
   return (
     <div
       ref={containerRef}
-      className="bg-background p-4 rounded-lg max-h-0 overflow-y-auto flex flex-col gap-4"
+      className="bg-background p-4 rounded-lg max-h-[500px] overflow-y-auto flex flex-col gap-4"
     >
       {messages.map((msg, idx) => (
         <div
