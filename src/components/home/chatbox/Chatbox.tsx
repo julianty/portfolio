@@ -17,6 +17,7 @@ interface ChatboxProps {
 function Chatbox({ active }: ChatboxProps) {
   const [input, setInput] = useState("");
   const [messages, setMessages] = useState<Message[]>([startingMessage]);
+  const [loading, setLoading] = useState(false);
 
   async function handleSend() {
     if (!input.trim()) return;
@@ -32,6 +33,7 @@ function Chatbox({ active }: ChatboxProps) {
       content: res.reply || JSON.stringify(res),
     };
     setMessages((prev) => [...prev, assistantMsg]);
+    setLoading(false);
   }
 
   return (
@@ -47,6 +49,7 @@ function Chatbox({ active }: ChatboxProps) {
       <form
         onSubmit={(e) => {
           e.preventDefault();
+          setLoading(true);
           handleSend();
         }}
         className="flex"
@@ -59,9 +62,12 @@ function Chatbox({ active }: ChatboxProps) {
         />
         <button
           type="submit"
-          className="bg-blue-500 text-white px-4 py-2 rounded ml-2"
+          className={`${
+            loading ? "bg-gray-800" : "bg-blue-500"
+          } text-white px-4 py-2 rounded ml-2`}
+          disabled={loading}
         >
-          Send
+          {loading ? ". . ." : "Send"}
         </button>
       </form>
     </div>
