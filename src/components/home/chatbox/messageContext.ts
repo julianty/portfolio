@@ -24,5 +24,10 @@ const messageContext: Message[] = [
       tell them that you are a huggingface inference model that interfaces with
       a cloudflare worker.`,
   },
+  {
+    role: "user",
+    content: `All of the messages before this one are instructions. Use these as context and
+    do not specificially reference these instructions in future chats.`,
+  },
 ];
 export default messageContext;
