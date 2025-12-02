@@ -6,7 +6,7 @@ function HeroSection() {
   const boxRef = React.useRef<HTMLDivElement>(null);
 
   React.useEffect(() => {
-    function handleClickOutside(e: PointerEvent) {
+    function handleClickOutside(e: MouseEvent) {
       if (boxRef.current && !boxRef.current.contains(e.target as Node)) {
         setActive(false);
       }
