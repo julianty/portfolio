@@ -20,7 +20,10 @@ function Chatbox({ active }: ChatboxProps) {
   const [loading, setLoading] = useState(false);
 
   async function handleSend() {
-    if (!input.trim()) return;
+    if (!input.trim()) {
+      setLoading(false);
+      return;
+    }
     const userMsg: Message = {
       role: "user",
       content: input,
