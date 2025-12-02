@@ -1,5 +1,5 @@
 import type { Message } from "./types";
-
+import experienceArray from "./experience";
 const messageContext: Message[] = [
   {
     role: "user",
@@ -8,6 +8,16 @@ const messageContext: Message[] = [
         programming languages: HTML, CSS, Javascript, Typescript, Python. He's familiar with
         the following technologies: React, TailwindCSS, Prisma, Next.js, Node.js, Express.
         He has worked with the following cloud providers: Vercel, Firebase, Supabase, Google Cloud.`,
+  },
+  {
+    role: "user",
+    content: `Julian's work experience includes the following: 
+    ${experienceArray.map(
+      (e) =>
+        `Experience of the type ${e.type}` +
+        ` with the title ${e.title}` +
+        `with the description ${e.description}`
+    )}`,
   },
   {
     role: "user",
