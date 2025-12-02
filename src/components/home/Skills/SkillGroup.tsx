@@ -13,7 +13,7 @@ function SkillGroup({
   return (
     <div className="grid w-full grid-cols-[50px_1fr] grid-rows-[auto_auto] gap-x-10 p-4 ">
       {icon ? (
-        <div className="border-1 bg-neutral-900 p-2 w-[50px] h-[50px] text-foreground-muted flex items-center justify-center rounded-xl d">
+        <div className="border bg-neutral-900 p-2 w-[50px] h-[50px] text-foreground-muted flex items-center justify-center rounded-xl d">
           {icon}
         </div>
       ) : (
