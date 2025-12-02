@@ -3,7 +3,20 @@ import Chatbox from "./chatbox/Chatbox";
 
 function HeroSection() {
   const [active, setActive] = React.useState(false);
-  const boxRef = React.useRef(null);
+  const boxRef = React.useRef<HTMLDivElement>(null);
+
+  React.useEffect(() => {
+    function handleClickOutside(e: PointerEvent) {
+      if (boxRef.current && !boxRef.current.contains(e.target as Node)) {
+        setActive(false);
+      }
+    }
+    document.addEventListener("click", handleClickOutside);
+    return () => {
+      document.removeEventListener("click", handleClickOutside);
+    };
+  }, [setActive]);
+
   return (
     <section className="h-[90vh] flex flex-col gap-5 justify-center items-center bg-radial from-slate-800 to-70% to-background relative">
       {
@@ -22,7 +35,6 @@ function HeroSection() {
         tabIndex={-1}
         ref={boxRef}
         onClick={() => setActive(true)}
-        onBlur={() => setActive(false)}
         className="z-10 absolute bottom-20"
       >
         <Chatbox active={active} />

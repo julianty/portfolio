@@ -15,11 +15,7 @@ function SuggestedPrompts({
   }, []);
 
   // On mouseDown handler
-  const handleMouseDown = (
-    e: React.MouseEvent<HTMLDivElement, MouseEvent>,
-    p: prompt
-  ) => {
-    e.preventDefault();
+  const handleMouseDown = (p: prompt) => {
     // Mark prompt as inactive
     p.active = false;
     // Set input text
@@ -34,7 +30,7 @@ function SuggestedPrompts({
           <div
             className="p-2 rounded-xl bg-muted text-foreground flex gap-1 text-sm items-center"
             key={p.text}
-            onMouseDown={(e) => handleMouseDown(e, p)}
+            onMouseDown={() => handleMouseDown(p)}
           >
             <IconSparkles />
             {p.text}
