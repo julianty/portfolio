@@ -6,7 +6,7 @@ import {
   IconStack2,
 } from "@tabler/icons-react";
 
-function SkillsSection() {
+function SkillsAndCertificationsSection() {
   return (
     <section id="skills">
       <SectionHeader>Skills</SectionHeader>
@@ -41,4 +41,4 @@ function SkillsSection() {
   );
 }
 
-export default SkillsSection;
+export default SkillsAndCertificationsSection;
