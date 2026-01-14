@@ -39,7 +39,7 @@ function SkillsAndCertificationsSection() {
         />
 
         <div className="grid w-full grid-cols-[50px_1fr] grid-rows-[auto_auto] gap-x-10 p-4 ">
-          <div className="border-1 bg-neutral-900 p-2 w-[50px] h-[50px] text-foreground-muted flex items-center justify-center rounded-xl d">
+          <div className="border bg-neutral-900 p-2 w-[50px] h-[50px] text-foreground-muted flex items-center justify-center rounded-xl d">
             <IconCertificate />
           </div>
           <h4 className="text-xl w-full">Certifications</h4>
