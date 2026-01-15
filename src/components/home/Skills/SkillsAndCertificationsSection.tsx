@@ -30,6 +30,8 @@ function SkillsAndCertificationsSection() {
           skills={[
             "Express",
             "Node.js",
+            "Next.js",
+            "Vercel",
             "MongoDB",
             "PostgreSQL",
             "Firebase",
