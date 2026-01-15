@@ -5,6 +5,7 @@ import WhatsForDinnerImg from "@/assets/Whats For Dinner Highlight.png";
 import WhatsForDinnerAPIDemo from "@/assets/whatsfordinner_api_request_demo.mp4";
 import WhatsForDinnerSoloDemo from "@/assets/whatsfordinner_solo_demo.mp4";
 import WhatsForDinnerMultiDemo from "@/assets/whatsfordinner_multi_demo.mp4";
+import juliantyartHighlight from "@/assets/juliantyart Highlight.png";
 export const projectData = [
   {
     title: "Corpore Sano",
@@ -70,7 +71,7 @@ export const FirestoreActions = {
     title: "juliantyart",
     description:
       "My personal art website with a store for artwork and accepting commissions",
-    image: "", // Add image import if available
+    image: juliantyartHighlight, // Add image import if available
     skills: ["Next.js", "PostgreSQL", "Stripe"],
     pageLink: "juliantyart",
     link: {
