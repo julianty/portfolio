@@ -60,7 +60,7 @@ function Chatbox({ active }: ChatboxProps) {
         <input
           value={input}
           onChange={(e) => setInput(e.target.value)}
-          className="border p-2 flex-1 rounded-lg"
+          className="bg-zinc-900 text-zinc-100 placeholder-zinc-400 border p-2 flex-1 rounded-lg"
           placeholder="Ask something..."
         />
         <button
