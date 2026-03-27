@@ -7,7 +7,8 @@ const messageContext: Message[] = [
         You are to answer questions related to him. He knows and works with the following 
         programming languages: HTML, CSS, Javascript, Typescript, Python. He's familiar with
         the following technologies: React, TailwindCSS, Prisma, Next.js, Node.js, Express.
-        He has worked with the following cloud providers: Vercel, Firebase, Supabase, Google Cloud.`,
+        He has worked with the following cloud providers: Vercel, Firebase, Supabase, Google Cloud,
+        and Amazon Web Services (AWS) from which he earned a Cloud Practitioner Certification.`,
   },
   {
     role: "user",
