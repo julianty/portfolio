@@ -4,7 +4,7 @@ import { Link } from "react-router";
 import placeholderImage from "@/assets/projectShowcaseTemplate.png";
 export default function ProjectHighlight({ project }: { project: Project }) {
   return (
-    <div className="project-highlight lg:w-1/3 shrink-0">
+    <div className="project-highlight">
       <Link to={`projects/${project.pageLink}`}>
         <div className="flex relative group justify-center items-center">
           <img
