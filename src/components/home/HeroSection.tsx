@@ -27,8 +27,12 @@ function HeroSection() {
               : "opacity-100 scale-100 translate-y-0"
           }`}
         >
-          <h1>Hi, I'm Julian 👋</h1>
-          <h4>Full Stack Developer</h4>
+          <h1 className="text-5xl sm:text-6xl lg:text-6xl font-display font-semibold">
+            Hi, I'm Julian 👋
+          </h1>
+          <p className="text-base sm:text-lg text-muted-foreground max-w-sm">
+            Full Stack Developer
+          </p>
         </div>
       }
       <div
