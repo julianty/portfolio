@@ -6,7 +6,7 @@ function ProjectsSection() {
   return (
     <section id="projects">
       <SectionHeader>Projects</SectionHeader>
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 md:mx-16 my-8">
+      <div className="my-8 grid grid-cols-1 gap-6 md:mx-8 md:grid-cols-2 xl:mx-12 xl:grid-cols-3">
         {projectData.map((data) => (
           <ProjectHighlight key={data.title} project={data} />
         ))}
