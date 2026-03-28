@@ -24,7 +24,11 @@ function App() {
     <ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
       <Router>
         <ScrollToTop />
-        <div id="main-stack" className="flex flex-col md:w-4/5 md:mx-auto">
+        {/* <div id="main-stack" className="flex flex-col md:w-4/5 md:mx-auto"> */}
+        <div
+          id="main-stack"
+          className="flex flex-col mx-auto min-h-screen w-full max-w-6xl px-4"
+        >
           <Navbar />
           <Routes>
             <Route path="/" element={<HomePage />} />
