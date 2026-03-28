@@ -1,4 +1,4 @@
-import { IconBook, IconBookFilled, IconChevronDown } from "@tabler/icons-react";
+import { IconBook, IconBookFilled } from "@tabler/icons-react";
 import React from "react";
 function Education({
   credential,
@@ -13,13 +13,12 @@ function Education({
   year?: string;
   children?: React.ReactNode;
 }) {
-  const [isOpen, setIsOpen] = React.useState(false);
   const [isHovered, setIsHovered] = React.useState(false);
   return (
     <div
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
-      className="w-full md:w-3/4 px-4 flex flex-col gap-4"
+      className="w-full md:w-3/4 rounded-xl border border-border/50 bg-card/50 p-5 flex flex-col gap-4"
     >
       <div className="flex justify-between w-full ">
         <div className="flex flex-2 gap-3">
@@ -31,35 +30,24 @@ function Education({
           ) : (
             <IconBook className="text-muted md:block hidden" size="40px" />
           )}
-          <div className="flex flex-col ">
-            <h3>{credential}</h3>
-            <p className="text-muted">{institution}</p>
+          <div className="flex flex-col">
+            <h3 className="text-base font-semibold leading-snug text-foreground">
+              {credential}
+            </h3>
+            <p className="text-sm text-muted-foreground">{institution}</p>
           </div>
         </div>
         <div className="flex-1">
-          {year && <p className="text-end text-md min-w-24">{year}</p>}
-          {bulletpoints && (
-            <div
-              onClick={() => setIsOpen(!isOpen)}
-              className="flex gap-2 justify-end"
-            >
-              {isOpen ? (
-                <p className="text-muted-foreground text-sm">Hide</p>
-              ) : (
-                <p className="text-muted-foreground text-sm">Details</p>
-              )}
-              <IconChevronDown
-                className={`transform transition-transform ${
-                  isOpen ? "rotate-180" : ""
-                }`}
-              />
-            </div>
+          {year && (
+            <p className="text-xs tabular-nums text-muted-foreground text-end min-w-24">
+              {year}
+            </p>
           )}
         </div>
       </div>
-      {isOpen && bulletpoints && (
+      {bulletpoints && (
         <div>
-          <ul className="flex flex-col gap-2">
+          <ul className="list-disc pl-5 flex flex-col gap-1.5 text-sm text-muted-foreground leading-relaxed">
             {bulletpoints.map((point) => (
               <li key={point}>{point}</li>
             ))}

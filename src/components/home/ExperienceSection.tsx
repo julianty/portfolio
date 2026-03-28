@@ -7,7 +7,7 @@ function ExperienceSection() {
   return (
     <section id="experience">
       <SectionHeader>Education & Experience</SectionHeader>
-      <div className="flex flex-col gap-16 items-center">
+      <div className="flex flex-col gap-6 items-center">
         <Experience
           title="Staff Research Associate - Machine Learning"
           company="UC San Diego - Abarbanel Lab"
@@ -17,17 +17,14 @@ function ExperienceSection() {
           ]}
           year="2018-2020"
         >
-          <p>
-            <a
-              href="https://arxiv.org/abs/1902.05062"
-              className="text-blue-500"
-              target="_blank"
-              rel="noreferrer"
-            >
-              arxiv link
-            </a>{" "}
-            to paper
-          </p>
+          <a
+            href="https://arxiv.org/abs/1902.05062"
+            className="text-primary font-medium hover:underline"
+            target="_blank"
+            rel="noreferrer"
+          >
+            View published paper →
+          </a>
         </Experience>
         <Experience
           title="Physics Workshop Coordinator"
@@ -37,16 +34,14 @@ function ExperienceSection() {
           ]}
           year="2016-2018"
         >
-          <p>
-            <a
-              href="https://oasis.ucsd.edu/academic-services/mstp-folder/index.html"
-              target="_blank"
-              className="text-blue-500"
-              rel="noreferrer"
-            >
-              Office website
-            </a>
-          </p>
+          <a
+            href="https://oasis.ucsd.edu/academic-services/mstp-folder/index.html"
+            target="_blank"
+            className="text-primary font-medium hover:underline"
+            rel="noreferrer"
+          >
+            Visit office website →
+          </a>
         </Experience>
         <Education
           credential="B.S. Engineering Physics"
