@@ -1,56 +1,64 @@
 import { Project } from "@/project-data";
 import { CodeBlock, dracula } from "react-code-blocks";
+import { IconBrandGithub, IconExternalLink } from "@tabler/icons-react";
 import SkillBadge from "./skill-badge";
 import SectionHeader from "./ui/section-header";
 const ProjectPage = ({ project }: { project: Project }) => {
   return (
-    <div className="max-w-4xl mx-auto p-4 md:p-6 min-h-screen">
+    <div className="mx-auto min-h-screen max-w-4xl px-4 py-8 md:px-6 md:py-12">
       {/* Project Overview */}
-      <section className="mb-10">
-        <div className="flex gap-4 flex-col md:items-center md:flex-row">
-          <h1 className="text-4xl font-bold text-foreground mb-4">
-            {project.title}
-          </h1>
-          <div className="flex gap-2 flex-wrap">
-            {project.technologies &&
-              project.technologies.map((tech) => (
-                <SkillBadge key={tech} skill={tech} />
-              ))}
+      <section className="mb-12">
+        <h1 className="font-display text-3xl font-bold tracking-tight text-foreground md:text-4xl">
+          {project.title}
+        </h1>
+        {project.technologies && project.technologies.length > 0 && (
+          <div className="mt-4 flex flex-wrap gap-2">
+            {project.technologies.map((tech) => (
+              <SkillBadge key={tech} skill={tech} />
+            ))}
           </div>
-        </div>
-        <p className="text-lg text-secondary-foreground my-3 md:ml-8">
+        )}
+        <p className="mt-4 max-w-3xl text-base leading-relaxed text-muted-foreground md:text-lg">
           {project.longDescription}
         </p>
       </section>
       {/* Source Code and Demo Links */}
-      <section className="mb-10">
-        <SectionHeader>Source Code & Demo</SectionHeader>
-        <div className="flex space-x-4 md:ml-8">
-          <a
-            target="_blank"
-            href={project.link.github}
-            className="text-blue-500 underline"
-          >
-            View on GitHub
-          </a>
-          <a
-            target="_blank"
-            href={project.link.live}
-            className="text-blue-500 underline"
-          >
-            Live Demo
-          </a>
-        </div>
-      </section>
+      {(project.link.github || project.link.live) && (
+        <section className="mb-12">
+          <SectionHeader>Source Code & Demo</SectionHeader>
+          <div className="flex flex-wrap gap-3">
+            {project.link.github && (
+              <a
+                target="_blank"
+                rel="noreferrer"
+                href={project.link.github}
+                className="inline-flex items-center gap-2 rounded-lg border border-border/60 bg-card/50 px-4 py-2.5 text-sm font-medium text-foreground transition-colors hover:bg-muted/40 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+              >
+                <IconBrandGithub size={16} />
+                View on GitHub
+              </a>
+            )}
+            {project.link.live && (
+              <a
+                target="_blank"
+                rel="noreferrer"
+                href={project.link.live}
+                className="inline-flex items-center gap-2 rounded-lg border border-primary/40 bg-primary/10 px-4 py-2.5 text-sm font-medium text-primary transition-colors hover:bg-primary/20 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+              >
+                <IconExternalLink size={16} />
+                Live Demo
+              </a>
+            )}
+          </div>
+        </section>
+      )}
       {/* Key Features */}
       {project.keyFeatures && project.keyFeatures.length > 0 && (
-        <section className="mb-10">
+        <section className="mb-12">
           <SectionHeader>Key Features</SectionHeader>
-          <ul className="list-disc list-inside space-y-2 md:ml-8">
+          <ul className="list-disc space-y-2 pl-6 text-sm leading-relaxed text-muted-foreground md:text-base">
             {project.keyFeatures.map((feature) => (
-              <li key={feature} className="text-secondary-foreground">
-                {feature}
-              </li>
+              <li key={feature}>{feature}</li>
             ))}
           </ul>
         </section>
@@ -59,80 +67,96 @@ const ProjectPage = ({ project }: { project: Project }) => {
       {project.code &&
         project.codeCommentaries &&
         project.code.length == project.codeCommentaries.length && (
-          <section className="mb-10">
+          <section className="mb-12">
             <SectionHeader>Code Highlights & Design Choices</SectionHeader>
-            {project.code.map((code, index) => {
-              return (
-                <div key={index} className="flex flex-col gap-4">
-                  <div className="codeblock-wrapper md:ml-8 overflow-y-auto max-h-96">
-                    <CodeBlock
-                      text={code}
-                      language="jsx"
-                      showLineNumbers={false}
-                      theme={dracula}
-                      wrapLongLines={true}
-                    />
+            <div className="flex flex-col gap-8">
+              {project.code.map((code, index) => (
+                <div key={index} className="flex flex-col gap-3">
+                  <div className="overflow-hidden rounded-xl border border-border/50">
+                    <div className="max-h-96 overflow-y-auto">
+                      <CodeBlock
+                        text={code}
+                        language="jsx"
+                        showLineNumbers={false}
+                        theme={dracula}
+                        wrapLongLines={true}
+                      />
+                    </div>
                   </div>
-                  <p className="text-secondary-foreground md:ml-8">
+                  <p className="text-sm leading-relaxed text-muted-foreground md:text-base">
                     {project.codeCommentaries![index]}
                   </p>
                 </div>
-              );
-            })}
+              ))}
+            </div>
           </section>
         )}
       {/* Process and Workflow */}
       {project.process && (
-        <section className="mb-10">
+        <section className="mb-12">
           <SectionHeader>Process & Workflow</SectionHeader>
-          <p className="text-secondary-foreground whitespace-pre-line md:ml-8">
+          <p className="whitespace-pre-line text-sm leading-relaxed text-muted-foreground md:text-base">
             {project.process}
           </p>
         </section>
       )}
       {/* Challenges and Solutions */}
       {project.challenges && (
-        <section className="mb-10">
+        <section className="mb-12">
           <SectionHeader>Challenges & Solutions</SectionHeader>
-          {project.challenges.map((challenge) => (
-            <div key={challenge.challenge} className="flex flex-col gap-4">
-              <p className="md:ml-8">{challenge.challenge}</p>
-              <p className="ml-4 md:ml-12">{challenge.solution}</p>
-            </div>
-          ))}
+          <div className="flex flex-col gap-6">
+            {project.challenges.map((challenge) => (
+              <div
+                key={challenge.challenge}
+                className="rounded-xl border border-border/50 bg-card/50 p-5"
+              >
+                <p className="text-sm font-semibold text-foreground md:text-base">
+                  {challenge.challenge}
+                </p>
+                <p className="mt-3 text-sm leading-relaxed text-muted-foreground md:text-base">
+                  {challenge.solution}
+                </p>
+              </div>
+            ))}
+          </div>
         </section>
       )}
       {/* Visuals */}
-      {project.demo && (
-        <section className="mb-10 w-full">
+      {project.demo && project.demo.length > 0 && (
+        <section className="mb-12">
           <SectionHeader>Screenshots & Demos</SectionHeader>
-          <div className="flex flex-col lg:flex-row gap-4 justify-between">
+          <div className="flex flex-col gap-6">
             {project.demo.map((demo) => {
-              if (demo.type == "gif") {
-                const source = demo.src;
+              if (demo.type === "gif") {
                 return (
                   <img
-                    key={source}
-                    src={`${source}`}
-                    // alt="Screenshot"
-                    className="rounded-lg shadow-md max-h-[500px] mx-auto"
+                    key={demo.src}
+                    src={demo.src}
+                    alt={`${project.title} demo`}
+                    className="mx-auto max-h-[500px] rounded-xl border border-border/50 shadow-sm"
                   />
                 );
-              } else if (demo.type == "video") {
-                const source = demo.src;
+              } else if (demo.type === "video") {
                 return (
-                  <div key={source} className="flex flex-col gap-4">
+                  <div key={demo.src} className="flex flex-col gap-2">
                     {demo.commentary && (
-                      <p className="text-sm text-slate-500">
+                      <p className="text-sm font-medium text-muted-foreground">
                         {demo.commentary}
                       </p>
                     )}
-                    <video autoPlay loop muted playsInline className="">
-                      <source src={`${source}`} type="video/mp4" />
+                    <video
+                      autoPlay
+                      loop
+                      muted
+                      playsInline
+                      className="rounded-xl border border-border/50 shadow-sm"
+                    >
+                      <source src={demo.src} type="video/mp4" />
                     </video>
                   </div>
                 );
               }
+              return null;
             })}
           </div>
         </section>
@@ -140,9 +164,9 @@ const ProjectPage = ({ project }: { project: Project }) => {
 
       {/* Outcomes and Impact */}
       {project.outcomes && (
-        <section className="mb-10">
+        <section className="mb-12">
           <SectionHeader>Outcomes & Impact</SectionHeader>
-          <p className="text-secondary-foreground md:ml-8">
+          <p className="text-sm leading-relaxed text-muted-foreground md:text-base">
             {project.outcomes}
           </p>
         </section>
@@ -150,9 +174,9 @@ const ProjectPage = ({ project }: { project: Project }) => {
 
       {/* What You Learned */}
       {project.whatILearned && (
-        <section className="mb-10">
+        <section className="mb-12">
           <SectionHeader>What I Learned</SectionHeader>
-          <p className="text-secondary-foreground md:ml-8">
+          <p className="text-sm leading-relaxed text-muted-foreground md:text-base">
             {project.whatILearned}
           </p>
         </section>
