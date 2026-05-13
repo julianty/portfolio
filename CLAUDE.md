@@ -268,3 +268,46 @@ Add to `package.json`:
 | 5 | sitemap.xml (build script) | Low | Google Search Console submission |
 | 6 | JSON-LD structured data | Low | AI/ATS comprehension |
 | 7 | `<noscript>` fallback | Low | Belt-and-suspenders |
+
+---
+
+## Content Updates
+
+Pending changes to `src/project-data.tsx` and related copy. These are data-only edits — no component or styling work needed.
+
+### 1. Corpore Sano — rewrite description
+
+**Current:** "A lightweight workout tracking web application" with stack listed as `["React", "Firebase"]`.
+
+**Problem:** Understates the project. It's a cross-platform monorepo with a mobile app, not a simple web app. "Lightweight" signals limited scope to a recruiter or ATS.
+
+**Changes needed:**
+- Remove "lightweight" from `description` and `longDescription`
+- Update `description` to something like: `"Cross-platform workout tracker — React web app and React Native / Expo mobile app in a shared monorepo"`
+- Update `skills` and `technologies` arrays to reflect the actual stack: `["React", "React Native", "Expo", "Redux Toolkit", "TypeScript", "Firebase", "Jest"]`
+- Revise `longDescription` to mention the monorepo structure, mobile app, Redux Toolkit state management, and Jest test coverage
+
+### 2. Add birthday-ping as a new project
+
+Add a new entry to the `projectData` array in `src/project-data.tsx`:
+
+| Field | Value |
+|---|---|
+| `title` | `"birthday-ping"` |
+| `description` | `"Full-stack birthday reminder app with automated email digests, Google OAuth, and calendar import/export"` |
+| `technologies` | `["Next.js", "MongoDB", "Resend", "GitHub Actions"]` |
+| `link.live` | `"https://birthday-ping.vercel.app"` |
+| `link.github` | `"https://github.com/julianty/birthday-ping"` |
+| `pageLink` | `"birthday-ping"` |
+
+Also add a corresponding `<Route>` in `src/app.tsx` and register the new URL in `scripts/prerender.js` so SSG covers it.
+
+**Note:** No highlight image exists yet — either create/source one or temporarily reuse `projectShowcaseTemplate` until a real screenshot is ready.
+
+### 3. Decide whether juliantyart belongs
+
+**The case for keeping it:** Demonstrates Next.js, PostgreSQL (Prisma), and Stripe integration — meaningful full-stack depth that most bootcamp portfolios lack. Shows ability to ship a real product with payments.
+
+**The case for removing it:** Personal art site may read as a hobby project rather than a professional one. Stack overlaps heavily with Job Pulse and What's for Dinner, so it adds less signal than it appears to.
+
+**Recommendation:** Keep it, but reframe the `description` away from "my personal art website" toward the technical challenge — e.g. `"E-commerce platform for original art with Stripe payments, custom commissions flow, and PostgreSQL inventory"`. The tech is strong; the current framing undersells it.
