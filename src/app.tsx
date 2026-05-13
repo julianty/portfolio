@@ -19,39 +19,45 @@ function ScrollToTop() {
   return null;
 }
 
-function App() {
+export function AppContent() {
   return (
     <ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
-      <Router>
-        <ScrollToTop />
-        {/* <div id="main-stack" className="flex flex-col md:w-4/5 md:mx-auto"> */}
-        <div
-          id="main-stack"
-          className="flex flex-col mx-auto min-h-screen w-full max-w-6xl px-4"
-        >
-          <Navbar />
-          <Routes>
-            <Route path="/" element={<HomePage />} />
-            <Route
-              path="/projects/CorporeSano"
-              element={<ProjectPage project={projectData[0]} />}
-            />
-            <Route
-              path="/projects/juliantyart"
-              element={<ProjectPage project={projectData[1]} />}
-            />
-            <Route
-              path="/projects/JobPulse"
-              element={<ProjectPage project={projectData[2]} />}
-            />
-            <Route
-              path="/projects/WhatsForDinner"
-              element={<ProjectPage project={projectData[3]} />}
-            />
-          </Routes>
-        </div>
-      </Router>
+      <ScrollToTop />
+      {/* <div id="main-stack" className="flex flex-col md:w-4/5 md:mx-auto"> */}
+      <div
+        id="main-stack"
+        className="flex flex-col mx-auto min-h-screen w-full max-w-6xl px-4"
+      >
+        <Navbar />
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route
+            path="/projects/CorporeSano"
+            element={<ProjectPage project={projectData[0]} />}
+          />
+          <Route
+            path="/projects/juliantyart"
+            element={<ProjectPage project={projectData[1]} />}
+          />
+          <Route
+            path="/projects/JobPulse"
+            element={<ProjectPage project={projectData[2]} />}
+          />
+          <Route
+            path="/projects/WhatsForDinner"
+            element={<ProjectPage project={projectData[3]} />}
+          />
+        </Routes>
+      </div>
     </ThemeProvider>
+  );
+}
+
+function App() {
+  return (
+    <Router>
+      <AppContent />
+    </Router>
   );
 }
 
