@@ -1,3 +1,4 @@
+import { Helmet } from "react-helmet-async";
 import { Project } from "@/project-data";
 import { CodeBlock, dracula } from "react-code-blocks";
 import { IconBrandGithub, IconExternalLink } from "@tabler/icons-react";
@@ -6,6 +7,21 @@ import SectionHeader from "./ui/section-header";
 const ProjectPage = ({ project }: { project: Project }) => {
   return (
     <div className="mx-auto min-h-screen max-w-4xl px-4 py-8 md:px-6 md:py-12">
+      <Helmet>
+        <title>{project.title} — Alexander Julian Ty</title>
+        <meta name="description" content={project.description} />
+        <link
+          rel="canonical"
+          href={`https://alexanderjulianty.com/projects/${project.pageLink}`}
+        />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content={`https://alexanderjulianty.com/projects/${project.pageLink}`} />
+        <meta property="og:title" content={`${project.title} — Alexander Julian Ty`} />
+        <meta property="og:description" content={project.description} />
+        <meta name="twitter:card" content="summary" />
+        <meta name="twitter:title" content={`${project.title} — Alexander Julian Ty`} />
+        <meta name="twitter:description" content={project.description} />
+      </Helmet>
       {/* Project Overview */}
       <section className="mb-12">
         <h1 className="font-display text-3xl font-bold tracking-tight text-foreground md:text-4xl">

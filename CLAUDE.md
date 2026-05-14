@@ -56,51 +56,38 @@ Only `src/lib/workers.spec.ts` exists so far. Tests run with Jest + ts-jest in a
 | Concern | Finding |
 |---|---|
 | Build tool | Vite 5 + `@vitejs/plugin-react-swc`. No SSG plugin configured. |
-| HTML at build time | Single `index.html` shell with `<div id="root"></div>`. No content without JS. |
+| HTML at build time | ✅ Pre-rendered — `entry-server.tsx` + `scripts/prerender.js` emit a real `index.html` per route. |
 | Routing | React Router v7 `BrowserRouter` — 5 hardcoded client-side routes. GitHub Pages serves `index.html` for every path (404 → index.html redirect). |
-| Meta tags | `<title>Portfolio \| Alexander Julian Ty</title>` only. No `<meta name="description">`, no canonical. |
-| Open Graph / Twitter | None. |
+| Meta tags | ✅ Per-page title, description, and canonical via `react-helmet-async`. |
+| Open Graph / Twitter | ✅ Text-only OG + Twitter card tags on all pages (no `og:image` yet — needs a static image in `public/`). |
 | Structured data | None. |
-| sitemap.xml | Not present. |
-| robots.txt | Not present. |
+| sitemap.xml | ✅ Generated at build time by `scripts/prerender.js`. |
+| robots.txt | ✅ `public/robots.txt` — allows all, references sitemap. |
 | `<noscript>` | Not present in `index.html`. |
 | Rich data source | `src/project-data.tsx` — all project content is already typed and centralized, good SSG input. |
 
 ---
 
-### 1. Static Pre-rendering (SSG)
+### 1. Static Pre-rendering (SSG) ✅
 
-**Current state:** Vite emits one `index.html` with an empty root div. Crawlers and JS-disabled clients see a blank page.
+**Implementation:** Custom `src/entry-server.tsx` + `scripts/prerender.js`. The build script renders each route to a static HTML file via `renderToString` with `StaticRouter`, then injects the result into the Vite-built `index.html` template. `main.tsx` uses `hydrateRoot` to hydrate on the client.
 
-**Recommended approach:** Add [`vite-plugin-ssg`](https://github.com/antfu/vite-ssg) (Anthony Fu's maintained plugin, ~2 kB overhead, no framework migration needed).
+**How it works:**
+- `src/entry-server.tsx` — exports a `render(url)` function using `renderToString` + `StaticRouter`
+- `scripts/prerender.js` — iterates over the routes array, calls `render()`, writes `dist/<route>/index.html`
+- Adding a new route requires updating the `routes` array in `prerender.js` and adding the `<Route>` in `app.tsx`
 
-The plugin walks a route list you provide, renders each route to a static HTML file at build time, then hydrates in the browser. The route list maps directly to the 5 routes already in `app.tsx`:
-
-```ts
-// vite.config.ts addition
-import { ViteSSG } from 'vite-ssg'
-// routes fed from the same projectData array
-const routes = ['/', '/projects/CorporeSano', '/projects/juliantyart', ...]
-```
-
-The main entry point switches from `ReactDOM.createRoot` to `ViteSSG`'s exported `createApp`. Output: `dist/index.html`, `dist/projects/CorporeSano/index.html`, etc. — each with real crawlable text.
-
-**Alternatives considered:**
-- `react-snap` — runs a headless Chromium after build; works without touching app code but is slower, heavier (~200 MB Chromium), and less maintained.
-- Migrating to Vite + `vite-plugin-ssr` / Vinxi / Astro — full framework switch, high overhead for a 5-page static site.
-
-**Complexity:** Medium. Requires refactoring `main.tsx` entry point and confirming `ThemeProvider` / `BrowserRouter` hydration behaves correctly after SSR. The `localStorage` read in `ThemeProvider` will need a guard for the server context (no `window`).
+**Output:** `dist/index.html`, `dist/projects/CorporeSano/index.html`, etc. — each with real crawlable HTML.
 
 **Tradeoffs:**
-- `BrowserRouter` must be swapped for `StaticRouter` during SSG render; `vite-plugin-ssg` handles this automatically.
-- The Cloudflare Worker chatbox calls `window.*` at runtime — those will need `typeof window !== 'undefined'` guards to avoid SSG crashes.
-- GitHub Pages SPA redirect trick (404 → index.html) still needed for direct navigation, but pre-rendered routes will also have their own real `index.html` files, so the redirect becomes a fallback rather than the primary path.
+- The Cloudflare Worker chatbox calls `window.*` at runtime — safe because those calls only fire on user interaction, not during SSR.
+- GitHub Pages SPA redirect trick (404 → index.html) still needed for direct navigation to pre-rendered routes.
 
 ---
 
-### 2. Per-page Meta Tags
+### 2. Per-page Meta Tags ✅
 
-**Current state:** One static `<title>` in `index.html`. No `<meta name="description">`. No canonical URL. All 5 pages share the same head.
+**Implementation:** `react-helmet-async`. `HelmetProvider` wraps the app in both `app.tsx` (client) and `entry-server.tsx` (SSR). `prerender.js` extracts the helmet state after each `render()` call and injects title, meta, and link tags into the pre-rendered HTML, replacing the original static `<title>` to avoid duplicates.
 
 **Recommended approach:** [`react-helmet-async`](https://github.com/staylor/react-helmet-async). It works with SSG (the sync `react-helmet` does not flush correctly during SSR) and is the standard for Vite SSG setups.
 
@@ -130,9 +117,9 @@ Wrap the app in `<HelmetProvider>`. Then in each page component:
 
 ---
 
-### 3. Open Graph + Twitter Cards
+### 3. Open Graph + Twitter Cards ✅
 
-**Current state:** None. Sharing `alexanderjulianty.com` on LinkedIn, Slack, or iMessage produces no preview card.
+**Implementation:** Text-only OG and Twitter card tags added to the `<Helmet>` blocks in `home-page.tsx` and `project-page.tsx`. No `og:image` yet — add a static image to `public/og-card.png` (and per-project images to `public/`) when ready, then reference them with absolute URLs.
 
 **Recommended approach:** Add OG tags inside the same `<Helmet>` blocks from step 2. Per-page OG images are optional (and expensive to generate); using the project highlight images already imported in `project-data.tsx` as `og:image` is the zero-effort path.
 
@@ -198,37 +185,13 @@ For project pages, a `SoftwareApplication` or `CreativeWork` schema would additi
 
 ---
 
-### 5. sitemap.xml + robots.txt
+### 5. sitemap.xml + robots.txt ✅
 
-**Current state:** Neither file exists. Crawlers have no hint about which URLs exist or whether to index the site.
+**Implementation:**
+- `public/robots.txt` — static file, allows all crawlers, references the sitemap.
+- `sitemap.xml` — generated at the end of `scripts/prerender.js` from the same `routes` array used for pre-rendering. Written to `dist/sitemap.xml` on every build. Adding a new route to `prerender.js` automatically includes it in the sitemap.
 
-**Recommended approach:**
-
-**`robots.txt`** — Static file, place in `public/robots.txt`:
-
-```
-User-agent: *
-Allow: /
-Sitemap: https://alexanderjulianty.com/sitemap.xml
-```
-
-**`sitemap.xml`** — Generate at build time from the `projectData` array using a small Vite plugin or a `postbuild` script. The site has 5 known URLs; a build-time script is simpler than a plugin:
-
-```ts
-// scripts/generate-sitemap.ts
-import { projectData } from '../src/project-data'
-const urls = ['/', ...projectData.map(p => `/projects/${p.pageLink}`)]
-// write dist/sitemap.xml
-```
-
-Add to `package.json`:
-```json
-"postbuild": "tsx scripts/generate-sitemap.ts"
-```
-
-**Complexity:** Low.
-
-**Tradeoffs:** The sitemap must be regenerated on every deploy (already ensured by `postbuild`). If projects are added to `projectData`, the sitemap updates automatically — no manual maintenance. Submit the sitemap URL to Google Search Console after deploying.
+**Next step:** Submit `https://alexanderjulianty.com/sitemap.xml` to Google Search Console after deploying.
 
 ---
 
@@ -261,11 +224,11 @@ Add to `package.json`:
 
 | Priority | Item | Complexity | Unblocks |
 |---|---|---|---|
-| 1 | SSG (`vite-plugin-ssg`) | Medium | Everything — crawlers need real HTML first |
-| 2 | Meta tags (`react-helmet-async`) | Low | OG tags, canonical |
-| 3 | Open Graph + Twitter cards | Low | Link previews |
-| 4 | robots.txt | Low | Crawler guidance |
-| 5 | sitemap.xml (build script) | Low | Google Search Console submission |
+| 1 | ✅ SSG (custom `entry-server.tsx` + `prerender.js`) | Medium | Everything — crawlers need real HTML first |
+| 2 | ✅ Meta tags (`react-helmet-async`) | Low | OG tags, canonical |
+| 3 | ✅ Open Graph + Twitter cards (text-only) | Low | Link previews |
+| 4 | ✅ robots.txt | Low | Crawler guidance |
+| 5 | ✅ sitemap.xml (generated in `prerender.js`) | Low | Google Search Console submission |
 | 6 | JSON-LD structured data | Low | AI/ATS comprehension |
 | 7 | `<noscript>` fallback | Low | Belt-and-suspenders |
 

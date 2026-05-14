@@ -24,11 +24,17 @@ const { render } = await import(
 );
 
 for (const route of routes) {
-  const rendered = render(route);
-  const html = template.replace(
-    '<div id="root"></div>',
-    `<div id="root">${rendered}</div>`
-  );
+  const { html: rendered, helmetContext } = render(route);
+  const { helmet } = helmetContext;
+
+  const extraTags = [helmet.meta.toString(), helmet.link.toString()]
+    .filter(Boolean)
+    .join("\n    ");
+
+  const html = template
+    .replace(/<title>[^<]*<\/title>/, helmet.title.toString())
+    .replace("</head>", `    ${extraTags}\n  </head>`)
+    .replace('<div id="root"></div>', `<div id="root">${rendered}</div>`);
 
   const outDir =
     route === "/"
@@ -41,3 +47,20 @@ for (const route of routes) {
 }
 
 fs.rmSync(distServer, { recursive: true, force: true });
+
+const BASE_URL = "https://alexanderjulianty.com";
+const today = new Date().toISOString().split("T")[0];
+const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+${routes
+  .map(
+    (route) => `  <url>
+    <loc>${BASE_URL}${route}</loc>
+    <lastmod>${today}</lastmod>
+  </url>`
+  )
+  .join("\n")}
+</urlset>`;
+
+fs.writeFileSync(path.resolve(distClient, "sitemap.xml"), sitemap);
+console.log("generated: sitemap.xml");

@@ -4,6 +4,7 @@ import {
   Routes,
   useLocation,
 } from "react-router";
+import { HelmetProvider } from "react-helmet-async";
 import Navbar from "@/components/navbar";
 import ProjectPage from "@/components/project-page";
 import { projectData } from "@/project-data";
@@ -55,9 +56,11 @@ export function AppContent() {
 
 function App() {
   return (
-    <Router>
-      <AppContent />
-    </Router>
+    <HelmetProvider>
+      <Router>
+        <AppContent />
+      </Router>
+    </HelmetProvider>
   );
 }
 
