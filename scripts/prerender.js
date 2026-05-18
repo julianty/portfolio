@@ -27,7 +27,7 @@ for (const route of routes) {
   const { html: rendered, helmetContext } = render(route);
   const { helmet } = helmetContext;
 
-  const extraTags = [helmet.meta.toString(), helmet.link.toString()]
+  const extraTags = [helmet.meta.toString(), helmet.link.toString(), helmet.script.toString()]
     .filter(Boolean)
     .join("\n    ");
 
