@@ -6,29 +6,27 @@ import WhatsForDinnerAPIDemo from "@/assets/whatsfordinner_api_request_demo.mp4"
 import WhatsForDinnerSoloDemo from "@/assets/whatsfordinner_solo_demo.mp4";
 import WhatsForDinnerMultiDemo from "@/assets/whatsfordinner_multi_demo.mp4";
 import juliantyartHighlight from "@/assets/juliantyart Highlight.png";
+import projectShowcaseTemplate from "@/assets/projectShowcaseTemplate.png";
 export const projectData = [
   {
     title: "Corpore Sano",
-    description: "A lightweight workout tracking web application",
+    description: "Cross-platform workout tracker — React web app and React Native / Expo mobile app in a shared monorepo",
     image: CorporeSanoImg,
-    skills: ["React", "Firebase"],
+    skills: ["React", "React Native", "Expo", "Redux Toolkit", "TypeScript", "Firebase", "Jest"],
     pageLink: "CorporeSano",
     link: {
       github: "https://github.com/julianty/corpore-sano",
       live: "https://corpore-sano-2e626.web.app/",
     },
     longDescription: `
-      Corpore Sano is a lightweight workout tracking web application that 
-      allows users to create and track their workouts. Users can create 
-      custom exercises and routines, log their workouts, and view their 
-      workout history. The application is built with React and Firebase. 
+      Corpore Sano is a cross-platform workout tracker built as a shared monorepo containing a React web app and a React Native / Expo mobile app. Users can create custom exercises and routines, log workouts, and view their full workout history across both platforms. State management is handled with Redux Toolkit, Firebase provides the backend and auth, and the codebase is covered by Jest tests.
     `,
     keyFeatures: [
       "Create custom exercises and routines",
       "Log workouts and track progress",
       "View workout history",
     ],
-    technologies: ["React", "Firebase"],
+    technologies: ["React", "React Native", "Expo", "Redux Toolkit", "TypeScript", "Firebase", "Jest"],
     code: [
       `const db = getFirestore(app);
 export const FirestoreActions = {
@@ -70,7 +68,7 @@ export const FirestoreActions = {
   {
     title: "juliantyart",
     description:
-      "My personal art website with a store for artwork and accepting commissions",
+      "E-commerce platform for original art with Stripe payments, custom commissions flow, and PostgreSQL inventory",
     image: juliantyartHighlight, // Add image import if available
     skills: ["Next.js", "PostgreSQL", "Stripe"],
     pageLink: "juliantyart",
@@ -286,8 +284,30 @@ export const FirestoreActions = {
     I was able to practice deploying and structuring a Next.js project, and learned how to manage a RESTful API with caching and setting quotas on Google's Cloud Console.
     Overall, a resounding success.`,
     whatILearned: `I learned how to manage an app that utilizes Google's Places and Geocoding APIs with caching, structured calls.
-    Gained experience with Vercel's deployment system with CI built-in, and working within their app router framework in Next.js. 
+    Gained experience with Vercel's deployment system with CI built-in, and working within their app router framework in Next.js.
     Also, gained more experience planning out PostgreSQL table schema with Prisma.`,
+  },
+  {
+    title: "birthday-ping",
+    description: "Full-stack birthday reminder app with automated email digests, Google OAuth, and calendar import/export",
+    image: projectShowcaseTemplate,
+    skills: ["Next.js", "MongoDB", "Resend", "GitHub Actions"],
+    pageLink: "birthday-ping",
+    link: {
+      github: "https://github.com/julianty/birthday-ping",
+      live: "https://birthday-ping.vercel.app",
+    },
+    longDescription: `birthday-ping is a full-stack birthday reminder app that sends automated email digests so you never miss an important date. It supports Google OAuth for sign-in, and lets users import and export birthdays via calendar files.`,
+    keyFeatures: [
+      "Automated email digests via Resend",
+      "Google OAuth authentication",
+      "Calendar import/export",
+    ],
+    technologies: ["Next.js", "MongoDB", "Resend", "GitHub Actions"],
+    code: [],
+    codeCommentaries: [],
+    challenges: [],
+    demo: [],
   },
 ];
 

@@ -48,6 +48,10 @@ export function AppContent() {
             path="/projects/WhatsForDinner"
             element={<ProjectPage project={projectData[3]} />}
           />
+          <Route
+            path="/projects/birthday-ping"
+            element={<ProjectPage project={projectData[4]} />}
+          />
         </Routes>
       </div>
     </ThemeProvider>
