@@ -6,13 +6,23 @@ import WhatsForDinnerAPIDemo from "@/assets/whatsfordinner_api_request_demo.mp4"
 import WhatsForDinnerSoloDemo from "@/assets/whatsfordinner_solo_demo.mp4";
 import WhatsForDinnerMultiDemo from "@/assets/whatsfordinner_multi_demo.mp4";
 import juliantyartHighlight from "@/assets/juliantyart Highlight.png";
-import projectShowcaseTemplate from "@/assets/projectShowcaseTemplate.png";
+// import projectShowcaseTemplate from "@/assets/projectShowcaseTemplate.png";
+import birthdayPingHighlight from "@/assets/Birthday Ping Highlight.png";
 export const projectData = [
   {
     title: "Corpore Sano",
-    description: "Cross-platform workout tracker — React web app and React Native / Expo mobile app in a shared monorepo",
+    description:
+      "Cross-platform workout tracker — React web app and React Native / Expo mobile app in a shared monorepo",
     image: CorporeSanoImg,
-    skills: ["React", "React Native", "Expo", "Redux Toolkit", "TypeScript", "Firebase", "Jest"],
+    skills: [
+      "React",
+      "React Native",
+      "Expo",
+      "Redux Toolkit",
+      "TypeScript",
+      "Firebase",
+      "Jest",
+    ],
     pageLink: "CorporeSano",
     link: {
       github: "https://github.com/julianty/corpore-sano",
@@ -26,7 +36,15 @@ export const projectData = [
       "Log workouts and track progress",
       "View workout history",
     ],
-    technologies: ["React", "React Native", "Expo", "Redux Toolkit", "TypeScript", "Firebase", "Jest"],
+    technologies: [
+      "React",
+      "React Native",
+      "Expo",
+      "Redux Toolkit",
+      "TypeScript",
+      "Firebase",
+      "Jest",
+    ],
     code: [
       `const db = getFirestore(app);
 export const FirestoreActions = {
@@ -289,8 +307,9 @@ export const FirestoreActions = {
   },
   {
     title: "birthday-ping",
-    description: "Full-stack birthday reminder app with automated email digests, Google OAuth, and calendar import/export",
-    image: projectShowcaseTemplate,
+    description:
+      "Full-stack birthday reminder app with automated email digests, Google OAuth, and calendar import/export",
+    image: birthdayPingHighlight,
     skills: ["Next.js", "MongoDB", "Resend", "GitHub Actions"],
     pageLink: "birthday-ping",
     link: {
@@ -305,7 +324,16 @@ export const FirestoreActions = {
       "Daily email digests triggered by GitHub Actions cron",
       "ICS calendar import with confidence scoring",
     ],
-    technologies: ["Next.js", "MongoDB", "Resend", "GitHub Actions", "TypeScript", "NextAuth", "React Email", "Zod"],
+    technologies: [
+      "Next.js",
+      "MongoDB",
+      "Resend",
+      "GitHub Actions",
+      "TypeScript",
+      "NextAuth",
+      "React Email",
+      "Zod",
+    ],
     code: [
       `function scoreEvent(event: VEvent, summary: string, description: string) {
   let score = 0;
@@ -349,12 +377,16 @@ function toConfidence(score: number): ImportedBirthdayCandidate["confidence"] {
     ],
     challenges: [
       {
-        challenge: "Calendar files exported from different apps (Apple Calendar, Google Calendar, Outlook) use inconsistent formats for birthday events — some omit recurrence rules, others use non-standard category labels.",
-        solution: "Built a multi-signal confidence scoring system that weighs recurrence frequency, category tags, summary keywords, and UID prefixes independently. Ambiguous imports surface a warning rather than silently failing, and users see a confidence badge so they can review low-confidence entries before saving.",
+        challenge:
+          "Calendar files exported from different apps (Apple Calendar, Google Calendar, Outlook) use inconsistent formats for birthday events — some omit recurrence rules, others use non-standard category labels.",
+        solution:
+          "Built a multi-signal confidence scoring system that weighs recurrence frequency, category tags, summary keywords, and UID prefixes independently. Ambiguous imports surface a warning rather than silently failing, and users see a confidence badge so they can review low-confidence entries before saving.",
       },
       {
-        challenge: "Birthday emails need to go out daily on a schedule, but serverless platforms don't offer a free built-in cron trigger, and adding an external service increases operational complexity.",
-        solution: "Used a GitHub Actions scheduled workflow (cron: '0 9 * * *') to POST to a secured internal API route. The endpoint validates a shared secret header before processing, keeping the infrastructure free and entirely within the existing GitHub repo.",
+        challenge:
+          "Birthday emails need to go out daily on a schedule, but serverless platforms don't offer a free built-in cron trigger, and adding an external service increases operational complexity.",
+        solution:
+          "Used a GitHub Actions scheduled workflow (cron: '0 9 * * *') to POST to a secured internal API route. The endpoint validates a shared secret header before processing, keeping the infrastructure free and entirely within the existing GitHub repo.",
       },
     ],
     demo: [],
