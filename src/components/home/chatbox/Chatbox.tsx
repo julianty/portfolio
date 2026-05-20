@@ -30,7 +30,9 @@ function Chatbox({ active }: ChatboxProps) {
     };
     setMessages((prev) => [...prev, userMsg]);
     setInput("");
-    const res = await getChatResponse(input);
+    // Skip the initial greeting (index 0) — Claude requires history to start with a user message
+    const history = messages.slice(1);
+    const res = await getChatResponse(input, history);
     const assistantMsg: Message = {
       role: "assistant",
       content: res.reply || JSON.stringify(res),

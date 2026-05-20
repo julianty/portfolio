@@ -1,19 +1,16 @@
-import messageContext from "@/components/home/chatbox/messageContext";
+import { systemPrompt } from "@/components/home/chatbox/messageContext";
 import type { Message } from "@/components/home/chatbox/types";
 
 export default async function getChatResponse(
   message: string,
-  context: Message[] = messageContext
+  history: Message[] = []
 ) {
-  // Check inputs
-
-  // Build Body
   const body = JSON.stringify({
     prompt: message,
-    context,
+    history,
+    system: systemPrompt,
   });
 
-  // Fetch call to worker
   const response = await fetch(
     "https://curly-rain-484c.alexanderjulianty.workers.dev/",
     {
@@ -25,8 +22,6 @@ export default async function getChatResponse(
     }
   );
 
-  // Check response
   const responseBody = await response.json();
-  // Return response
   return responseBody;
 }
