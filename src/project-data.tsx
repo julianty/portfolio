@@ -297,17 +297,69 @@ export const FirestoreActions = {
       github: "https://github.com/julianty/birthday-ping",
       live: "https://birthday-ping.vercel.app",
     },
-    longDescription: `birthday-ping is a full-stack birthday reminder app that sends automated email digests so you never miss an important date. It supports Google OAuth for sign-in, and lets users import and export birthdays via calendar files.`,
+    longDescription: `birthday-ping is a full-stack birthday reminder app built with Next.js App Router, MongoDB, and Resend. It sends automated daily email digests triggered by a GitHub Actions cron job, supports Google OAuth via NextAuth, and lets users import and export birthdays as standard .ics calendar files compatible with Apple Calendar and Google Calendar.`,
     keyFeatures: [
       "Automated email digests via Resend",
       "Google OAuth authentication",
       "Calendar import/export",
+      "Daily email digests triggered by GitHub Actions cron",
+      "ICS calendar import with confidence scoring",
     ],
-    technologies: ["Next.js", "MongoDB", "Resend", "GitHub Actions"],
-    code: [],
-    codeCommentaries: [],
-    challenges: [],
+    technologies: ["Next.js", "MongoDB", "Resend", "GitHub Actions", "TypeScript", "NextAuth", "React Email", "Zod"],
+    code: [
+      `function scoreEvent(event: VEvent, summary: string, description: string) {
+  let score = 0;
+  const warnings: string[] = [];
+  const categories = (event.categories ?? []).map((c) => c.toLowerCase());
+
+  if (isYearlyRecurring(event)) score += 2;
+  if (categories.some((c) => c.includes("birthday"))) score += 3;
+  if (includesBirthdayKeyword(summary)) score += 2;
+  if (includesBirthdayKeyword(description)) score += 1;
+  if (event.uid?.startsWith("birthday-")) score += 2;
+  ...
+  return { score, warnings };
+}
+
+function toConfidence(score: number): ImportedBirthdayCandidate["confidence"] {
+  if (score >= 5) return "high";
+  if (score >= 3) return "medium";
+  return "low";
+}`,
+      `const pipeline = [
+  { $lookup: { from: "birthdays", localField: "birthdayId",
+      foreignField: "_id", as: "birthday" } },
+  { $unwind: "$birthday" },
+  { $match: { "birthday.month": month } },
+  { $group: {
+      _id: "$userId",
+      subscriptions: { $push: { subscriptionId: "$_id",
+          birthday: "$birthday", lastSentAt: "$lastSentAt" } },
+  }},
+  { $lookup: { from: "users", localField: "_id",
+      foreignField: "_id", as: "user" } },
+  { $unwind: "$user" },
+  { $project: { userId: "$_id", userEmail: "$user.email",
+      subscriptions: 1 } },
+];`,
+    ],
+    codeCommentaries: [
+      `Calendar apps export events in wildly inconsistent formats. Rather than requiring a specific structure, the importer assigns a weighted score across multiple signals — recurrence rules, category tags, summary keywords, and a known UID prefix — and maps the total to a confidence level. Users see a clear high/medium/low indicator instead of a binary pass/fail.`,
+      `The daily email job needs to send one digest per user, not one email per birthday. A single aggregation pipeline groups all subscriptions by userId, joins both the birthday and user documents in one pass, and returns the full payload ready for Resend. This avoids N+1 queries and keeps the email-sending loop simple.`,
+    ],
+    challenges: [
+      {
+        challenge: "Calendar files exported from different apps (Apple Calendar, Google Calendar, Outlook) use inconsistent formats for birthday events — some omit recurrence rules, others use non-standard category labels.",
+        solution: "Built a multi-signal confidence scoring system that weighs recurrence frequency, category tags, summary keywords, and UID prefixes independently. Ambiguous imports surface a warning rather than silently failing, and users see a confidence badge so they can review low-confidence entries before saving.",
+      },
+      {
+        challenge: "Birthday emails need to go out daily on a schedule, but serverless platforms don't offer a free built-in cron trigger, and adding an external service increases operational complexity.",
+        solution: "Used a GitHub Actions scheduled workflow (cron: '0 9 * * *') to POST to a secured internal API route. The endpoint validates a shared secret header before processing, keeping the infrastructure free and entirely within the existing GitHub repo.",
+      },
+    ],
     demo: [],
+    outcomes: `birthday-ping is actively used — it's replaced the manual birthday-checking habit. The calendar round-trip (import from Apple Calendar, export back) works without data loss, and the confidence scoring has caught several ambiguously formatted events that a naive parser would have silently dropped.`,
+    whatILearned: `This project deepened my understanding of the iCalendar spec (RFC 5545) and how loosely calendar apps actually follow it. I learned to write MongoDB aggregation pipelines for multi-collection joins, use React Email to render transactional emails server-side, and wire up GitHub Actions as a zero-cost cron trigger for a deployed Next.js app.`,
   },
 ];
 
