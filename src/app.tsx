@@ -52,6 +52,10 @@ export function AppContent() {
             path="/projects/birthday-ping"
             element={<ProjectPage project={projectData[4]} />}
           />
+          <Route
+            path="/projects/PomodoroTimer"
+            element={<ProjectPage project={projectData[5]} />}
+          />
         </Routes>
       </div>
     </ThemeProvider>

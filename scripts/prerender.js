@@ -13,6 +13,7 @@ const routes = [
   "/projects/JobPulse",
   "/projects/WhatsForDinner",
   "/projects/birthday-ping",
+  "/projects/PomodoroTimer",
 ];
 
 const template = fs.readFileSync(

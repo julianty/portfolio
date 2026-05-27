@@ -7,6 +7,7 @@ import WhatsForDinnerSoloDemo from "@/assets/whatsfordinner_solo_demo.mp4";
 import WhatsForDinnerMultiDemo from "@/assets/whatsfordinner_multi_demo.mp4";
 import juliantyartHighlight from "@/assets/juliantyart Highlight.png";
 // import projectShowcaseTemplate from "@/assets/projectShowcaseTemplate.png";
+// import pomodoroHighlight from "@/assets/Pomodoro Highlight.png";
 import birthdayPingHighlight from "@/assets/Birthday Ping Highlight.png";
 export const projectData = [
   {
@@ -392,6 +393,87 @@ function toConfidence(score: number): ImportedBirthdayCandidate["confidence"] {
     demo: [],
     outcomes: `birthday-ping is actively used — it's replaced the manual birthday-checking habit. The calendar round-trip (import from Apple Calendar, export back) works without data loss, and the confidence scoring has caught several ambiguously formatted events that a naive parser would have silently dropped.`,
     whatILearned: `This project deepened my understanding of the iCalendar spec (RFC 5545) and how loosely calendar apps actually follow it. I learned to write MongoDB aggregation pipelines for multi-collection joins, use React Email to render transactional emails server-side, and wire up GitHub Actions as a zero-cost cron trigger for a deployed Next.js app.`,
+  },
+  {
+    title: "Pomodoro Timer",
+    description:
+      "Cross-platform Flutter web app for focused work sessions — timer, category tracking, and a dashboard with charts and activity heatmap",
+    // image: pomodoroHighlight,
+    image: "" as unknown as string,
+    skills: ["Flutter", "Firebase", "Dart"],
+    pageLink: "PomodoroTimer",
+    link: {
+      github: "https://github.com/julianty/flutter-pomodoro",
+      live: "https://my-pomodoro-b5569.web.app/",
+    },
+    longDescription: `Pomodoro Timer is a cross-platform productivity app built with Flutter and deployed to the web via Firebase Hosting. Users configure a session by picking a duration and assigning a category (Work, Break, Learning, Health, Fitness), then run a full-screen countdown with pause, resume, and stop controls. Completed sessions are persisted to Firestore under the signed-in user's account. The dashboard aggregates session history into stat cards, a donut chart, a per-category composition bar, and a two-week activity heatmap. The app works offline — the timer runs locally, and categories show hardcoded defaults until the user signs in with Google OAuth.`,
+    keyFeatures: [
+      "Full-screen countdown with pause / resume / stop",
+      "Custom categories with color picker",
+      "Dashboard: stat cards, donut chart, composition bar",
+      "Two-week activity heatmap with time-of-day bucketing",
+      "Google OAuth via Firebase Auth — guest mode works without sign-in",
+    ],
+    technologies: [
+      "Flutter",
+      "Dart",
+      "Firebase Auth",
+      "Cloud Firestore",
+      "Firebase Hosting",
+      "fl_chart",
+      "audioplayers",
+    ],
+    code: [
+      `void _startTicking() {
+  _timer = Timer.periodic(Duration(seconds: 1), (timer) {
+    final diff = _deadline!.difference(DateTime.now()).inSeconds;
+    // Clamp guards against sub-millisecond tick imprecision
+    notifier.value = diff.clamp(0, _initialDuration);
+    if (notifier.value <= 0) {
+      timer.cancel();
+      _audioPlayer.play(AssetSource('sounds/alarm.mp3'));
+      timerState.value = TimerState.completed;
+      save();
+    }
+  });
+}`,
+      `// Build a date-timeblock key for each session, then map to color intensity
+Map<String, int> sessionCount = sessionDocs.fold({}, (map, doc) {
+  String timeBlock(DateTime d) => [9, 12, 15, 18, 21]
+      .lastWhere((tb) => tb <= d.hour, orElse: () => 9)
+      .toString()
+      .padLeft(2, '0');
+
+  final d = doc.startedAt;
+  final dateKey =
+      "\${d.year}-\${d.month.toString().padLeft(2,'0')}-\${d.day.toString().padLeft(2,'0')}";
+  final fullKey = '\$dateKey-\${timeBlock(d)}';
+  map[fullKey] = (map[fullKey] ?? 0) + 1;
+  return map;
+});`,
+    ],
+    codeCommentaries: [
+      `A naive timer decrements a counter by 1 each second, but periodic callbacks don't fire with millisecond precision — small drift compounds over long sessions. Instead, the controller stores a deadline timestamp at start (and recomputes it on resume), then each tick reads the real wall-clock difference. The clamp handles the rare case where DateTime.now() overshoots the deadline by a few milliseconds.`,
+      `The activity heatmap groups sessions by a composite key: date + time block (09, 12, 15, 18, 21). Building the map in a single fold over the session list keeps the logic O(n) and the widget purely derived from its input — no extra state or controllers needed.`,
+    ],
+    process: `I built the app feature-by-feature: scaffold and Firebase setup first, then the timer countdown, categories CRUD, and finally the dashboard. A UI overhaul pass followed to introduce a consistent dark color system and redesign each screen. Working in Flutter for the first time meant spending time understanding widget composition and state lifting before the architecture settled.`,
+    challenges: [
+      {
+        challenge:
+          "Flutter's widget tree makes it easy to scatter state across components, but the timer needs to stay alive while the user navigates between tabs.",
+        solution:
+          "Lifted TimerController to HomeShell — the parent of all tabs — and passed it down as a constructor argument. This gives every tab a single source of truth for timer state without reaching for an external state management library.",
+      },
+      {
+        challenge:
+          "Deleting a category would orphan historical sessions, breaking dashboard aggregations that join on categoryId.",
+        solution:
+          "Denormalized categoryName onto each session document at write time. The dashboard falls back to 'Uncategorized' and grey when no matching category doc exists, keeping sessions immutable and queries simple.",
+      },
+    ],
+    demo: [],
+    outcomes: `The app is deployed and in active personal use. The dashboard gives a clear picture of how focus time is distributed across categories over any rolling window, which was the original goal. The heatmap in particular surfaced patterns (e.g., late-evening sessions clustering on weekdays) that weren't obvious from raw session counts.`,
+    whatILearned: `This was my first Flutter project, so the biggest gain was understanding Flutter's widget composition model and how to design a widget tree that keeps state in the right place. I also learned how to deploy a Flutter app to the web via Firebase Hosting, structure Firestore data for dashboard-style aggregation queries, and handle the Firebase initialization quirk specific to Flutter Web (firebase_core owns init — the CDN snippet must not be present).`,
   },
 ];
 
