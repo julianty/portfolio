@@ -1,6 +1,6 @@
 import { Helmet } from "react-helmet-async";
 import { Project } from "@/project-data";
-import { CodeBlock, dracula } from "react-code-blocks";
+import CodeBlock from "@/components/ui/code-block";
 import { IconBrandGithub, IconExternalLink } from "@tabler/icons-react";
 import SkillBadge from "./skill-badge";
 import SectionHeader from "./ui/section-header";
@@ -88,17 +88,7 @@ const ProjectPage = ({ project }: { project: Project }) => {
             <div className="flex flex-col gap-8">
               {project.code.map((code, index) => (
                 <div key={index} className="flex flex-col gap-3">
-                  <div className="overflow-hidden rounded-xl border border-border/50">
-                    <div className="max-h-96 overflow-y-auto">
-                      <CodeBlock
-                        text={code}
-                        language="jsx"
-                        showLineNumbers={false}
-                        theme={dracula}
-                        wrapLongLines={true}
-                      />
-                    </div>
-                  </div>
+                  <CodeBlock code={code} language="jsx" />
                   <p className="text-sm leading-relaxed text-muted-foreground md:text-base">
                     {project.codeCommentaries![index]}
                   </p>

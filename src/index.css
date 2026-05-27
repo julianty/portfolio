@@ -210,6 +210,13 @@
   }
 }
 
+/* Shiki dual-theme dark mode activation */
+.dark .shiki,
+.dark .shiki span {
+  color: var(--shiki-dark) !important;
+  background-color: var(--shiki-dark-bg) !important;
+}
+
 .project-title {
   @apply text-primary font-semibold;
   font-family: var(--font-display);
