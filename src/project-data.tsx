@@ -7,7 +7,7 @@ import WhatsForDinnerSoloDemo from "@/assets/whatsfordinner_solo_demo.mp4";
 import WhatsForDinnerMultiDemo from "@/assets/whatsfordinner_multi_demo.mp4";
 import juliantyartHighlight from "@/assets/juliantyart Highlight.png";
 // import projectShowcaseTemplate from "@/assets/projectShowcaseTemplate.png";
-// import pomodoroHighlight from "@/assets/Pomodoro Highlight.png";
+import pomodoroHighlight from "@/assets/My Pomodoro Highlight.png";
 import birthdayPingHighlight from "@/assets/Birthday Ping Highlight.png";
 export const projectData = [
   {
@@ -398,8 +398,7 @@ function toConfidence(score: number): ImportedBirthdayCandidate["confidence"] {
     title: "Pomodoro Timer",
     description:
       "Cross-platform Flutter web app for focused work sessions — timer, category tracking, and a dashboard with charts and activity heatmap",
-    // image: pomodoroHighlight,
-    image: "" as unknown as string,
+    image: pomodoroHighlight,
     skills: ["Flutter", "Firebase", "Dart"],
     pageLink: "PomodoroTimer",
     link: {
