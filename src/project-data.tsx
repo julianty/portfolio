@@ -9,6 +9,7 @@ import juliantyartHighlight from "@/assets/juliantyart Highlight.png";
 // import projectShowcaseTemplate from "@/assets/projectShowcaseTemplate.png";
 import pomodoroHighlight from "@/assets/My Pomodoro Highlight.png";
 import birthdayPingHighlight from "@/assets/Birthday Ping Highlight.png";
+import barbellCVHighlight from "@/assets/barbell-cv/yolo_pose_deadlift_inference.jpg";
 export const projectData = [
   {
     title: "Corpore Sano",
@@ -473,6 +474,18 @@ Map<String, int> sessionCount = sessionDocs.fold({}, (map, doc) {
     demo: [],
     outcomes: `The app is deployed and in active personal use. The dashboard gives a clear picture of how focus time is distributed across categories over any rolling window, which was the original goal. The heatmap in particular surfaced patterns (e.g., late-evening sessions clustering on weekdays) that weren't obvious from raw session counts.`,
     whatILearned: `This was my first Flutter project, so the biggest gain was understanding Flutter's widget composition model and how to design a widget tree that keeps state in the right place. I also learned how to deploy a Flutter app to the web via Firebase Hosting, structure Firestore data for dashboard-style aggregation queries, and handle the Firebase initialization quirk specific to Flutter Web (firebase_core owns init — the CDN snippet must not be present).`,
+  },
+  {
+    title: "Barbell Speed Tracking",
+    description:
+      "A free, local alternative to commercial VBT apps — tracking barbell velocity from raw powerlifting video using pose detection, signal smoothing, and automated phase detection.",
+    image: barbellCVHighlight,
+    skills: ["Python", "Computer Vision", "YOLO", "Signal Processing"],
+    pageLink: "BarbellCV",
+    link: {
+      github: "https://github.com/julianty/barbell-speed-estimator",
+      live: "",
+    },
   },
 ];
 

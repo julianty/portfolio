@@ -7,6 +7,7 @@ import {
 import { HelmetProvider } from "react-helmet-async";
 import Navbar from "@/components/navbar";
 import ProjectPage from "@/components/project-page";
+import BarbellCVPage from "@/components/barbell-cv-page";
 import { projectData } from "@/project-data";
 
 import { ThemeProvider } from "@/components/theme-provider";
@@ -56,6 +57,7 @@ export function AppContent() {
             path="/projects/PomodoroTimer"
             element={<ProjectPage project={projectData[5]} />}
           />
+          <Route path="/projects/BarbellCV" element={<BarbellCVPage />} />
         </Routes>
       </div>
     </ThemeProvider>
