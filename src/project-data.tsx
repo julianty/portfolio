@@ -481,6 +481,7 @@ Map<String, int> sessionCount = sessionDocs.fold({}, (map, doc) {
       "A free, local alternative to commercial VBT apps — tracking barbell velocity from raw powerlifting video using pose detection, signal smoothing, and automated phase detection.",
     image: barbellCVHighlight,
     skills: ["Python", "Computer Vision", "YOLO", "Signal Processing"],
+    technologies: ["Python", "Computer Vision", "YOLO", "Signal Processing"],
     pageLink: "BarbellCV",
     link: {
       github: "https://github.com/julianty/barbell-speed-estimator",

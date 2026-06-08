@@ -11,7 +11,7 @@ const experienceSummary = experienceArray
 const projectSummary = projectData
   .map(
     (p) =>
-      `- ${p.title}: ${p.description}. Tech: ${p.technologies.join(", ")}.${p.link.live ? ` Live: ${p.link.live}` : ""}${p.link.github ? ` GitHub: ${p.link.github}` : ""}`
+      `- ${p.title}: ${p.description}. Tech: ${(p.technologies ?? p.skills).join(", ")}.${p.link.live ? ` Live: ${p.link.live}` : ""}${p.link.github ? ` GitHub: ${p.link.github}` : ""}`
   )
   .join("\n");
 

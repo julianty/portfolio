@@ -4,7 +4,7 @@ import { IconBrandGithub } from "@tabler/icons-react";
 import yoloPoseDeadlift from "@/assets/barbell-cv/yolo_pose_deadlift_inference.jpg";
 import peltConcentric from "@/assets/barbell-cv/pelt_concentric.png";
 import sgComparison from "@/assets/barbell-cv/sg_comparison.png";
-import fiveRepDeadlift from "@/assets/barbell-cv/5 rep deadlift.gif";
+import fiveRepDeadlift from "@/assets/barbell-cv/deadlift_rep_example.gif";
 import repVelocitySummary from "@/assets/barbell-cv/rep_velocity_summary.png";
 import deadliftExample from "@/assets/barbell-cv/deadlift_example.gif";
 import squatExample from "@/assets/barbell-cv/squat_example.gif";
