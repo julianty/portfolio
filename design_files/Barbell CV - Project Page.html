@@ -1,0 +1,825 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<title>Barbell Speed Tracking — Alexander Julian Ty</title>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=JetBrains+Mono:ital,wght@0,400;0,500;0,700;1,400&display=swap" rel="stylesheet"/>
+<style>
+/* ── Reset ── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--mono);
+  font-size: 14px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+/* ── Tokens ── */
+:root {
+  --bg:             #f8f8f6;
+  --surface:        #ffffff;
+  --ink:            #111111;
+  --ink-2:          #505050;
+  --ink-3:          #a0a0a0;
+  --border:         #e6e4e0;
+  --border-mid:     #ccc9c4;
+  --accent:         #2563eb;
+  --accent-dim:     rgba(37,99,235,.07);
+  --accent-mid:     rgba(37,99,235,.14);
+  --green:          #15803d;
+  --green-bg:       #f0fdf4;
+  --green-border:   #bbf7d0;
+  --amber:          #92400e;
+  --amber-bg:       #fffbeb;
+  --amber-border:   #fde68a;
+  --red:            #991b1b;
+  --red-bg:         #fff1f2;
+  --red-border:     #fecdd3;
+  --display:        "Syne", system-ui, sans-serif;
+  --mono:           "JetBrains Mono", ui-monospace, monospace;
+  --max-w:          860px;
+  --nav-h:          54px;
+  --section-py:     88px;
+}
+
+/* ── Nav ── */
+.site-nav {
+  position: sticky; top: 0; z-index: 100;
+  height: var(--nav-h);
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 40px;
+  background: rgba(248,248,246,.88);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border-bottom: 1px solid var(--border);
+}
+.nav-brand {
+  font-family: var(--mono); font-weight: 700; font-size: 13px;
+  color: var(--ink); text-decoration: none; letter-spacing: .02em;
+}
+.nav-r { display: flex; align-items: center; gap: 28px; }
+.nav-link {
+  font-family: var(--mono); font-size: 12px; color: var(--ink-2);
+  text-decoration: none; letter-spacing: .02em; transition: color .15s;
+}
+.nav-link:hover { color: var(--accent); }
+.nav-gh {
+  display: inline-flex; align-items: center; gap: 5px;
+  font-family: var(--mono); font-size: 11px; font-weight: 500;
+  color: var(--ink); text-decoration: none;
+  border: 1.5px solid var(--border-mid); border-radius: 6px;
+  padding: 5px 12px; letter-spacing: .02em; transition: all .15s;
+}
+.nav-gh:hover { background: var(--ink); color: var(--bg); border-color: var(--ink); }
+
+/* ── Stage tracker (fixed left) ── */
+.stage-tracker {
+  position: fixed; left: 22px; top: 50%;
+  transform: translateY(-50%);
+  display: flex; flex-direction: column; align-items: center; gap: 12px;
+  z-index: 50;
+  opacity: 0; pointer-events: none;
+  transition: opacity .35s;
+}
+.stage-tracker.show { opacity: 1; pointer-events: auto; }
+.tracker-dot {
+  width: 7px; height: 7px;
+  border: 1.5px solid var(--border-mid);
+  border-radius: 50%; cursor: pointer;
+  background: transparent;
+  transition: all .2s ease;
+  padding: 0; appearance: none;
+}
+.tracker-dot:hover { border-color: var(--accent); background: var(--accent-dim); }
+.tracker-dot.on {
+  background: var(--accent); border-color: var(--accent);
+  transform: scale(1.4);
+}
+
+/* ── Centered content column ── */
+.col {
+  max-width: var(--max-w);
+  margin: 0 auto;
+  padding: 0 36px;
+}
+
+/* ══════════════════════ HERO ══════════════════════ */
+.hero {
+  padding: 80px 0 88px;
+  position: relative; overflow: hidden;
+}
+/* grid background */
+.hero::before {
+  content: '';
+  position: absolute; inset: 0;
+  background-image:
+    linear-gradient(to right,  rgba(0,0,0,.045) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(0,0,0,.045) 1px, transparent 1px);
+  background-size: 44px 44px;
+  pointer-events: none;
+}
+.hero .col { position: relative; }
+
+.eyebrow {
+  font-family: var(--mono); font-size: 11px;
+  color: var(--accent); letter-spacing: .14em;
+  text-transform: uppercase; display: block;
+  margin-bottom: 20px;
+}
+.hero-title {
+  font-family: var(--display);
+  font-size: clamp(48px, 7vw, 76px);
+  font-weight: 800;
+  line-height: .96;
+  color: var(--ink);
+  letter-spacing: -.035em;
+  margin-bottom: 8px;
+}
+.hero-sub {
+  font-family: var(--display);
+  font-size: clamp(20px, 2.8vw, 28px);
+  font-weight: 600;
+  color: var(--ink-2);
+  letter-spacing: -.018em;
+  margin-bottom: 24px;
+  line-height: 1.1;
+}
+.hero-abstract {
+  font-size: 13px;
+  color: var(--ink-2);
+  line-height: 1.7;
+  max-width: 56ch;
+  margin-bottom: 48px;
+}
+
+/* ── Pipeline card ── */
+.pipeline-card {
+  background: var(--surface);
+  border: 1.5px solid var(--border);
+  border-radius: 12px;
+  padding: 24px 28px 20px;
+  margin-bottom: 22px;
+  overflow: hidden;
+}
+.pipeline-eyebrow {
+  font-family: var(--mono); font-size: 10px;
+  letter-spacing: .1em; text-transform: uppercase;
+  color: var(--ink-3); margin-bottom: 18px;
+  display: flex; align-items: center; gap: 6px;
+}
+.pipeline-eyebrow::after {
+  content: ''; flex: 1; height: 1px; background: var(--border);
+}
+.pipeline {
+  display: flex; align-items: flex-start;
+  overflow-x: auto; padding-bottom: 4px;
+  scrollbar-width: none; gap: 0;
+}
+.pipeline::-webkit-scrollbar { display: none; }
+
+/* pipe node */
+.pipe-node {
+  display: flex; flex-direction: column; align-items: center; gap: 8px;
+  background: none; border: none; cursor: pointer; padding: 0;
+  flex-shrink: 0; width: 106px; text-decoration: none;
+  transition: opacity .15s;
+}
+.pipe-node:focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; border-radius: 4px; }
+.node-ring {
+  width: 64px; height: 64px; border-radius: 50%;
+  border: 2px solid var(--border-mid);
+  display: flex; align-items: center; justify-content: center;
+  background: var(--bg);
+  transition: border-color .22s, background .22s, box-shadow .22s;
+  position: relative;
+}
+.pipe-node:hover .node-ring {
+  border-color: var(--accent);
+  background: var(--accent-dim);
+  box-shadow: 0 0 0 4px var(--accent-dim);
+}
+.pipe-node.on .node-ring {
+  border-color: var(--accent);
+  background: var(--accent);
+  box-shadow: 0 0 0 5px var(--accent-mid);
+}
+.node-num {
+  font-family: var(--mono); font-weight: 700; font-size: 17px;
+  color: var(--ink-2); transition: color .22s;
+  line-height: 1;
+}
+.pipe-node.on .node-num { color: #fff; }
+.pipe-node:hover:not(.on) .node-num { color: var(--accent); }
+
+.node-cat {
+  font-family: var(--mono); font-size: 9px;
+  letter-spacing: .1em; text-transform: uppercase;
+  color: var(--ink-3); transition: color .22s;
+}
+.node-name {
+  font-family: var(--mono); font-size: 11px; font-weight: 500;
+  color: var(--ink-2); white-space: nowrap;
+  transition: color .22s;
+}
+.pipe-node.on .node-cat,
+.pipe-node.on .node-name { color: var(--ink); }
+
+/* connector */
+.pipe-gap {
+  flex: 1; display: flex; align-items: center;
+  padding-bottom: 34px; /* vertically align with circle centers */
+  min-width: 16px;
+}
+.pipe-gap::after {
+  content: '';
+  display: block; width: 100%; height: 0;
+  border-top: 2px dashed var(--border-mid);
+}
+
+/* ── Status row ── */
+.status-row {
+  display: flex; align-items: center; gap: 8px; flex-wrap: wrap;
+  margin-bottom: 36px;
+  padding: 14px 18px;
+  background: var(--surface);
+  border: 1.5px solid var(--border);
+  border-radius: 8px;
+}
+.status-label {
+  font-family: var(--mono); font-size: 10px;
+  color: var(--ink-3); letter-spacing: .08em; text-transform: uppercase;
+  flex-shrink: 0; margin-right: 4px;
+}
+.badge {
+  display: inline-flex; align-items: center; gap: 5px;
+  padding: 4px 11px; border-radius: 99px; border: 1.5px solid;
+  font-family: var(--mono); font-size: 11px; font-weight: 500;
+  letter-spacing: .015em;
+}
+.badge-ok   { border-color: var(--green-border);  color: var(--green);  background: var(--green-bg);  }
+.badge-warn { border-color: var(--amber-border);  color: var(--amber);  background: var(--amber-bg);  }
+.badge-fail { border-color: var(--red-border);    color: var(--red);    background: var(--red-bg);    }
+
+/* ── Buttons ── */
+.hero-btns { display: flex; gap: 10px; flex-wrap: wrap; }
+.btn {
+  display: inline-flex; align-items: center; gap: 6px;
+  padding: 10px 20px; border-radius: 8px;
+  font-family: var(--mono); font-size: 12px; font-weight: 500;
+  text-decoration: none; letter-spacing: .025em; transition: all .16s;
+  cursor: pointer; border: none;
+}
+.btn-primary { background: var(--ink); color: #fff; }
+.btn-primary:hover { background: var(--accent); }
+.btn-outline { background: none; color: var(--ink); border: 1.5px solid var(--border-mid); }
+.btn-outline:hover { border-color: var(--ink); background: rgba(17,17,17,.04); }
+
+/* ══════════════════════ SECTIONS ══════════════════════ */
+.sections { padding-bottom: 60px; }
+
+.stage-section {
+  padding: var(--section-py) 0;
+  border-top: 1px solid var(--border);
+  scroll-margin-top: calc(var(--nav-h) + 16px);
+}
+
+.stage-eyebrow {
+  display: flex; align-items: center; gap: 10px;
+  margin-bottom: 14px;
+}
+.stage-n {
+  font-family: var(--mono); font-size: 11px;
+  color: var(--ink-3); letter-spacing: .04em;
+}
+.stage-chip {
+  font-family: var(--mono); font-size: 10px;
+  color: var(--accent); letter-spacing: .12em; text-transform: uppercase;
+  background: var(--accent-dim); border: 1px solid rgba(37,99,235,.2);
+  padding: 2px 9px; border-radius: 4px;
+}
+.stage-title {
+  font-family: var(--display);
+  font-size: clamp(28px, 3.8vw, 42px);
+  font-weight: 700;
+  color: var(--ink);
+  letter-spacing: -.025em;
+  line-height: 1.05;
+  margin-bottom: 28px;
+  max-width: 18ch;
+}
+
+/* image placeholder */
+.img-ph {
+  width: 100%; border-radius: 8px;
+  border: 1.5px dashed rgba(37,99,235,.28);
+  background:
+    repeating-linear-gradient(0deg,   transparent, transparent 27px, rgba(0,0,0,.03) 27px, rgba(0,0,0,.03) 28px),
+    repeating-linear-gradient(90deg,  transparent, transparent 27px, rgba(0,0,0,.03) 27px, rgba(0,0,0,.03) 28px),
+    var(--surface);
+  display: flex; align-items: center; justify-content: center;
+  padding: 28px 20px; text-align: center;
+  margin-bottom: 16px;
+}
+.img-ph-text {
+  font-family: var(--mono); font-size: 11px;
+  color: var(--accent); opacity: .75;
+  max-width: 36ch; line-height: 1.55; letter-spacing: .02em;
+}
+
+.caption {
+  font-family: var(--mono); font-size: 13px;
+  color: var(--ink-2); line-height: 1.7;
+  max-width: 64ch;
+}
+
+/* two-column layout */
+.two-col {
+  display: grid; grid-template-columns: 1.05fr 1fr;
+  gap: 32px; align-items: start;
+}
+.two-col-rev {
+  display: grid; grid-template-columns: 1fr 1.05fr;
+  gap: 32px; align-items: start;
+}
+
+/* ── Expandable ── */
+.expander {
+  margin-top: 22px;
+  border: 1.5px solid var(--border);
+  border-radius: 8px; overflow: hidden;
+}
+.expander summary {
+  display: flex; align-items: center; gap: 8px;
+  padding: 11px 16px;
+  cursor: pointer; list-style: none;
+  font-family: var(--mono); font-size: 12px; color: var(--ink-2);
+  user-select: none; transition: background .14s;
+  border: none; outline: none;
+}
+.expander summary::-webkit-details-marker { display: none; }
+.expander summary:hover { background: var(--accent-dim); color: var(--accent); }
+.expander[open] > summary { background: var(--accent-dim); color: var(--accent); border-bottom: 1px solid var(--border); }
+.exp-icon {
+  width: 16px; height: 16px; border-radius: 50%;
+  border: 1.5px solid currentColor;
+  display: inline-flex; align-items: center; justify-content: center;
+  font-size: 9px; flex-shrink: 0; transition: transform .2s;
+  line-height: 1;
+}
+.expander[open] .exp-icon { transform: rotate(90deg); }
+.exp-body {
+  padding: 18px 18px 20px;
+  background: var(--surface);
+  font-family: var(--mono); font-size: 12px;
+  color: var(--ink-2); line-height: 1.7;
+}
+
+/* wrong turns grid */
+.wt-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 12px; }
+.wt-card {
+  padding: 13px 15px; border-radius: 6px;
+  border: 1px solid var(--border); background: var(--bg);
+}
+.wt-card.fail { opacity: .62; }
+.wt-card.win { border-color: var(--green-border); background: var(--green-bg); }
+.wt-card-head {
+  font-weight: 700; font-size: 11px; letter-spacing: .04em;
+  margin-bottom: 5px;
+}
+.wt-card.fail .wt-card-head { color: var(--red); }
+.wt-card.win  .wt-card-head { color: var(--green); }
+.wt-card-body { font-size: 11px; color: var(--ink-2); line-height: 1.55; }
+
+/* ── Movement results ── */
+.movement-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  gap: 16px; margin-top: 4px;
+}
+.mv-card {
+  border-radius: 10px; border: 1.5px solid var(--border);
+  background: var(--surface); overflow: hidden;
+}
+.mv-card.ok   { border-color: var(--green-border); }
+.mv-card.warn { border-color: var(--amber-border); }
+.mv-card.fail { border-color: var(--red-border);   }
+.mv-head {
+  padding: 11px 14px;
+  display: flex; align-items: center; justify-content: space-between;
+  border-bottom: 1px solid var(--border);
+}
+.mv-card.ok   .mv-head { background: var(--green-bg); border-color: var(--green-border);  }
+.mv-card.warn .mv-head { background: var(--amber-bg); border-color: var(--amber-border); }
+.mv-card.fail .mv-head { background: var(--red-bg);   border-color: var(--red-border);   }
+.mv-name {
+  font-family: var(--display); font-size: 15px; font-weight: 700;
+  color: var(--ink); letter-spacing: -.01em;
+}
+.mv-status { font-family: var(--mono); font-size: 11px; font-weight: 700; }
+.mv-card.ok   .mv-status { color: var(--green); }
+.mv-card.warn .mv-status { color: var(--amber); }
+.mv-card.fail .mv-status { color: var(--red);   }
+.mv-body { padding: 14px; }
+.mv-caption { font-family: var(--mono); font-size: 11px; color: var(--ink-2); line-height: 1.6; margin-top: 10px; }
+
+/* ── Footer ── */
+.project-footer {
+  border-top: 1.5px solid var(--border);
+  padding: 64px 0 88px;
+}
+.footer-eyebrow {
+  font-family: var(--mono); font-size: 10px;
+  color: var(--accent); letter-spacing: .14em;
+  text-transform: uppercase; display: block; margin-bottom: 14px;
+}
+.footer-title {
+  font-family: var(--display); font-size: 28px; font-weight: 700;
+  color: var(--ink); letter-spacing: -.018em; margin-bottom: 20px;
+}
+.next-list { list-style: none; margin-bottom: 36px; }
+.next-item {
+  display: flex; align-items: baseline; gap: 12px;
+  padding: 11px 0; border-bottom: 1px solid var(--border);
+  font-family: var(--mono); font-size: 13px; color: var(--ink-2);
+  line-height: 1.6;
+}
+.next-item::before { content: '→'; color: var(--accent); flex-shrink: 0; font-weight: 700; }
+.footer-btns { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+.footer-nav { margin-left: auto; display: flex; gap: 10px; }
+
+/* divider */
+.divider { border: none; border-top: 1px solid var(--border); margin: 0; }
+
+/* ── Responsive ── */
+@media (max-width: 720px) {
+  .two-col,
+  .two-col-rev  { grid-template-columns: 1fr; }
+  .movement-grid { grid-template-columns: 1fr; }
+  .wt-grid { grid-template-columns: 1fr; }
+  .stage-tracker { display: none; }
+  :root { --section-py: 60px; }
+  .hero { padding: 52px 0 60px; }
+  .site-nav { padding: 0 20px; }
+  .col { padding: 0 20px; }
+  .pipeline-card { padding: 18px 16px 14px; }
+}
+</style>
+</head>
+<body>
+
+<!-- ── Stage tracker ── -->
+<nav class="stage-tracker" id="tracker" aria-label="Stage navigation">
+  <button class="tracker-dot" data-to="stage-1" title="01 · Detection"></button>
+  <button class="tracker-dot" data-to="stage-2" title="02 · Smoothing"></button>
+  <button class="tracker-dot" data-to="stage-3" title="03 · Phase detection"></button>
+  <button class="tracker-dot" data-to="stage-4" title="04 · Output"></button>
+  <button class="tracker-dot" data-to="stage-5" title="05 · Results"></button>
+</nav>
+
+<!-- ── Nav ── -->
+<header class="site-nav">
+  <a href="#" class="nav-brand">julianty</a>
+  <nav class="nav-r">
+    <a href="#" class="nav-link">← all projects</a>
+    <a href="#" class="nav-link">about</a>
+    <a href="#" class="nav-gh">↗ GitHub</a>
+  </nav>
+</header>
+
+<!-- ══════════════════════ HERO ══════════════════════ -->
+<section class="hero" id="hero">
+  <div class="col">
+
+    <span class="eyebrow">Computer Vision · Python · 2024</span>
+
+    <h1 class="hero-title">Barbell<br/>Speed<br/>Tracking</h1>
+    <p class="hero-sub">A Computer Vision Investigation</p>
+
+    <p class="hero-abstract">
+      A free, local alternative to commercial VBT apps — tracking barbell velocity from raw powerlifting video using pose detection, signal smoothing, and automated phase detection.
+    </p>
+
+    <!-- ── Pipeline ── -->
+    <div class="pipeline-card">
+      <div class="pipeline-eyebrow">The pipeline &mdash; click a stage to jump</div>
+      <div class="pipeline" id="pipeline">
+
+        <button class="pipe-node" data-to="stage-1">
+          <div class="node-ring"><span class="node-num">01</span></div>
+          <span class="node-cat">Detect</span>
+          <span class="node-name">YOLO Pose</span>
+        </button>
+        <div class="pipe-gap"></div>
+        <button class="pipe-node" data-to="stage-2">
+          <div class="node-ring"><span class="node-num">02</span></div>
+          <span class="node-cat">Smooth</span>
+          <span class="node-name">SG Filter</span>
+        </button>
+        <div class="pipe-gap"></div>
+        <button class="pipe-node" data-to="stage-3">
+          <div class="node-ring"><span class="node-num">03</span></div>
+          <span class="node-cat">Segment</span>
+          <span class="node-name">PELT</span>
+        </button>
+        <div class="pipe-gap"></div>
+        <button class="pipe-node" data-to="stage-4">
+          <div class="node-ring"><span class="node-num">04</span></div>
+          <span class="node-cat">Extract</span>
+          <span class="node-name">px / sec</span>
+        </button>
+        <div class="pipe-gap"></div>
+        <button class="pipe-node" data-to="stage-5">
+          <div class="node-ring"><span class="node-num">05</span></div>
+          <span class="node-cat">Results</span>
+          <span class="node-name">per movement</span>
+        </button>
+
+      </div>
+    </div>
+
+    <!-- Status -->
+    <div class="status-row">
+      <span class="status-label">Results</span>
+      <span class="badge badge-ok">✓ Deadlift — working</span>
+      <span class="badge badge-warn">⚠ Squat — constrained</span>
+      <span class="badge badge-fail">✗ Bench press — open</span>
+    </div>
+
+    <div class="hero-btns">
+      <a href="#" class="btn btn-primary">↗ View on GitHub</a>
+      <a href="#stage-1" class="btn btn-outline">Read the investigation ↓</a>
+    </div>
+
+  </div>
+</section>
+
+<!-- ══════════════════════ STAGE SECTIONS ══════════════════════ -->
+<div class="sections">
+
+  <!-- ── 01 · YOLO Pose ── -->
+  <section class="stage-section" id="stage-1" data-stage="1">
+    <div class="col">
+      <div class="stage-eyebrow">
+        <span class="stage-n">01 / 05</span>
+        <span class="stage-chip">Detection</span>
+      </div>
+      <h2 class="stage-title">Why wrists?</h2>
+
+      <div class="two-col">
+        <div>
+          <div class="img-ph" style="aspect-ratio: 16 / 10;">
+            <span class="img-ph-text">YOLO Pose wrist keypoint tracking<br/>overlay on deadlift footage · GIF</span>
+          </div>
+          <p class="caption">
+            YOLO Pose tracks 17 body keypoints per frame. Wrists grip the bar and move with it near-exactly — a stable proxy without needing to detect the barbell itself. Larger model sizes (large vs. nano) gave meaningfully more stable wrist tracks, with no inference-speed cost for offline video.
+          </p>
+        </div>
+
+        <div>
+          <div style="padding-top: 4px;">
+            <p style="font-size:13px; color:var(--ink-2); line-height:1.7; margin-bottom:18px;">
+              Confidence thresholding per keypoint means the pipeline degrades gracefully when occlusion happens — it flags rather than guesses.
+            </p>
+          </div>
+
+          <details class="expander">
+            <summary>
+              <span class="exp-icon">▶</span>
+              What I tried first
+            </summary>
+            <div class="exp-body">
+              <div class="wt-grid">
+                <div class="wt-card fail">
+                  <div class="wt-card-head">YOLO (direct) ✗</div>
+                  <div class="wt-card-body">Bounding box jumped frame-to-frame and misfired onto equipment. Heavy post-processing still left it unreliable.</div>
+                </div>
+                <div class="wt-card fail">
+                  <div class="wt-card-head">SAM2 ✗</div>
+                  <div class="wt-card-body">Appealing idea — point once, track through the set. Drifted on real gym footage: variable lighting and cluttered backgrounds were enough to lose it.</div>
+                </div>
+              </div>
+              <div class="wt-card win">
+                <div class="wt-card-head">YOLO Pose → wrists ✓</div>
+                <div class="wt-card-body">Pose models are trained on millions of humans in every orientation — vastly more robust than object-tracking on a barbell-shaped object in a gym environment.</div>
+              </div>
+            </div>
+          </details>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── 02 · Savitzky-Golay ── -->
+  <section class="stage-section" id="stage-2" data-stage="2">
+    <div class="col">
+      <div class="stage-eyebrow">
+        <span class="stage-n">02 / 05</span>
+        <span class="stage-chip">Smoothing</span>
+      </div>
+      <h2 class="stage-title">Preserving velocity peaks</h2>
+
+      <div class="img-ph" style="aspect-ratio: 3 / 1;">
+        <span class="img-ph-text">Raw vs. smoothed wrist position signal<br/>concentric phases highlighted · plot</span>
+      </div>
+      <p class="caption">
+        Raw keypoint positions jitter frame-to-frame — noise that gets amplified when differentiated into velocity. Savitzky-Golay fits a polynomial to a sliding window rather than averaging, so it preserves peak shape. A moving average would systematically underestimate peak bar speed: exactly the metric VBT depends on.
+      </p>
+    </div>
+  </section>
+
+  <!-- ── 03 · PELT ── -->
+  <section class="stage-section" id="stage-3" data-stage="3">
+    <div class="col">
+      <div class="stage-eyebrow">
+        <span class="stage-n">03 / 05</span>
+        <span class="stage-chip">Phase Detection</span>
+      </div>
+      <h2 class="stage-title">Isolating the concentric phase</h2>
+
+      <div class="two-col-rev">
+        <div>
+          <details class="expander" style="margin-top:0; margin-bottom:22px;">
+            <summary>
+              <span class="exp-icon">▶</span>
+              How PELT changepoint detection works
+            </summary>
+            <div class="exp-body">
+              <p style="margin-bottom:12px;">PELT (Pruned Exact Linear Time) segments a signal into statistically distinct constant-mean pieces. A penalty term controls how many segments are allowed.</p>
+              <p>Applied to <em>position</em>, a single upward pull looks like many small constant-mean pieces — PELT over-segments. Applied to <em>velocity</em>, a clean concentric phase is a single near-zero-mean segment (bar moving at roughly steady speed) — exactly one piece for PELT to find.</p>
+            </div>
+          </details>
+          <p style="font-size:13px; color:var(--ink-2); line-height:1.7;">
+            Three post-processing steps follow the raw PELT output: <strong style="color:var(--ink);">merge</strong> adjacent candidates above velocity threshold, <strong style="color:var(--ink);">extend</strong> phase boundaries while velocity supports it, and <strong style="color:var(--ink);">reject</strong> candidates below 50% of median candidate velocity.
+          </p>
+        </div>
+        <div>
+          <div class="img-ph" style="aspect-ratio: 2.6 / 1;">
+            <span class="img-ph-text">Velocity signal with PELT-detected<br/>concentric phases as shaded regions · plot</span>
+          </div>
+          <p class="caption">
+            Each shaded region is one rep's concentric phase — automatically detected, no manual labelling.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── 04 · Output ── -->
+  <section class="stage-section" id="stage-4" data-stage="4">
+    <div class="col">
+      <div class="stage-eyebrow">
+        <span class="stage-n">04 / 05</span>
+        <span class="stage-chip">Output</span>
+      </div>
+      <h2 class="stage-title">Per-rep velocity</h2>
+
+      <div class="img-ph" style="aspect-ratio: 2.8 / 1;">
+        <span class="img-ph-text">Per-rep velocity (px / sec) across a working set<br/>bar chart · one bar per rep, trend visible</span>
+      </div>
+      <p class="caption">
+        Output is px/sec — a relative metric. Valid as a within-session fatigue signal without calibration. Converting to m/s requires a checkerboard reference or known range-of-motion estimate; this is noted as an open problem.
+      </p>
+    </div>
+  </section>
+
+  <!-- ── 05 · Results ── -->
+  <section class="stage-section" id="stage-5" data-stage="5">
+    <div class="col">
+      <div class="stage-eyebrow">
+        <span class="stage-n">05 / 05</span>
+        <span class="stage-chip">Results</span>
+      </div>
+      <h2 class="stage-title">What works — and what doesn't</h2>
+
+      <div class="movement-grid">
+
+        <div class="mv-card ok">
+          <div class="mv-head">
+            <span class="mv-name">Deadlift</span>
+            <span class="mv-status">✓ working</span>
+          </div>
+          <div class="mv-body">
+            <div class="img-ph" style="aspect-ratio: 4 / 3;">
+              <span class="img-ph-text">Deadlift pipeline output · GIF</span>
+            </div>
+            <p class="mv-caption">Lifter fully upright, wrists visible throughout, bar path nearly vertical. The right baseline to start from.</p>
+          </div>
+        </div>
+
+        <div class="mv-card warn">
+          <div class="mv-head">
+            <span class="mv-name">Squat</span>
+            <span class="mv-status">⚠ constrained</span>
+          </div>
+          <div class="mv-body">
+            <div class="img-ph" style="aspect-ratio: 4 / 3;">
+              <span class="img-ph-text">Squat tracking with camera<br/>placement annotation</span>
+            </div>
+            <p class="mv-caption">Works with camera placement care — wrists can pass behind legs at depth. Elevated side angle keeps them in frame.</p>
+          </div>
+        </div>
+
+        <div class="mv-card fail">
+          <div class="mv-head">
+            <span class="mv-name">Bench press</span>
+            <span class="mv-status">✗ open</span>
+          </div>
+          <div class="mv-body">
+            <div class="img-ph" style="aspect-ratio: 4 / 3;">
+              <span class="img-ph-text">Detection failure on<br/>lying lifter · frames</span>
+            </div>
+            <p class="mv-caption">Person detector fails on a horizontal lifter without a visible head — out-of-distribution for a model trained on upright humans. Proposed fix: high camera angle.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+</div>
+
+<!-- ══════════════════════ FOOTER ══════════════════════ -->
+<footer class="project-footer">
+  <div class="col">
+    <span class="footer-eyebrow">What's next</span>
+    <h3 class="footer-title">Open problems</h3>
+    <ul class="next-list">
+      <li class="next-item">High-angle bench press footage — test whether bringing the head into frame resolves detection</li>
+      <li class="next-item">Absolute velocity calibration — checkerboard reference or range-of-motion estimation to output m/s</li>
+    </ul>
+    <div class="footer-btns">
+      <a href="#" class="btn btn-primary">↗ GitHub</a>
+      <a href="#" class="btn btn-outline">← prev project</a>
+      <div class="footer-nav">
+        <a href="#" class="btn btn-outline">next project →</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  const NAV_H = parseInt(getComputedStyle(document.documentElement).getPropertyValue('--nav-h')) || 54;
+
+  // ── Scroll to section ──
+  function scrollTo(id) {
+    const el = document.getElementById(id);
+    if (!el) return;
+    const top = el.getBoundingClientRect().top + window.scrollY - NAV_H - 16;
+    window.scrollTo({ top, behavior: 'smooth' });
+  }
+
+  // ── Wire up pipeline nodes + tracker dots ──
+  document.querySelectorAll('[data-to]').forEach(btn => {
+    btn.addEventListener('click', () => scrollTo(btn.dataset.to));
+  });
+
+  // ── Scroll spy ──
+  const stages    = Array.from(document.querySelectorAll('.stage-section[data-stage]'));
+  const pipeNodes = Array.from(document.querySelectorAll('.pipe-node[data-to]'));
+  const dots      = Array.from(document.querySelectorAll('.tracker-dot[data-to]'));
+  const tracker   = document.getElementById('tracker');
+  const hero      = document.getElementById('hero');
+
+  // Show tracker after hero scrolls out
+  new IntersectionObserver(([e]) => {
+    tracker.classList.toggle('show', !e.isIntersecting);
+  }, { threshold: 0 }).observe(hero);
+
+  // Highlight active stage
+  new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (!entry.isIntersecting) return;
+      const s = entry.target.dataset.stage;
+      const id = 'stage-' + s;
+      pipeNodes.forEach(n => n.classList.toggle('on', n.dataset.to === id));
+      dots.forEach(d => d.classList.toggle('on', d.dataset.to === id));
+    });
+  }, {
+    threshold: 0.25,
+    rootMargin: '-' + NAV_H + 'px 0px -38% 0px'
+  }).observe(document.body); // dummy — re-observe each
+
+  // Proper per-section observation
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (!entry.isIntersecting) return;
+      const s = entry.target.dataset.stage;
+      const id = 'stage-' + s;
+      pipeNodes.forEach(n => n.classList.toggle('on', n.dataset.to === id));
+      dots.forEach(d => d.classList.toggle('on', d.dataset.to === id));
+    });
+  }, {
+    threshold: 0,
+    rootMargin: '-' + (NAV_H + 20) + 'px 0px -55% 0px'
+  });
+  stages.forEach(s => obs.observe(s));
+</script>
+
+</body>
+</html>
