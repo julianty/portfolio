@@ -1,14 +1,22 @@
 import { Helmet } from "react-helmet-async";
 import { Link } from "react-router-dom";
 import { IconBrandGithub } from "@tabler/icons-react";
+import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 import yoloPoseDeadlift from "@/assets/barbell-cv/yolo_pose_deadlift_inference.jpg";
 import peltConcentric from "@/assets/barbell-cv/pelt_concentric.png";
 import sgComparison from "@/assets/barbell-cv/sg_comparison.png";
 import fiveRepDeadlift from "@/assets/barbell-cv/deadlift_rep_example.gif";
 import repVelocitySummary from "@/assets/barbell-cv/rep_velocity_summary.png";
 import deadliftExample from "@/assets/barbell-cv/deadlift_example.gif";
-import squatExample from "@/assets/barbell-cv/squat_example.gif";
-import benchExample from "@/assets/barbell-cv/bench_example.gif";
+import squatExampleFail from "@/assets/barbell-cv/squat_example_fail.gif";
+import benchExampleFail from "@/assets/barbell-cv/bench_example_fail.gif";
+import benchSuccess from "@/assets/barbell-cv/bench_example_success.gif";
+import benchSuccessRepVelocity from "@/assets/barbell-cv/bench_example_success_rep_velocity.png";
+import benchFailRepVelocity from "@/assets/barbell-cv/bench_example_fail_rep_velocity.png";
+import deadliftRepVelocity from "@/assets/barbell-cv/deadlift_example_rep_velocity.png";
+import squatFailConcentric from "@/assets/barbell-cv/squat_example_fail_rep_velocity.png";
+import squatSuccess from "@/assets/barbell-cv/squat_example_success.gif";
+import squatSuccessRepVelocity from "@/assets/barbell-cv/squat_example_success_rep_velocity.png";
 
 // ── Helpers ───────────────────────────────────────────────────────────────────
 
@@ -31,7 +39,6 @@ function Eyebrow({ children }: { children: React.ReactNode }) {
     </span>
   );
 }
-
 
 function Caption({ children }: { children: React.ReactNode }) {
   return (
@@ -145,7 +152,6 @@ function WtCard({
   );
 }
 
-
 // ── Pipeline card ─────────────────────────────────────────────────────────────
 
 const pipelineStages = [
@@ -165,40 +171,52 @@ function PipelineCard() {
       >
         The pipeline — click a stage to jump
       </div>
-      <div className="flex items-start overflow-x-auto pb-1 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+      <div className="flex items-start overflow-x-auto pb-1 [scrollbar-width:none] max-sm:flex-col max-sm:overflow-x-visible max-sm:pb-0 [&::-webkit-scrollbar]:hidden">
         {pipelineStages.map((stage, i) => (
-          <div key={stage.to} className="flex items-start">
+          <div
+            key={stage.to}
+            className="flex items-start max-sm:w-full max-sm:flex-col"
+          >
+            {/* Stage row */}
             <button
               onClick={() => scrollToSection(stage.to)}
-              className="group flex w-[106px] flex-shrink-0 flex-col items-center gap-2 border-none bg-transparent p-0 focus-visible:outline-2 focus-visible:outline-accent focus-visible:outline-offset-4"
+              className="group flex w-[106px] flex-shrink-0 flex-col items-center gap-2 border-none bg-transparent p-0 focus-visible:outline-2 focus-visible:outline-accent focus-visible:outline-offset-4 max-sm:w-full max-sm:flex-row max-sm:items-center max-sm:gap-3 max-sm:py-1"
             >
-              {/* Circle — h-16 = 64px, center at 32px from top */}
-              <div className="flex h-16 w-16 items-center justify-center rounded-full border-2 border-border bg-background transition-all duration-200 group-hover:border-accent group-hover:bg-accent/5 group-hover:shadow-[0_0_0_4px_hsl(var(--accent)/0.07)]">
+              <div className="flex h-16 w-16 flex-shrink-0 items-center justify-center rounded-full border-2 border-border bg-background transition-all duration-200 group-hover:border-accent group-hover:bg-accent/5 group-hover:shadow-[0_0_0_4px_hsl(var(--accent)/0.07)] max-sm:h-12 max-sm:w-12">
                 <span
-                  className="text-[17px] font-bold leading-none text-muted-foreground transition-colors duration-200 group-hover:text-accent"
+                  className="text-[17px] font-bold leading-none text-muted-foreground transition-colors duration-200 group-hover:text-accent max-sm:text-[14px]"
                   style={{ fontFamily: "var(--font-mono)" }}
                 >
                   {stage.num}
                 </span>
               </div>
-              <span
-                className="text-[9px] uppercase tracking-[0.1em] text-muted-foreground/70"
-                style={{ fontFamily: "var(--font-mono)" }}
-              >
-                {stage.cat}
-              </span>
-              <span
-                className="whitespace-nowrap text-[11px] font-medium text-muted-foreground"
-                style={{ fontFamily: "var(--font-mono)" }}
-              >
-                {stage.name}
-              </span>
+              {/* Labels — stacked on desktop, inline-stacked on mobile */}
+              <div className="flex flex-col items-center gap-1 max-sm:items-start max-sm:gap-0.5">
+                <span
+                  className="text-[9px] uppercase tracking-[0.1em] text-muted-foreground/70"
+                  style={{ fontFamily: "var(--font-mono)" }}
+                >
+                  {stage.cat}
+                </span>
+                <span
+                  className="whitespace-nowrap text-[11px] font-medium text-muted-foreground"
+                  style={{ fontFamily: "var(--font-mono)" }}
+                >
+                  {stage.name}
+                </span>
+              </div>
             </button>
             {i < pipelineStages.length - 1 && (
-              /* pt-8 = 32px = half circle height (h-16 / 2) — centers the line with the circle */
-              <div className="flex min-w-4 flex-1 items-start pt-8">
-                <div className="h-0 w-full border-t-2 border-dashed border-border" />
-              </div>
+              <>
+                {/* Horizontal connector — desktop only */}
+                <div className="flex min-w-4 flex-1 items-start pt-8 max-sm:hidden">
+                  <div className="h-0 w-full border-t-2 border-dashed border-border" />
+                </div>
+                {/* Vertical connector — mobile only */}
+                <div className="hidden max-sm:flex max-sm:w-12 max-sm:flex-shrink-0 max-sm:justify-center max-sm:py-1">
+                  <div className="h-5 border-l-2 border-dashed border-border" />
+                </div>
+              </>
             )}
           </div>
         ))}
@@ -256,7 +274,6 @@ function StageSection({
     </section>
   );
 }
-
 
 // ── Page ──────────────────────────────────────────────────────────────────────
 
@@ -339,7 +356,9 @@ export default function BarbellCVPage() {
             </span>
             <StatusBadge variant="ok">✓ Deadlift — working</StatusBadge>
             <StatusBadge variant="warn">⚠ Squat — constrained</StatusBadge>
-            <StatusBadge variant="fail">✗ Bench press — open</StatusBadge>
+            <StatusBadge variant="warn">
+              ⚠ Bench press — constrained
+            </StatusBadge>
           </div>
 
           <div className="flex flex-wrap gap-2.5">
@@ -434,12 +453,11 @@ export default function BarbellCVPage() {
               >
                 YOLO Pose
               </a>{" "}
-              is a variant of YOLO
-              trained to detect human keypoints — joints including wrists,
-              elbows, shoulders, hips, knees, and ankles — from a single frame.
-              It produces a keypoint confidence score per joint per frame, so
-              the pipeline degrades gracefully under occlusion: it flags rather
-              than guesses.
+              is a variant of YOLO trained to detect human keypoints — joints
+              including wrists, elbows, shoulders, hips, knees, and ankles —
+              from a single frame. It produces a keypoint confidence score per
+              joint per frame, so the pipeline degrades gracefully under
+              occlusion: it flags rather than guesses.
             </Prose>
             <Caption>
               YOLO Pose tracks 17 body keypoints per frame. Wrists grip the bar
@@ -506,11 +524,10 @@ export default function BarbellCVPage() {
             >
               Savitzky-Golay filter
             </a>{" "}
-            works by fitting a polynomial to a sliding
-            window of data points, then using the fitted value at the center as
-            the smoothed output. Think of it as a local curve-fitter rather than
-            a blunt averager. The key advantage over a simple moving average is
-            that it{" "}
+            works by fitting a polynomial to a sliding window of data points,
+            then using the fitted value at the center as the smoothed output.
+            Think of it as a local curve-fitter rather than a blunt averager.
+            The key advantage over a simple moving average is that it{" "}
             <strong className="text-foreground">preserves peak shape</strong>. A
             moving average flattens peaks by averaging them with their neighbors
             — systematically underestimating peak bar speed, exactly the metric
@@ -590,10 +607,10 @@ export default function BarbellCVPage() {
               >
                 PELT
               </a>{" "}
-              (Pruned Exact Linear Time) segments a signal into
-              statistically distinct constant-mean pieces. A penalty term
-              controls how many segments are allowed — lower penalty allows more
-              segments; higher forces fewer, coarser divisions.
+              (Pruned Exact Linear Time) segments a signal into statistically
+              distinct constant-mean pieces. A penalty term controls how many
+              segments are allowed — lower penalty allows more segments; higher
+              forces fewer, coarser divisions.
             </p>
             <p>
               Applied to <em>position</em>, a single upward pull looks like many
@@ -663,31 +680,32 @@ export default function BarbellCVPage() {
       </StageSection>
 
       {/* ── Stage 5 · Results ─────────────────────────────────────────────────── */}
-      <StageSection
-        id="stage-5"
-        n="05"
-        chip="Results"
-        title="What Works — and What Doesn't"
-      >
-        <div className="space-y-6">
-
+      <StageSection id="stage-5" n="05" chip="Results" title="Results">
+        <div className="space-y-10">
           {/* Deadlift */}
-          <div className="overflow-hidden rounded-xl border-[1.5px] border-green-200 bg-card dark:border-green-800">
-            <div className="flex items-center justify-between border-b border-green-200 bg-green-50 px-4 py-3 dark:border-green-800 dark:bg-green-950/40">
-              <span
-                className="text-[15px] font-bold tracking-[-0.01em] text-foreground"
-                style={{ fontFamily: "var(--font-display)" }}
-              >
-                Deadlift
-              </span>
-              <span
-                className="text-[11px] font-bold text-green-700 dark:text-green-400"
-                style={{ fontFamily: "var(--font-mono)" }}
-              >
-                ✓ working
-              </span>
+          <div className="border-t border-border pt-8">
+            <h3
+              className="mb-6 text-[20px] font-bold tracking-[-0.015em]"
+              style={{
+                fontFamily: "var(--font-display)",
+                color: "hsl(var(--primary))",
+              }}
+            >
+              Deadlift
+            </h3>
+            <div className="mb-6">
+              <img
+                src={deadliftRepVelocity}
+                alt="Per-rep velocity for deadlift set — rep 2 is a false positive from the lifter stepping away from the bar"
+                className="w-full rounded-lg border border-border"
+              />
+              <div className="mt-2">
+                <Caption>
+                  Rep 2 is detected but corresponds to the lifter stepping away from the bar, not a working set rep — a false positive from the phase detection step.
+                </Caption>
+              </div>
             </div>
-            <div className="grid grid-cols-[1fr_1.05fr] gap-8 p-6 max-sm:grid-cols-1">
+            <div className="grid grid-cols-[1fr_1.05fr] gap-8 max-sm:grid-cols-1">
               <div className="space-y-4">
                 <Prose>
                   The deadlift is the right baseline: the lifter is fully
@@ -715,105 +733,205 @@ export default function BarbellCVPage() {
           </div>
 
           {/* Squat */}
-          <div className="overflow-hidden rounded-xl border-[1.5px] border-amber-200 bg-card dark:border-amber-800">
-            <div className="flex items-center justify-between border-b border-amber-200 bg-amber-50 px-4 py-3 dark:border-amber-800 dark:bg-amber-950/40">
-              <span
-                className="text-[15px] font-bold tracking-[-0.01em] text-foreground"
-                style={{ fontFamily: "var(--font-display)" }}
-              >
-                Squat
-              </span>
-              <span
-                className="text-[11px] font-bold text-amber-700 dark:text-amber-400"
-                style={{ fontFamily: "var(--font-mono)" }}
-              >
-                ⚠ constrained
-              </span>
-            </div>
-            <div className="grid grid-cols-[1fr_1.05fr] gap-8 p-6 max-sm:grid-cols-1">
-              <div className="space-y-4">
-                <Prose>
-                  The squat pipeline worked, with one important constraint: the
-                  lifter's wrists must remain in frame throughout the lift. At
-                  the bottom of a squat, the wrists can be occluded by the
-                  barbell plates or rack posts depending on camera angle. When
-                  that happens, the YOLO Pose model loses confidence on the
-                  wrist keypoints, and tracking falters for those frames.
-                </Prose>
-                <Prose>
-                  The practical fix is a camera placement that keeps the wrists
-                  visible throughout — typically slightly elevated and to the
-                  side. This is a reasonable constraint for a controlled
-                  training setup.
-                </Prose>
-              </div>
-              <div>
+          <div className="border-t border-border pt-8">
+            <h3
+              className="mb-6 text-[20px] font-bold tracking-[-0.015em]"
+              style={{
+                fontFamily: "var(--font-display)",
+                color: "hsl(var(--primary))",
+              }}
+            >
+              Squat
+            </h3>
+            <Tabs
+              defaultValue="failure"
+              style={{ fontFamily: "var(--font-mono)" }}
+            >
+              <TabsList className="w-full">
+                <TabsTrigger value="failure" className="flex-1">
+                  Occlusion failure
+                </TabsTrigger>
+                <TabsTrigger value="success" className="flex-1">
+                  Correct camera placement
+                </TabsTrigger>
+              </TabsList>
+
+              {/* Failure tab */}
+              <TabsContent value="failure">
                 <img
-                  src={squatExample}
-                  alt="Squat tracking — wrist keypoint overlay"
-                  className="w-full rounded-lg border border-border"
+                  src={squatFailConcentric}
+                  alt="Concentric phase detection during occlusion failure"
+                  className="mb-6 w-full rounded-lg border border-border"
                 />
-              </div>
-            </div>
+                <div className="grid grid-cols-[1fr_1.05fr] gap-8 max-sm:grid-cols-1">
+                  <div className="space-y-4">
+                    <Prose>
+                      The squat pipeline worked, with one important constraint:
+                      the lifter's wrists must remain in frame throughout the
+                      lift. At the bottom of a squat, the wrists can be occluded
+                      by the barbell plates or rack posts depending on camera
+                      angle. When that happens, the YOLO Pose model loses
+                      confidence on the wrist keypoints, and tracking falters for
+                      those frames.
+                    </Prose>
+                    <Prose>
+                      The practical fix is a camera placement that keeps the
+                      wrists visible throughout — typically slightly elevated and
+                      to the side. This is a reasonable constraint for a
+                      controlled training setup.
+                    </Prose>
+                  </div>
+                  <div>
+                    <img
+                      src={squatExampleFail}
+                      alt="Squat — wrist occlusion failure"
+                      className="w-full rounded-lg border border-border"
+                    />
+                  </div>
+                </div>
+              </TabsContent>
+
+              {/* Success tab */}
+              <TabsContent value="success">
+                <img
+                  src={squatSuccessRepVelocity}
+                  alt="Per-rep velocity for successful squat set"
+                  className="mb-6 w-full rounded-lg border border-border"
+                />
+                <div className="grid grid-cols-[1fr_1.05fr] gap-8 max-sm:grid-cols-1">
+                  <div className="space-y-4">
+                    <Prose>
+                      With the camera slightly elevated and to the side, the
+                      lifter's wrists stay in frame through the full range of
+                      motion — from setup through the bottom of the squat and
+                      back to lockout. YOLO Pose tracks the keypoints stably
+                      across all frames with no dropped detections.
+                    </Prose>
+                    <Prose>
+                      PELT correctly identifies each rep's concentric phase, and
+                      the velocity chart shows clean per-rep extraction with no
+                      false positives. The per-rep trend is visible: velocity
+                      drops across the set as fatigue accumulates.
+                    </Prose>
+                  </div>
+                  <div>
+                    <img
+                      src={squatSuccess}
+                      alt="Squat — successful wrist tracking with correct camera angle"
+                      className="w-full rounded-lg border border-border"
+                    />
+                  </div>
+                </div>
+              </TabsContent>
+            </Tabs>
           </div>
 
           {/* Bench press */}
-          <div className="overflow-hidden rounded-xl border-[1.5px] border-red-200 bg-card dark:border-red-800">
-            <div className="flex items-center justify-between border-b border-red-200 bg-red-50 px-4 py-3 dark:border-red-800 dark:bg-red-950/40">
-              <span
-                className="text-[15px] font-bold tracking-[-0.01em] text-foreground"
-                style={{ fontFamily: "var(--font-display)" }}
-              >
-                Bench press
-              </span>
-              <span
-                className="text-[11px] font-bold text-red-700 dark:text-red-400"
-                style={{ fontFamily: "var(--font-mono)" }}
-              >
-                ✗ open
-              </span>
-            </div>
-            <div className="grid grid-cols-[1fr_1.05fr] gap-8 p-6 max-sm:grid-cols-1">
-              <div className="space-y-4">
-                <Prose>
-                  The bench press exposed a deeper problem. When a lifter is
-                  lying down on the bench, the standard side-on camera angle
-                  means the lifter's head is usually not in frame. This matters
-                  more than it initially seems.
-                </Prose>
-                <Prose>
-                  YOLO Pose is a top-down detector: it first finds a bounding
-                  box around a person, then runs keypoint estimation within that
-                  box. The person detector is trained predominantly on upright or
-                  near-upright humans. A lifter lying horizontal, seen from the
-                  side, with no visible head, is substantially
-                  out-of-distribution for the detector. The failure happens{" "}
-                  <strong className="text-foreground">
-                    before keypoint extraction even runs
-                  </strong>{" "}
-                  — the person bounding box is not found reliably, so no
-                  keypoints are extracted.
-                </Prose>
-                <Prose>
-                  The proposed fix is a high camera angle: positioning the
-                  camera overhead (or at a steep diagonal) so that the lifter's
-                  head and wrists are both visible throughout the lift. This
-                  changes the body orientation relative to the camera from
-                  horizontal to more nearly vertical, which should bring it back
-                  into distribution for the person detector. This is the current
-                  open question.
-                </Prose>
-              </div>
-              <div>
-                <img
-                  src={benchExample}
-                  alt="Bench press — detection failure on lying-down athlete"
-                  className="w-full rounded-lg border border-border"
-                />
-              </div>
-            </div>
-          </div>
+          <div className="border-t border-border pt-8">
+            <h3
+              className="mb-6 text-[20px] font-bold tracking-[-0.015em]"
+              style={{
+                fontFamily: "var(--font-display)",
+                color: "hsl(var(--primary))",
+              }}
+            >
+              Bench press
+            </h3>
+            <Tabs
+              defaultValue="failure"
+              style={{ fontFamily: "var(--font-mono)" }}
+            >
+              <TabsList className="w-full">
+                <TabsTrigger value="failure" className="flex-1">
+                  Side-on failure
+                </TabsTrigger>
+                <TabsTrigger value="success" className="flex-1">
+                  Overhead — working
+                </TabsTrigger>
+              </TabsList>
 
+              {/* Failure tab */}
+              <TabsContent value="failure">
+                <img
+                  src={benchFailRepVelocity}
+                  alt="Per-rep velocity for bench press — side-on camera failure"
+                  className="mb-6 w-full rounded-lg border border-border"
+                />
+                <div className="grid grid-cols-[1fr_1.05fr] gap-8 max-sm:grid-cols-1">
+                  <div className="space-y-4">
+                    <Prose>
+                      The bench press exposed a deeper problem. When a lifter is
+                      lying down on the bench, the standard side-on camera angle
+                      means the lifter's head is usually not in frame. This
+                      matters more than it initially seems.
+                    </Prose>
+                    <Prose>
+                      YOLO Pose is a top-down detector: it first finds a
+                      bounding box around a person, then runs keypoint estimation
+                      within that box. The person detector is trained
+                      predominantly on upright or near-upright humans. A lifter
+                      lying horizontal, seen from the side, with no visible head,
+                      is substantially out-of-distribution for the detector. The
+                      failure happens{" "}
+                      <strong className="text-foreground">
+                        before keypoint extraction even runs
+                      </strong>{" "}
+                      — the person bounding box is not found reliably, so no
+                      keypoints are extracted.
+                    </Prose>
+                    <Prose>
+                      The fix was a high camera angle: positioning the camera
+                      overhead (or at a steep diagonal) so that the lifter's
+                      head and wrists are both visible throughout the lift. This
+                      brings the body orientation back into distribution for the
+                      person detector.
+                    </Prose>
+                  </div>
+                  <div>
+                    <img
+                      src={benchExampleFail}
+                      alt="Bench press — detection failure on lying-down athlete"
+                      className="w-full rounded-lg border border-border"
+                    />
+                  </div>
+                </div>
+              </TabsContent>
+
+              {/* Success tab */}
+              <TabsContent value="success">
+                <img
+                  src={benchSuccessRepVelocity}
+                  alt="Per-rep velocity for bench press — overhead camera success"
+                  className="mb-6 w-full rounded-lg border border-border"
+                />
+                <div className="grid grid-cols-[1fr_1.05fr] gap-8 max-sm:grid-cols-1">
+                  <div className="space-y-4">
+                    <Prose>
+                      With the camera positioned overhead at a steep diagonal,
+                      the lifter's head and wrists are both in frame throughout
+                      the lift. The person detector finds the bounding box
+                      reliably, and keypoint extraction runs cleanly on every
+                      frame.
+                    </Prose>
+                    <Prose>
+                      PELT correctly identifies each rep's concentric phase, and
+                      the velocity chart shows clean per-rep extraction. The
+                      overhead angle also removes barbell occlusion of the
+                      wrists, which had been a secondary concern for the side-on
+                      setup.
+                    </Prose>
+                  </div>
+                  <div>
+                    <img
+                      src={benchSuccess}
+                      alt="Bench press — successful detection with overhead camera"
+                      className="w-full rounded-lg border border-border"
+                    />
+                  </div>
+                </div>
+              </TabsContent>
+            </Tabs>
+          </div>
         </div>
       </StageSection>
 
@@ -858,7 +976,6 @@ export default function BarbellCVPage() {
           </h3>
           <ul className="mb-9 list-none">
             {[
-              "High-angle bench press footage — test whether bringing the head into frame resolves detection",
               "Absolute velocity calibration — checkerboard reference or range-of-motion estimation to output m/s",
             ].map((item) => (
               <li
