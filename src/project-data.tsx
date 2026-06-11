@@ -447,7 +447,7 @@ Map<String, int> sessionCount = sessionDocs.fold({}, (map, doc) {
   final d = doc.startedAt;
   final dateKey =
       "\${d.year}-\${d.month.toString().padLeft(2,'0')}-\${d.day.toString().padLeft(2,'0')}";
-  final fullKey = '\$dateKey-\${timeBlock(d)}';
+  final fullKey = '$dateKey-\${timeBlock(d)}';
   map[fullKey] = (map[fullKey] ?? 0) + 1;
   return map;
 });`,
