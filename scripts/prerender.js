@@ -14,6 +14,7 @@ const routes = [
   "/projects/WhatsForDinner",
   "/projects/birthday-ping",
   "/projects/PomodoroTimer",
+  "/projects/BarbellCV",
 ];
 
 const template = fs.readFileSync(

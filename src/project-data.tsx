@@ -13,6 +13,7 @@ import barbellCVHighlight from "@/assets/barbell-cv/yolo_pose_deadlift_inference
 export const projectData = [
   {
     title: "Corpore Sano",
+    pinned: true,
     description:
       "Cross-platform workout tracker — React web app and React Native / Expo mobile app in a shared monorepo",
     image: CorporeSanoImg,
@@ -397,6 +398,7 @@ function toConfidence(score: number): ImportedBirthdayCandidate["confidence"] {
   },
   {
     title: "Pomodoro Timer",
+    pinned: true,
     description:
       "Cross-platform Flutter web app for focused work sessions — timer, category tracking, and a dashboard with charts and activity heatmap",
     image: pomodoroHighlight,
@@ -477,6 +479,7 @@ Map<String, int> sessionCount = sessionDocs.fold({}, (map, doc) {
   },
   {
     title: "Barbell Speed Tracking",
+    pinned: true,
     description:
       "A free, local alternative to commercial VBT apps — tracking barbell velocity from raw powerlifting video using pose detection, signal smoothing, and automated phase detection.",
     image: barbellCVHighlight,
@@ -497,6 +500,7 @@ export type Project = {
   skills: string[];
   pageLink: string;
   link: { github: string; live: string };
+  pinned?: boolean;
   longDescription?: string;
   keyFeatures?: string[];
   technologies?: string[];
